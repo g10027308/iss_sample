@@ -712,87 +712,8 @@ Gw
                                     <action selector="clickCancelButton:" target="XfG-lQ-9wD" id="nFa-BR-xcc"/>
                                 </connections>
                             </button>
-                            <box fixedFrame="YES" title="Authentication Setting" translatesAutoresizingMaskIntoConstraints="NO" id="KQt-YZ-UF3" userLabel="云服务器设置">
-                                <rect key="frame" x="26" y="57" width="555" height="116"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="0wh-k8-oYI">
-                                    <rect key="frame" x="3" y="3" width="549" height="99"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cPb-tD-Taf">
-                                            <rect key="frame" x="-1" y="55" width="113" height="24"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Mail:" id="HvX-QK-JcK">
-                                                <font key="font" size="12" name=".HiraKakuInterface-W3"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tzX-5o-bOg">
-                                            <rect key="frame" x="22" y="12" width="90" height="24"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Password:" id="All-BA-UKm">
-                                                <font key="font" size="12" name=".HiraKakuInterface-W3"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <secureTextField identifier="txtFldPassword" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sf6-N8-Zw7">
-                                            <rect key="frame" x="118" y="20" width="226" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="3kR-pc-pZV">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                <allowedInputSourceLocales>
-                                                    <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                                                </allowedInputSourceLocales>
-                                            </secureTextFieldCell>
-                                        </secureTextField>
-                                        <textField identifier="txtFldUserName" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="de2-CF-b3n">
-                                            <rect key="frame" x="118" y="63" width="226" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="GCb-bJ-L42">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                            <connections>
-                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="ZJm-ln-wuE"/>
-                                            </connections>
-                                        </textField>
-                                    </subviews>
-                                </view>
-                                <font key="titleFont" size="13" name=".HiraKakuInterface-W3"/>
-                            </box>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cga-1m-kpz">
-                                <rect key="frame" x="465" y="4" width="81" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S87-l2-Wws">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="clickOKButton:" target="XfG-lQ-9wD" id="LSG-tf-Z0H"/>
-                                </connections>
-                            </button>
-                            <textField identifier="txtPortName" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bcn-qm-yQA">
-                                <rect key="frame" x="136" y="341" width="229" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="LmS-Xb-IVO">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="qDP-ex-7zF"/>
-                                </connections>
-                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ug6-pf-Jfb">
-                                <rect key="frame" x="455" y="4" width="100" height="32"/>
+                                <rect key="frame" x="465" y="3" width="100" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fKF-5h-Uua">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -812,6 +733,18 @@ DQ
                                     <rect key="frame" x="3" y="3" width="549" height="110"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
+                                        <textField identifier="txtFldProxyIP" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Kp-gQ-k05" userLabel="Txt Fld ProxyIP">
+                                            <rect key="frame" x="120" y="46" width="193" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="97K-2C-P8E">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="Yu1-kT-zsA"/>
+                                            </connections>
+                                        </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wzt-pi-Cjx">
                                             <rect key="frame" x="294" y="41" width="69" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -855,12 +788,12 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xwc-ax-wON">
-                                            <rect key="frame" x="13" y="41" width="99" height="24"/>
+                                            <rect key="frame" x="11" y="41" width="103" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Proxy IP:" id="c6k-3h-LIV">
                                                 <font key="font" size="12" name=".HiraKakuInterface-W3"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <secureTextField identifier="txtFldPassword" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Za-mw-Set">
@@ -904,22 +837,110 @@ DQ
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField identifier="txtFldProxyIP" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fVt-bB-oES" userLabel="Txt Fld ProxyIP">
-                                            <rect key="frame" x="120" y="48" width="193" height="22"/>
+                                    </subviews>
+                                </view>
+                                <font key="titleFont" size="13" name=".HiraKakuInterface-W3"/>
+                            </box>
+                            <box fixedFrame="YES" title="Authentication Setting" translatesAutoresizingMaskIntoConstraints="NO" id="KQt-YZ-UF3" userLabel="云服务器设置">
+                                <rect key="frame" x="26" y="47" width="555" height="126"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="0wh-k8-oYI">
+                                    <rect key="frame" x="3" y="3" width="549" height="109"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cPb-tD-Taf" userLabel="Lbl UserID">
+                                            <rect key="frame" x="-1" y="32" width="113" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0ii-mu-Bzv">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="User:" id="HvX-QK-JcK">
+                                                <font key="font" size="12" name=".HiraKakuInterface-W3"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tzX-5o-bOg" userLabel="Lbl User Passwd">
+                                            <rect key="frame" x="22" y="0.0" width="90" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Password:" id="All-BA-UKm">
+                                                <font key="font" size="12" name=".HiraKakuInterface-W3"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <secureTextField identifier="txtFldPassword" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sf6-N8-Zw7" userLabel="Txt Fld User Password">
+                                            <rect key="frame" x="118" y="8" width="226" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="3kR-pc-pZV">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <allowedInputSourceLocales>
+                                                    <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                </allowedInputSourceLocales>
+                                            </secureTextFieldCell>
+                                        </secureTextField>
+                                        <textField identifier="txtFldUserName" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="de2-CF-b3n" userLabel="Txt Fld UserID">
+                                            <rect key="frame" x="118" y="40" width="226" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="GCb-bJ-L42">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="A9n-Iw-8Rq"/>
+                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="ZJm-ln-wuE"/>
                                             </connections>
+                                        </textField>
+                                        <textField identifier="txtFldUserName" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zsp-dH-8MJ">
+                                            <rect key="frame" x="118" y="72" width="226" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="6E2-OW-hFJ">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="ymV-7d-KiT"/>
+                                            </connections>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jd-v7-DxM" userLabel="Lbl Tenant ID">
+                                            <rect key="frame" x="-2" y="65" width="113" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="TenantID:" id="xQ8-6K-cvN">
+                                                <font key="font" size="12" name=".HiraKakuInterface-W3"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
                                         </textField>
                                     </subviews>
                                 </view>
                                 <font key="titleFont" size="13" name=".HiraKakuInterface-W3"/>
                             </box>
+                            <textField identifier="txtPortName" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bcn-qm-yQA">
+                                <rect key="frame" x="136" y="341" width="229" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="LmS-Xb-IVO">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="qDP-ex-7zF"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cga-1m-kpz">
+                                <rect key="frame" x="475" y="3" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S87-l2-Wws">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickOKButton:" target="XfG-lQ-9wD" id="LSG-tf-Z0H"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -933,18 +954,26 @@ DQ
                         <outlet property="lblMail" destination="cPb-tD-Taf" id="FZq-9x-T3H"/>
                         <outlet property="lblMailPasswd" destination="tzX-5o-bOg" id="T0C-dB-xjS"/>
                         <outlet property="lblPasswd" destination="IhR-in-tgi" id="5my-3M-dPu"/>
+                        <outlet property="lblPassword" destination="tzX-5o-bOg" id="kdG-c1-7cr"/>
                         <outlet property="lblPrinterDesc" destination="uoN-6m-cCF" id="AEt-6T-JpA"/>
                         <outlet property="lblProxyIP" destination="Xwc-ax-wON" id="E11-aP-5uB"/>
                         <outlet property="lblProxyPort" destination="wzt-pi-Cjx" id="Kcf-pF-IUu"/>
                         <outlet property="lblProxyPortRange" destination="cgi-LH-ehI" id="bYB-3G-d8d"/>
                         <outlet property="lblProxySettings" destination="p9I-qD-M85" id="mx0-cn-orX"/>
+                        <outlet property="lblTenantID" destination="6jd-v7-DxM" id="Ty1-Lz-OZX"/>
+                        <outlet property="lblUserID" destination="cPb-tD-Taf" id="Rl0-NP-x67"/>
                         <outlet property="lblUserName" destination="one-qL-zUv" id="tNd-7M-LvF"/>
+                        <outlet property="lblUserPassword" destination="tzX-5o-bOg" id="wkQ-pD-kOw"/>
                         <outlet property="txtFldMail" destination="de2-CF-b3n" id="mFP-3D-xYq"/>
                         <outlet property="txtFldMailPassword" destination="Sf6-N8-Zw7" id="7Na-RU-xDZ"/>
                         <outlet property="txtFldPassword" destination="1Za-mw-Set" id="w2D-eh-sPE"/>
-                        <outlet property="txtFldProxyIP" destination="fVt-bB-oES" id="HWj-6q-7Iu"/>
+                        <outlet property="txtFldProxyIP" destination="2Kp-gQ-k05" id="04Z-wy-Ymy"/>
+                        <outlet property="txtFldProxyIP1" destination="2Kp-gQ-k05" id="8kD-bW-oGU"/>
                         <outlet property="txtFldProxyPort" destination="uCo-zL-Xe1" id="7lj-4L-l1R"/>
+                        <outlet property="txtFldTenantID" destination="Zsp-dH-8MJ" id="vmm-97-Fcs"/>
+                        <outlet property="txtFldUserID" destination="de2-CF-b3n" id="hAy-2k-1DF"/>
                         <outlet property="txtFldUserName" destination="q2F-3a-k6L" id="7K0-Tc-mz7"/>
+                        <outlet property="txtFldUserPassword" destination="Sf6-N8-Zw7" id="6aC-CN-rn4"/>
                         <outlet property="txtPortName" destination="Bcn-qm-yQA" id="CBw-eR-3wd"/>
                         <segue destination="vfy-GN-ww7" kind="show" identifier="segue1to2" id="pxG-X5-xXZ"/>
                     </connections>

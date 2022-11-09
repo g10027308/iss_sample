@@ -358,7 +358,6 @@ static void read_plist_file(char *filename, int isBE) {
             cp_string ProxyIP;
             snprintf(ProxyIP, BUFSIZE, "%s:%s"
                      , plistData[PROXYIP].value.sval, plistData[PROXYPORT].value.sval);
-            
             strncpy(Conf_ProxyAddr, ProxyIP, BUFSIZE);
         }
         
@@ -485,7 +484,7 @@ static int init(char *argv[]) {
     
     snprintf(spListName, BUFSIZE, "%s", PATH_USER_PLIST);
     read_plist_file(spListName, 0);
-
+    
     // Update Config from Backend plist
     cp_string spListNameBE, PATH_BACKEND_PLIST;
     
@@ -1532,7 +1531,7 @@ static bool checkServerConnnect(char *ip, char *port, char *usercode, char *argv
         user=calloc(size, sizeof(char));
         snprintf(user, size, "%s", argv[2]);
         //char *loginUser = getlogin();
-        strcpy(access_token_path, "/var/log/cups/access_token_eu_mail_");
+        strcpy(access_token_path, "/var/log/cups/access_token_eu_user_");
         strcat(access_token_path, user);
         strcat(access_token_path, ".txt");
         
@@ -1545,6 +1544,7 @@ static bool checkServerConnnect(char *ip, char *port, char *usercode, char *argv
     return bCheckConnect;
     //return false;
 }
+
 
 
 static void savePlistItem(char *itemName, char *value, char *argv[], FILE *fStderr)
@@ -1573,7 +1573,6 @@ static void savePlistItem(char *itemName, char *value, char *argv[], FILE *fStde
     strcpy(PATH_BACKEND_PLIST, "/var/spool/print2server/SPOOL/com.rits.PdfDriverInstaller_");
     strcat(PATH_BACKEND_PLIST, user);
     strcat(PATH_BACKEND_PLIST, ".plist");
-    
     
     log_event(CPERROR, "savePlistItem(key = %s, string = %s)", itemName, value);
     if((fp = fopen(PATH_BACKEND_PLIST, "r")) == NULL)
@@ -1642,7 +1641,6 @@ static void savePlistItem(char *itemName, char *value, char *argv[], FILE *fStde
     
     fclose(fp);
 }
-
 
 bool modifySpoolFileDuplex2ON(char *spoolfile)
 {
@@ -1814,6 +1812,7 @@ bool change2PrintBWDuplex(char *spoolfile)
     {
         //Chang Duplex to ON and LongEdge
         modifySpoolFileDuplex2ON(spoolfile);
+        //modifySpoolFile(spoolfile, "BINDING=", "LONGEDGE");
     }
 
     return bRet;
@@ -2032,14 +2031,14 @@ bool upLoadFileToPrintServer(unsigned long fSize, char *spoolfile, char *argv[],
     user=calloc(size, sizeof(char));
     snprintf(user, size, "%s", argv[2]);
     //char *loginUser = getlogin();
-    strcpy(access_token_path, "/var/log/cups/access_token_eu_mail_");
+    strcpy(access_token_path, "/var/log/cups/access_token_eu_user_");
     strcat(access_token_path, user);
     strcat(access_token_path, ".txt");
     
     char access_token[1000] = {0};
     FILE *fp = fopen(access_token_path, "r");
     if (NULL == fp){
-        printf("fail to open access_token_eu_mail.txt\n");
+        printf("fail to open access_token_eu_user.txt\n");
         exit(1);
     }
     
@@ -2072,12 +2071,15 @@ bool upLoadFileToPrintServer(unsigned long fSize, char *spoolfile, char *argv[],
     else if (response_code != 200 && response_code != 201)
     {
         log_event(CPERROR,"Failed to post, url = %s, file size = %s, response_code = %d, errcode = %d", url, _fileSize, response_code, GetCurErrCode());
+        
         if(!showErrInforInPrintQueue(fstderr))
         {
             fputs(MSGIN_UPLOAD_FILE_ERROR, fstderr);
         }
+        
         return false;
     }
+    
     return bRet;
 }
 
@@ -2174,8 +2176,7 @@ bool getToken(const char *servername, char *clientId, char *refreshToken, char *
         size=strlen(argv[2])+1;
         user=calloc(size, sizeof(char));
         snprintf(user, size, "%s", argv[2]);
-        //char loginUser = getlogin();
-        strcpy(access_token_path, "/var/log/cups/access_token_eu_mail_");
+        strcpy(access_token_path, "/var/log/cups/access_token_eu_user_");
         strcat(access_token_path, user);
         strcat(access_token_path, ".txt");
         
@@ -2187,7 +2188,6 @@ bool getToken(const char *servername, char *clientId, char *refreshToken, char *
     }
     return bRef;
 }
-
 
 static int getosversion(char *key, char *value){
     int tmp, option;
@@ -2222,10 +2222,10 @@ static void read_os_plist_file(char *filename){
         log_event(CPERROR, "failed to open OS File: %s", filename);
         return;
     }
-
+    
     bool bFindKey = false;
     while (fgets(buffer, BUFSIZE, fp) != NULL) {
-
+        
         tmp[0]='\0';
         if (sscanf(buffer,"%*[^<]<key>%[^<]key>",tmp)) {
             if (strlen(tmp)){
@@ -2301,6 +2301,7 @@ int main(int argc, char *argv[]) {
     {
         printf("Signal err\n\n\n\n");
     }
+    
 #endif
 
     // Run as restricted user
@@ -2393,8 +2394,6 @@ int main(int argc, char *argv[]) {
     fputs(MSGOUT_CONTECT_FORBIDDENUSER_ERROR, stderr);
     fputs(MSGOUT_CONTECT_PASSTRIALPERIOD_ERROR, stderr);
     
-
-    
     if (argc == 6) {
         if ((fSize = preparespoolfile(0, spoolfile, NULL, argv[3], atoi(argv[1]), passwd, refData[PRINTBWDUPLEX].value.bval)) == 0) {
             //free(spoolfile);
@@ -2437,7 +2436,6 @@ int main(int argc, char *argv[]) {
         return (CUPS_BACKEND_CANCEL);
     }
     
-    
     //Check Server Connect
     if (!checkServerConnnect(Plist_PrintServerName, Plist_ServerPort, cUserCode, argv, stderr))
     {
@@ -2449,13 +2447,11 @@ int main(int argc, char *argv[]) {
             return (CUPS_BACKEND_CANCEL);
         }
     }
-
     
     cp_string OS_PLIST_PATH, osplist;
     strcpy(OS_PLIST_PATH, "/System/Library/CoreServices/SystemVersion.plist");
     snprintf(osplist, BUFSIZE, "%s", OS_PLIST_PATH);
     read_os_plist_file(osplist);
-    
     
     // Up load spool file to print server
     if(!upLoadFileToPrintServer(fSize, spoolfile, argv, stderr))

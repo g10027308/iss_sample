@@ -30,6 +30,12 @@
 "TitleMail"="Mail Address:";
 "TitleMailPassword"="Password:";
 
+"TitleTenantID"="TenantID:";
+"TitleUserID"="User:";
+"TitleUserPassword"="Password:";
+
+
+
 "TitleCheckButton"="Test Connection";
 "TitleCancleButton"="Close";
 "TitleInstallButton"="Install";
@@ -38,9 +44,9 @@
 "WarnningTitleServerIP"="Server IP Error";
 "WarnningInforServerIP"="Please enter a IP address.";
 
+
 "WarnningTitleServerPort"="Server Port Error";
 "WarnningInforServerPort"="Please enter a port number.";
-
 
 "WarnningTitleProxyIP"="Proxy Address Error";
 "WarnningInforProxyIP"="Please enter a Proxy Address.";
@@ -62,6 +68,16 @@
 
 "WarnningTitleMailPassword"="Mail Password Error";
 "WarnningInforMailPassword"="Please enter a Password.";
+
+"WarnningTitleTenantID"="TenantID Error";
+"WarnningInforTenantID"="Please enter a TenantID.";
+
+"WarnningTitleUserID"="UserID Error";
+"WarnningInforUserID"="Please enter a UserID.";
+
+"WarnningTitleUserPassword"="User Password Error";
+"WarnningInforUserPassword"="Please enter a Password.";
+
 
 "ErrorTitle"="Error";
 

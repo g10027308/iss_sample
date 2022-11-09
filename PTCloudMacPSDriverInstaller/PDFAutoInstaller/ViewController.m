@@ -15,7 +15,6 @@
 //#import "SettingWindow.h"
 #include <ifaddrs.h>
 #include <arpa/inet.h>
-
 #include <sys/types.h>
 #include <pwd.h>
 
@@ -48,6 +47,7 @@
 #else
     //[_txtPortName setEnabled:NO];
     [_txtPortName setEnabled:YES];
+    //self.view.window.title = STRSETTINGTITLE;
     self.view.window.title = NSLocalizedString(@"TitleUISave", nil);
     [_btnInstall setHidden:YES];
     [_buttonOkay setHidden:NO];
@@ -69,6 +69,7 @@
 
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
+
     // Update the view, if already loaded.
 }
 
@@ -101,7 +102,7 @@
         }
     }
 
-    if ([txtFld.identifier isEqualToString:@"txtFldMail"]) {
+    if ([txtFld.identifier isEqualToString:@"txtFldTenantID"]) {
         int maxLen = (int)txtFld.stringValue.length;
         for (int index=maxLen-1; index>=0; index--) {
             unichar aChar = [txtFld.stringValue characterAtIndex:index];
@@ -119,7 +120,25 @@
         }
     }
     
-    if ([txtFld.identifier isEqualToString:@"txtFldMailPassword"]) {
+    if ([txtFld.identifier isEqualToString:@"txtFldUserID"]) {
+        int maxLen = (int)txtFld.stringValue.length;
+        for (int index=maxLen-1; index>=0; index--) {
+            unichar aChar = [txtFld.stringValue characterAtIndex:index];
+            
+            NSString *strValue = txtFld.stringValue;
+            NSString *strRemove = [NSString stringWithFormat:@"%C", aChar];
+            strValue = [strValue stringByReplacingOccurrencesOfString:strRemove withString:@""];
+            txtFld.stringValue = strValue;
+            maxLen = (int)txtFld.stringValue.length;
+            index = maxLen;
+        }
+        NSUInteger txtLen = txtFld.stringValue.length;
+        if(txtLen > 128){
+            txtFld.stringValue = [txtFld.stringValue substringToIndex:128];
+        }
+    }
+    
+    if ([txtFld.identifier isEqualToString:@"txtFldUserPassword"]) {
         int maxLen = (int)txtFld.stringValue.length;
         for (int index=maxLen-1; index>=0; index--) {
             unichar aChar = [txtFld.stringValue characterAtIndex:index];
@@ -135,7 +154,6 @@
             txtFld.stringValue = [txtFld.stringValue substringToIndex:128];
         }
     }
-    
     
     //Port: 0~65535
     if ([txtFld.identifier isEqualToString:@"txtFldServerPort"] || [txtFld.identifier isEqualToString:@"txtFldProxyPort"] || [txtFld.identifier isEqualToString:@"txtFldLocalServerPort"]){
@@ -190,8 +208,6 @@
     NSString *plistName = [NSString stringWithFormat:@"com.rits.PdfDriverInstaller_%@.plist",loginName];
     NSString *plistPath = [prePath stringByAppendingString:plistName];
     
-    //NSString *plistPath = [prePath stringByAppendingString:CONFIGPLIST];
-    
     //NSMutableDictionary *dicSetting = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     
     NSMutableDictionary *dicSetting = [[NSMutableDictionary alloc] init];
@@ -213,23 +229,22 @@
     NSString * strUserName = self.txtFldUserName.stringValue;
     NSString * strPassword = self.txtFldPassword.stringValue;
     
-    // Mail Address
-    NSString * strMail = self.txtFldMail.stringValue;
-    NSString * strMailPassword = self.txtFldMailPassword.stringValue;
+    // User
+    NSString * strTenantID = self.txtFldTenantID.stringValue;
+    NSString * strUserID = self.txtFldUserID.stringValue;
+    NSString * strUserPassword = self.txtFldUserPassword.stringValue;
     
-    
-    NSString *path1 = [NSString stringWithFormat:@"/tmp/refresh_token_eu_mail_%@.txt",loginName];
+    NSString *path1 = [NSString stringWithFormat:@"/tmp/refresh_token_eu_user_%@.txt",loginName];
     NSString *refreshToken = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
     
-    NSString *path2 = [NSString stringWithFormat:@"/tmp/access_token_eu_mail_%@.txt",loginName];
+    NSString *path2 = [NSString stringWithFormat:@"/tmp/access_token_eu_user_%@.txt",loginName];
     NSString *accessToken = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
     
-    NSString *path3 = [NSString stringWithFormat:@"/tmp/code_verifier_eu_mail_%@.txt",loginName];
+    NSString *path3 = [NSString stringWithFormat:@"/tmp/code_verifier_eu_user_%@.txt",loginName];
     NSString *code_verifier = [NSString stringWithContentsOfFile:path3 encoding:NSUTF8StringEncoding error:nil];
     
-    NSString *path4 = [NSString stringWithFormat:@"/tmp/code_challenge_eu_mail_%@.txt",loginName];
+    NSString *path4 = [NSString stringWithFormat:@"/tmp/code_challenge_eu_user_%@.txt",loginName];
     NSString *code_challenge = [NSString stringWithContentsOfFile:path4 encoding:NSUTF8StringEncoding error:nil];
-    
     
     NSString * redirecturi = [self getInitConfigValue:@"Redirecturi"];
     NSString * clientid = [self getInitConfigValue:@"ClientID"];
@@ -249,9 +264,11 @@
     [dicSetting setObject:strUserName forKey:@"UserName"];
     [dicSetting setObject:strPassword forKey:@"Password"];
     
-    // Print User Mail
-    [dicSetting setObject:strMail forKey:@"Mail"];
-    [dicSetting setObject:strMailPassword forKey:@"MailPassword"];
+    // Print User
+    [dicSetting setObject:strTenantID forKey:@"TenantID"];
+    [dicSetting setObject:strUserID forKey:@"UserID"];
+    [dicSetting setObject:strUserPassword forKey:@"UserPassword"];
+    
     
     //Token
     [dicSetting setObject:refreshToken forKey:@"RefreshToken"];
@@ -304,7 +321,6 @@
     {
         return;
     }
-
     
     if([self isServerIPAddressAccesible])
     {
@@ -337,7 +353,7 @@
     {
         return true;
     }
-    
+
     NSString * strProxyIPAddress = self.txtFldProxyIP.stringValue;
     if(![strProxyIPAddress isEqualToString:[self getProxyIPAddress]])
     {
@@ -361,17 +377,21 @@
     {
         return true;
     }
-
     
-    // Print User Mail
-    NSString *strMail = self.txtFldMail.stringValue;
-    if(![strMail isEqualToString:[self getMail]])
+    NSString *strTenantID = self.txtFldTenantID.stringValue;
+    if(![strTenantID isEqualToString:[self getTenantID]])
     {
         return true;
     }
-
-    NSString * strMailPassword = self.txtFldMailPassword.stringValue;
-    if(![strMailPassword isEqualToString:[self getMailPassword]])
+    
+    NSString *strUserID = self.txtFldUserID.stringValue;
+    if(![strUserID isEqualToString:[self getUserID]])
+    {
+        return true;
+    }
+    
+    NSString * strUserPassword = self.txtFldUserPassword.stringValue;
+    if(![strUserPassword isEqualToString:[self getUserPassword]])
     {
         return true;
     }
@@ -448,10 +468,10 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     if ([fileManager fileExistsAtPath:plistPath]) {
-        NSString *strValue = [self getConfigValue:@"Mail"];
+        NSString *strValue = [self getConfigValue:@"TenantID"];
         if (strValue != nil){
             result = YES;
-        } else {
+        } else{
             result = NO;
         }
     } else{
@@ -477,8 +497,9 @@
     _lblPasswd.stringValue = NSLocalizedString(@"TitleProxyPasswd", nil);
     
     [_lblAuthenticationGroup setTitle:NSLocalizedString(@"TitleAuthenGroup", nil)];
-    _lblMail.stringValue = NSLocalizedString(@"TitleMail", nil);
-    _lblMailPasswd.stringValue = NSLocalizedString(@"TitleMailPassword", nil);
+    _lblTenantID.stringValue = NSLocalizedString(@"TitleTenantID", nil);
+    _lblUserID.stringValue = NSLocalizedString(@"TitleUserID", nil);
+    _lblUserPassword.stringValue = NSLocalizedString(@"TitleUserPassword", nil);
     
     [_btnTestConnect setTitle: NSLocalizedString(@"TitleCheckButton", nil)];
     [_buttonCancel setTitle: NSLocalizedString(@"TitleCancleButton", nil)];
@@ -496,14 +517,15 @@
         self.btnChkProxy.state = YES;
     }
     [self grayProxyUI];
-    
+
     self.txtFldProxyIP.stringValue = [self getProxyIPAddress];
     self.txtFldProxyPort.stringValue = [self getProxyPort];
     self.txtFldUserName.stringValue = [self getUserName];
     self.txtFldPassword.stringValue = [self getPassword];
     
-    self.txtFldMail.stringValue = [self getMail];
-    self.txtFldMailPassword.stringValue = [self getMailPassword];
+    self.txtFldTenantID.stringValue = [self getTenantID];
+    self.txtFldUserID.stringValue = [self getUserID];
+    self.txtFldUserPassword.stringValue = [self getUserPassword];
     //printerInstaller = [[RIPrinterInstaller alloc] init];
 }
 
@@ -523,37 +545,56 @@
     return strPortName;
 }
 
-- (NSString *)getMail {
+
+- (NSString *)getTenantID {
 #if SHOW_INSTALL_BTN
-    NSString *strMail = nil;
+    NSString *strTenantID = nil;
 #else
-    NSString *strMail = [self getConfigValue:@"Mail"];
+    NSString *strTenantID = [self getConfigValue:@"TenantID"];
 #endif
-    if(nil == strMail){
+    if(nil == strTenantID){
         if (YES == [self judgePlistExist]){
-            strMail = [self getConfigValue:@"Mail"];
+            strTenantID = [self getConfigValue:@"TenantID"];
         } else{
-            strMail = [self getInitConfigValue:@"Mail"];
+            strTenantID = [self getInitConfigValue:@"TenantID"];
         }
     }
-    return strMail;
+    return strTenantID;
 }
 
-- (NSString *)getMailPassword {
+- (NSString *)getUserID {
 #if SHOW_INSTALL_BTN
-    NSString *strMailPassword = nil;
+    NSString *getUserID = nil;
 #else
-    NSString *strMailPassword = [self getConfigValue:@"MailPassword"];
+    NSString *getUserID = [self getConfigValue:@"UserID"];
 #endif
-    if(nil == strMailPassword){
+    if(nil == getUserID){
         if (YES == [self judgePlistExist]){
-            strMailPassword = [self getConfigValue:@"MailPassword"];
+            getUserID = [self getConfigValue:@"UserID"];
         } else{
-            strMailPassword = [self getInitConfigValue:@"MailPassword"];
+            getUserID = [self getInitConfigValue:@"UserID"];
         }
     }
-    return strMailPassword;
+    return getUserID;
 }
+
+- (NSString *)getUserPassword {
+#if SHOW_INSTALL_BTN
+    NSString *getUserPassword = nil;
+#else
+    NSString *getUserPassword = [self getConfigValue:@"UserPassword"];
+#endif
+    if(nil == getUserPassword){
+        if (YES == [self judgePlistExist]){
+            getUserPassword = [self getConfigValue:@"UserPassword"];
+        } else{
+            getUserPassword = [self getInitConfigValue:@"UserPassword"];
+        }
+    }
+    return getUserPassword;
+}
+
+
 
 - (NSString *)getServerName {
 #if SHOW_INSTALL_BTN
@@ -685,6 +726,8 @@
     NSString *strServerIP4 = [self getConfigValue:@"ServerIP4"];
 #endif
     //NSString *strServerPort = [self getConfigValue:@"ServerPort"];
+    
+    //if(nil == strServerIP1 || nil == strServerIP2 || nil == strServerIP3 || nil == strServerIP4 || nil == strServerPort){
     if(nil == strServerIP1 || nil == strServerIP2 || nil == strServerIP3 || nil == strServerIP4){
         
         strServerIP = [self getInitServerIPAddress];
@@ -710,6 +753,7 @@
     
     return strServerIP;
 }
+
 
 - (NSString *)getProxyIPAddress {
 #if SHOW_INSTALL_BTN
@@ -1007,8 +1051,6 @@
     NSString *loginName = [self getloginUser];
     NSString *plistName = [NSString stringWithFormat:@"com.rits.PdfDriverInstaller_%@.plist",loginName];
     NSString *plistPath = [prePath stringByAppendingString:plistName];
-    //NSLog(@"[SettingWindow.getProxyIPAddress] prePath = %@", prePath);
-    //NSString *plistPath = [prePath stringByAppendingString:CONFIGPLIST];
     NSMutableDictionary *dicSetting = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     
     NSString *strValue = nil;
@@ -1112,8 +1154,11 @@
     HttpClient *client = [[HttpClient alloc]init];
     
     // Get
-    NSString * strMail = self.txtFldMail.stringValue;
-    NSString * strMailPassword = self.txtFldMailPassword.stringValue;
+    
+    NSString * strTenantID = self.txtFldTenantID.stringValue;
+    NSString * strUserID = self.txtFldUserID.stringValue;
+    NSString * strUserPassword = self.txtFldUserPassword.stringValue;
+    
     NSString *strServerName = [self getInitConfigValue:@"ServerName"];
     //NSString *strServerPort = @"443";
     NSString *strHttp = @"https";
@@ -1122,19 +1167,19 @@
     NSString *strProxyIPAddressAndPort = [NSString stringWithFormat:@"%@:%@", self.txtFldProxyIP.stringValue, self.txtFldProxyPort.stringValue];
     NSString *strUserNameAndPassword = [NSString stringWithFormat:@"%@:%@", self.txtFldUserName.stringValue, self.txtFldPassword.stringValue];
     
-    //NSString *postData = [NSString stringWithFormat:@"type=%@&loginMailAddress=%@&password=%@",  @"loginMailAddress", strMail, strMailPassword];
-
+    
     NSMutableDictionary *dict1=[[NSMutableDictionary alloc]init];
-    [dict1 setObject:@"loginMailAddress" forKey:@"type"];
-    [dict1 setObject:strMail forKey:@"loginMailAddress"];
-    [dict1 setObject:strMailPassword forKey:@"password"];
-    //[dict1 setObject:@"true" forKey:@"withMyinfo"];
+    [dict1 setObject:@"userId" forKey:@"type"];
+    [dict1 setObject:strTenantID forKey:@"tenantId"];
+    [dict1 setObject:strUserID forKey:@"userId"];
+    [dict1 setObject:strUserPassword forKey:@"password"];
     
     NSString *url = [NSString stringWithFormat:@"%@://api.%@/v1/aut/login/user", strHttp, strServerName];
     
     //NSData *response;
     NSString *response;
     int res_code = [client PostJSONPartUseUISettings:url IsUseProxy:strUseProxy ProxyIPAndPort:strProxyIPAddressAndPort UserNameAndPasswd:strUserNameAndPassword PostJSON:dict1 Response:&response];
+    
     
     if((res_code == 6) || (res_code == 7) || (res_code == 28)){
         NSAlert *alert = [[NSAlert alloc] init];
@@ -1145,7 +1190,7 @@
         return NO;
     }
     else if(!((res_code == 0 && nil != response)
-         &&([response rangeOfString:@"200"].location != NSNotFound)))
+              &&([response rangeOfString:@"200"].location != NSNotFound)))
     {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"ErrorTitle", nil)];
@@ -1182,7 +1227,7 @@
     NSString *code_challenge = [self codeChallenge];
     
     NSString *loginName = [self getloginUser];
-    NSString *path = [NSString stringWithFormat:@"/tmp/code_challenge_eu_mail_%@.txt",loginName];
+    NSString *path = [NSString stringWithFormat:@"/tmp/code_challenge_eu_user_%@.txt",loginName];
     NSError *error;
     [code_challenge writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error) {
@@ -1190,7 +1235,6 @@
     }else{
         NSLog(@"Export success");
     }
-    
     //NSString *url = [NSString stringWithFormat:@"%@://api.%@/v1/aut/oauth/provider/authorize", strHttp, strServerName];
     NSString *url = [NSString stringWithFormat:@"%@://api.%@/v1/aut/oauth/provider/authorize?client_id=70TN9IRGPKncMwjSkaCcs0ZqDCac3WdH&redirect_uri=%@&scope=%@&response_type=code&code_challenge=%@&code_challenge_method=S256&response_mode=fragment", strHttp, strServerName, redirecturi, scope, code_challenge];
     
@@ -1199,7 +1243,6 @@
     
     if (res_code == 0 && nil != response)
     {
-        
         NSString *str = @"error";
         NSRange errorStr = [response rangeOfString:str];
         
@@ -1220,7 +1263,7 @@
             NSString *code = [response substringWithRange:range];
             
             NSString *loginName = [self getloginUser];
-            NSString *path = [NSString stringWithFormat:@"/tmp/code_eu_mail_%@.txt",loginName];
+            NSString *path = [NSString stringWithFormat:@"/tmp/code_eu_user_%@.txt",loginName];
             NSError *error;
             [code writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
             if (error) {
@@ -1262,11 +1305,10 @@
         [resultStr appendString:oneStr];
     }
     
-    NSString *loginName = [self getloginUser];
-    NSString *path = [NSString stringWithFormat:@"/tmp/code_verifier_eu_mail_%@.txt",loginName];
-
     //NSString *resultStr = @"dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk";
     NSString *code_verifier = resultStr;
+    NSString *loginName = [self getloginUser];
+    NSString *path = [NSString stringWithFormat:@"/tmp/code_verifier_eu_user_%@.txt",loginName];
     NSError *error;
     [code_verifier writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error) {
@@ -1304,10 +1346,10 @@
     NSString *redirecturi = [self getInitConfigValue:@"Redirecturi"];
     
     NSString *loginName = [self getloginUser];
-    NSString *path1 = [NSString stringWithFormat:@"/tmp/code_eu_mail_%@.txt",loginName];
+    NSString *path1 = [NSString stringWithFormat:@"/tmp/code_eu_user_%@.txt",loginName];
     NSString *code = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
     
-    NSString *path2 = [NSString stringWithFormat:@"/tmp/code_verifier_eu_mail_%@.txt",loginName];
+    NSString *path2 = [NSString stringWithFormat:@"/tmp/code_verifier_eu_user_%@.txt",loginName];
     NSString *code_verifier = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
     
     NSMutableDictionary *dict1=[[NSMutableDictionary alloc]init];
@@ -1330,7 +1372,6 @@
         //NSArray *expires_in = [client GetValueFromJSONData:response sKey:@"expires_in"];
         NSArray *refresh_token = [client GetValueFromJSONData:response sKey:@"refresh_token"];
         NSString *refresh_tokenStr = [NSString stringWithFormat:@"%@", (NSString*)refresh_token];
-        
         NSString *errorStr = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding ];
         NSString *str = @"error";
         NSRange error = [errorStr rangeOfString:str];
@@ -1343,8 +1384,7 @@
             return NO;
         }else{
             NSString *access_token = [NSString stringWithFormat:@"%@", (NSString*)access_tokenStr];
-            
-            NSString *path1 = [NSString stringWithFormat:@"/tmp/access_token_eu_mail_%@.txt",loginName];
+            NSString *path1 = [NSString stringWithFormat:@"/tmp/access_token_eu_user_%@.txt",loginName];
             NSError *error;
             [access_token writeToFile:path1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
             if (error) {
@@ -1353,7 +1393,7 @@
                 NSLog(@"Export success");
             }
             
-            NSString *path2 = [NSString stringWithFormat:@"/tmp/refresh_token_eu_mail_%@.txt",loginName];
+            NSString *path2 = [NSString stringWithFormat:@"/tmp/refresh_token_eu_user_%@.txt",loginName];
             [refresh_tokenStr writeToFile:path2 atomically:YES encoding:NSUTF8StringEncoding error:&error];
             if (error) {
                 NSLog(@"Export failed :%@",error);
@@ -1361,6 +1401,7 @@
                 NSLog(@"Export success");
             }
         }
+        
     }
     else
     {
@@ -1420,8 +1461,6 @@
         NSLog(@"[ERROR] Proxy port should not be blank when \"Use Proxy\" is selected.");
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setAlertStyle:NSAlertStyleInformational];
-        //[alert setMessageText:@"代理端口错误"];
-        //[alert setInformativeText:@"当\"使用代理\"被勾选时，代理端口不可设置为空。"];
         [alert setMessageText:NSLocalizedString(@"WarnningTitleProxyPort", nil)];
         [alert setInformativeText:NSLocalizedString(@"WarnningInforProxyPort", nil)];
         [alert runModal];
@@ -1451,25 +1490,36 @@
         return NO;
     }
     
-    if (YES == [self.txtFldMail.stringValue isEqualToString:@""]) {
-        NSLog(@"[ERROR] Mail should not be blank.");
+    if (YES == [self.txtFldTenantID.stringValue isEqualToString:@""]) {
+        NSLog(@"[ERROR] TenantID should not be blank.");
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setAlertStyle:NSAlertStyleInformational];
-        [alert setMessageText:NSLocalizedString(@"WarnningTitleMail", nil)];
-        [alert setInformativeText:NSLocalizedString(@"WarnningInforMail", nil)];
+        [alert setMessageText:NSLocalizedString(@"WarnningTitleTenantID", nil)];
+        [alert setInformativeText:NSLocalizedString(@"WarnningInforTenantID", nil)];
         [alert runModal];
-        [self.txtFldMail becomeFirstResponder];
+        [self.txtFldTenantID becomeFirstResponder];
         return NO;
     }
     
-    if (YES == [self.txtFldMailPassword.stringValue isEqualToString:@""]) {
-        NSLog(@"[ERROR] Mail Password should not be blank.");
+    if (YES == [self.txtFldUserID.stringValue isEqualToString:@""]) {
+        NSLog(@"[ERROR] UserID should not be blank.");
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setAlertStyle:NSAlertStyleInformational];
-        [alert setMessageText:NSLocalizedString(@"WarnningTitleMailPassword", nil)];
-        [alert setInformativeText:NSLocalizedString(@"WarnningInforMailPassword", nil)];
+        [alert setMessageText:NSLocalizedString(@"WarnningTitleUserID", nil)];
+        [alert setInformativeText:NSLocalizedString(@"WarnningInforUserID", nil)];
         [alert runModal];
-        [self.txtFldMailPassword becomeFirstResponder];
+        [self.txtFldUserID becomeFirstResponder];
+        return NO;
+    }
+    
+    if (YES == [self.txtFldUserPassword.stringValue isEqualToString:@""]) {
+        NSLog(@"[ERROR] User Password should not be blank.");
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setAlertStyle:NSAlertStyleInformational];
+        [alert setMessageText:NSLocalizedString(@"WarnningTitleUserPassword", nil)];
+        [alert setInformativeText:NSLocalizedString(@"WarnningInforUserPassword", nil)];
+        [alert runModal];
+        [self.txtFldUserPassword becomeFirstResponder];
         return NO;
     }
     
@@ -1510,13 +1560,13 @@
 
 -(BOOL)grayProxyUI
 {
-   //if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark)
     if(self.btnChkProxy.state == YES)
     {
         [self.txtFldProxyIP setEnabled:YES];
         [self.txtFldProxyPort setEnabled:YES];
         [self.txtFldUserName setEnabled:YES];
         [self.txtFldPassword setEnabled:YES];
+        
         
         
 //        [self.lblProxyIP setTextColor:[NSColor blackColor]];

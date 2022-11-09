@@ -8,6 +8,12 @@
 	<string>https://www.eu.smart-integration.ricoh.com/frcxport/login-success.html</string>
 	<key>ClientID</key>
 	<string>70TN9IRGPKncMwjSkaCcs0ZqDCac3WdH</string>
+	<key>TenantID</key>
+	<string></string>
+	<key>UserID</key>
+	<string></string>
+	<key>UserPassword</key>
+	<string></string>
 	<key>Mail</key>
 	<string></string>
 	<key>MailPassword</key>

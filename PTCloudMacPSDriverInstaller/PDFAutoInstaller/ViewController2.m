@@ -10,10 +10,8 @@
 #import "ViewController2.h"
 #import "RIPDFInstaller.h"
 #import "SettingWindow.h"
-
 #include <sys/types.h>
 #include <pwd.h>
-
 
 //static NSString *STRINSTALLING = @"Printer installing...";
 //static NSString *STRINSTALLSUCCESS = @"Printer install success!";
@@ -134,11 +132,9 @@ static NSString *STRVIEWTITLE = @"PS Basic Driver";
     uid_t current_user_id = getuid();
     struct passwd *pwentry = getpwuid(current_user_id);
     char *loginUser = pwentry->pw_name;
-    //char *loginUser = getlogin();
     NSString *loginName = [[NSString alloc] initWithUTF8String:loginUser];
     NSString *plistName = [NSString stringWithFormat:@"com.rits.PdfDriverInstaller_%@.plist",loginName];
     NSString *plistPath = [prePath stringByAppendingString:plistName];
-    //NSString *plistPath = [prePath stringByAppendingString:CONFIGPLIST];
     
     //NSMutableDictionary *dicSetting = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     NSMutableDictionary *dicSetting = [[NSMutableDictionary alloc] init];

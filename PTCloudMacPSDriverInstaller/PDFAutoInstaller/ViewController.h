@@ -12,6 +12,11 @@
 #import "showHelpHowToGetUID.h"
 //#import "SettingWindow.h"
 
+//config file name (".plist" included)
+//static NSString *CONFIGPLIST = @"com.rits.PdfDriverInstaller.plist";
+//initial config file name (".plist" not included)
+//static NSString *INITCONFIG = @"InitConfig";
+
 @interface ViewController : NSViewController
 {
     NSString *_PrinterName;
@@ -47,8 +52,9 @@
 @property (weak) IBOutlet NSTextField *lblPasswd;
 
 @property (weak) IBOutlet NSBox *lblAuthenticationGroup;
-@property (weak) IBOutlet NSTextField *lblMail;
-@property (weak) IBOutlet NSTextField *lblMailPasswd;
+@property (weak) IBOutlet NSTextField *lblTenantID;
+@property (weak) IBOutlet NSTextField *lblUserID;
+@property (weak) IBOutlet NSTextField *lblUserPassword;
 
 @property (weak) IBOutlet NSButton *btnTestConnect;
 
@@ -73,8 +79,9 @@
 @property (weak) IBOutlet NSSecureTextField *txtFldPassword;
 
 //Authentication
-@property (weak) IBOutlet NSTextField *txtFldMail;
-@property (weak) IBOutlet NSSecureTextField *txtFldMailPassword;
+@property (weak) IBOutlet NSTextField *txtFldTenantID;
+@property (weak) IBOutlet NSTextField *txtFldUserID;
+@property (weak) IBOutlet NSSecureTextField *txtFldUserPassword;
 
 
 - (void)initWindow;
@@ -100,9 +107,7 @@
 - (NSString *)getLocalServerIPAddress3;
 - (NSString *)getLocalServerIPAddress4;
 - (NSString *)getLocalServerPort;
-
 - (NSString *)getloginUser;
-
 - (NSString *)getWritePreferenceDirectory;
 
 

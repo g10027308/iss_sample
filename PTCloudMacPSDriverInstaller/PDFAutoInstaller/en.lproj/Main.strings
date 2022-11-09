@@ -128,8 +128,8 @@
 /* Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI"; */
 "HFo-cy-zxI.title" = "Show Spelling and Grammar";
 
-/* Class = "NSTextFieldCell"; title = "Mail:"; ObjectID = "HvX-QK-JcK"; */
-"HvX-QK-JcK.title" = "Mail:";
+/* Class = "NSTextFieldCell"; title = "User:"; ObjectID = "HvX-QK-JcK"; */
+"HvX-QK-JcK.title" = "User:";
 
 /* Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO"; */
 "HyV-fh-RgO.title" = "View";
@@ -439,6 +439,9 @@
 
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU"; */
 "x3v-GG-iWU.title" = "Copy";
+
+/* Class = "NSTextFieldCell"; title = "TenantID:"; ObjectID = "xQ8-6K-cvN"; */
+//"xQ8-6K-cvN.title" = "TenantID:";
 
 /* Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t"; */
 "xQD-1f-W4t.title" = "Use All";

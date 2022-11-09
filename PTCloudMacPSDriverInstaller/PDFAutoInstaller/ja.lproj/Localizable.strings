@@ -30,6 +30,11 @@
 "TitleMail"="メールアドレス:";
 "TitleMailPassword"="パスワード:";
 
+"TitleTenantID"="テナントID:";
+"TitleUserID"="ユーザーID:";
+"TitleUserPassword"="パスワード:";
+
+
 "TitleCheckButton"="Test Connection";
 "TitleCancleButton"="閉じる";
 "TitleInstallButton"="インストール";
@@ -41,7 +46,6 @@
 
 "WarnningTitleServerPort"="Server Port Error";
 "WarnningInforServerPort"="ポートが未入力です。ご確認ください。";
-
 
 "WarnningTitleProxyIP"="プロキシアドレスエラー";
 "WarnningInforProxyIP"="プロキシアドレスが未入力です。ご確認ください。";
@@ -55,7 +59,6 @@
 "WarnningTitleProxyPassword"="プロキシパスワードエラー";
 "WarnningInforProxyPassword"="プロキシパスワードが未入力です。ご確認ください。";
 
-
 "WarnningTitleUIDPort"="UID Error";
 "WarnningInforUIDPort"="Please enter a UID.";
 
@@ -64,6 +67,17 @@
 
 "WarnningTitleMailPassword"="パスワードエラー";
 "WarnningInforMailPassword"="パスワードが未入力です。ご確認ください。";
+
+
+"WarnningTitleTenantID"="テナントIDエラー";
+"WarnningInforTenantID"="テナントIDが未入力です。ご確認ください。";
+
+"WarnningTitleUserID"="ユーザーIDエラー";
+"WarnningInforUserID"="ユーザーIDが未入力です。ご確認ください。";
+
+"WarnningTitleUserPassword"="パスワードエラー";
+"WarnningInforUserPassword"="パスワードが未入力です。ご確認ください。";
+
 
 "ErrorTitle"="Error";
 

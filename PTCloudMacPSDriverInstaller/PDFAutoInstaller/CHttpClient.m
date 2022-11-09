@@ -9,7 +9,6 @@
 #import "CHttpClient.h"
 #import "SettingWindow.h"
 #import <curl/curl.h>
-
 #include <sys/types.h>
 #include <pwd.h>
 
@@ -179,7 +178,7 @@ size_t write_data(char *ptr, size_t size, size_t nmemb, void *userdata) {
         //curl_easy_setopt(curl, CURLOPT_POSTFIELDS, [strField UTF8String]); //post参数
         
         NSString *loginName = [self getloginUser];
-        NSString *cookiesName = [NSString stringWithFormat:@"/private/tmp/cookies_eu_mail_%@.txt",loginName];
+        NSString *cookiesName = [NSString stringWithFormat:@"/private/tmp/cookies_eu_user_%@.txt",loginName];
         const char *cookies = [cookiesName UTF8String];
         curl_easy_setopt(curl, CURLOPT_COOKIEFILE, cookies);
         
@@ -600,7 +599,7 @@ size_t write_data(char *ptr, size_t size, size_t nmemb, void *userdata) {
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
         
         NSString *loginName = [self getloginUser];
-        NSString *cookiesName = [NSString stringWithFormat:@"/private/tmp/cookies_eu_mail_%@.txt",loginName];
+        NSString *cookiesName = [NSString stringWithFormat:@"/private/tmp/cookies_eu_user_%@.txt",loginName];
         const char *cookies = [cookiesName UTF8String];
         
         FILE *fp = fopen(cookies, "wb");

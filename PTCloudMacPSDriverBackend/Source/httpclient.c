@@ -201,7 +201,6 @@ long client_posttoken(const char* url, const char* post_data, char* w_outdata, i
     if (result == CURLE_OK)
     {
         memcpy(w_outdata, outdata, w_len);
-        //result = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
         
         log_event(CPDEBUG, "client_post result: %s, err_code: %d", outdata, err_code);
@@ -281,14 +280,14 @@ long client_post_multipart(const char* url, const struct POST_PART_DATA* post_da
     user=calloc(size, sizeof(char));
     snprintf(user, size, "%s", argv[2]);
     //char loginUser = getlogin();
-    strcpy(access_token_path, "/var/log/cups/access_token_eu_mail_");
+    strcpy(access_token_path, "/var/log/cups/access_token_eu_user_");
     strcat(access_token_path, user);
     strcat(access_token_path, ".txt");
     
     char access_token[1000] = {0};
     FILE *fp = fopen(access_token_path, "r");
     if (NULL == fp){
-        printf("fail to open access_token_eu_mail.txt\n");
+        printf("fail to open access_token_eu_user.txt\n");
         exit(1);
     }
     
@@ -309,7 +308,6 @@ long client_post_multipart(const char* url, const struct POST_PART_DATA* post_da
     struct curl_slist *headers = NULL;
     //headers = curl_slist_append(headers, "Expect:");
     headers = curl_slist_append(headers, "Accept: application/json");
-    //headers = curl_slist_append(headers, "User-Agent: RICOH FRCX Port for Mac 1.3.0.0/(Version 10.14.5 (Build 18F132)");
     headers = curl_slist_append(headers, useragent);
     headers = curl_slist_append(headers, _header);
     
@@ -318,7 +316,6 @@ long client_post_multipart(const char* url, const struct POST_PART_DATA* post_da
     CURLcode result = curl_easy_perform(curl);
     if (result == CURLE_OK)
     {
-        //result = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
         
         err_code = getErrorCode(outdata, "\"inquiry_code\""); //Get error code
