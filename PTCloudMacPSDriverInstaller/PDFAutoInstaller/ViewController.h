@@ -10,9 +10,16 @@
 #import <WebKit/WebKit.h>
 #import "SacnQRCode.h"
 #import "showHelpHowToGetUID.h"
+#import "ViewController3.h"
 //#import "SettingWindow.h"
+//#import "LoginWindow.h"
 
-@interface ViewController : NSViewController
+//config file name (".plist" included)
+//static NSString *CONFIGPLIST = @"com.rits.PdfDriverInstaller.plist";
+//initial config file name (".plist" not included)
+//static NSString *INITCONFIG = @"InitConfig";
+
+@interface ViewController : NSViewController <View3Delegate>
 {
     NSString *_PrinterName;
     NSString *_Passwd;
@@ -24,7 +31,10 @@
 }
 @property (strong) showHelpHowToGetUID *showHelpWindow;
 //@property (strong) SettingWindow *settingWindow;
+//@property (strong) LoginWindow *loginWindow;
+
 @property NSString *PrinterName;
+@property NSString *sLoginURL;
 @property NSString *Passwd;
 @property NSArray *strAppID;      //第0步获得(post方式)
 @property NSArray *strAppSecret;  //第0步获得(post方式)
@@ -46,13 +56,6 @@
 @property (weak) IBOutlet NSTextField *lblUserName;
 @property (weak) IBOutlet NSTextField *lblPasswd;
 
-@property (weak) IBOutlet NSBox *lblAuthenticationGroup;
-@property (weak) IBOutlet NSTextField *lblMail;
-@property (weak) IBOutlet NSTextField *lblMailPasswd;
-
-@property (weak) IBOutlet NSButton *btnTestConnect;
-
-
 @property (weak) IBOutlet NSButton *buttonOkay;
 @property (weak) IBOutlet NSButton *buttonCancel;
 
@@ -72,9 +75,8 @@
 //Password
 @property (weak) IBOutlet NSSecureTextField *txtFldPassword;
 
-//Authentication
-@property (weak) IBOutlet NSTextField *txtFldMail;
-@property (weak) IBOutlet NSSecureTextField *txtFldMailPassword;
+//
+//@property (strong) SettingWindow *settingWindow;
 
 
 - (void)initWindow;
@@ -100,23 +102,8 @@
 - (NSString *)getLocalServerIPAddress3;
 - (NSString *)getLocalServerIPAddress4;
 - (NSString *)getLocalServerPort;
-
 - (NSString *)getloginUser;
-
 - (NSString *)getWritePreferenceDirectory;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end
 

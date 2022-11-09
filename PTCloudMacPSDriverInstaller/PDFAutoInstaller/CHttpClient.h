@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <curl/curl.h>
 #import <openssl/ssl.h>
+#import <WebKit/WebKit.h>
 
 @interface HttpClient: NSObject
 {
@@ -28,11 +29,11 @@
 - (int)PostPartWithUISetting:(NSString *)urlText IsUseProxy:(NSString *)strUseProxy ProxyIPAndPort:(NSString *)strProxyIPAddressAndPort UserNameAndPasswd:(NSString *)strUserNameAndPassword PostData:(NSString *)postData Response:(NSData **)response isJson:(BOOL)bJSon;
 
 // Use UI Setting Proxy Data
-- (int)GetPartUseUISettings:(NSString *)urlText IsUseProxy:(NSString*)strUseProxy ProxyIPAndPort:(NSString*)strProxyIPAddressAndPort UserNameAndPasswd:(NSString*)strUserNameAndPassword  Response:(NSString **)response;
+- (int)GetPartUseUISettings:(NSString *)urlText IsUseProxy:(NSString*)strUseProxy ProxyIPAndPort:(NSString*)strProxyIPAddressAndPort UserNameAndPasswd:(NSString*)strUserNameAndPassword  Response:(NSString **)response APISid:(NSString *)sAPISid;
 
 //Use UI setting Proxy Data
-//- (int)PostJSONPartUseUISettings:(NSString *)urlText IsUseProxy:(NSString*)strUseProxy ProxyIPAndPort:(NSString*)strProxyIPAddressAndPort UserNameAndPasswd:(NSString*)strUserNameAndPassword PostJSON:(NSMutableDictionary *)postJSON Response:(NSData **)response;
-- (int)PostJSONPartUseUISettings:(NSString *)urlText IsUseProxy:(NSString*)strUseProxy ProxyIPAndPort:(NSString*)strProxyIPAddressAndPort UserNameAndPasswd:(NSString*)strUserNameAndPassword PostJSON:(NSMutableDictionary *)postJSON Response:(NSString **)response;
+- (int)PostJSONPartUseUISettings:(NSString *)urlText IsUseProxy:(NSString*)strUseProxy ProxyIPAndPort:(NSString*)strProxyIPAddressAndPort UserNameAndPasswd:(NSString*)strUserNameAndPassword PostJSON:(NSMutableDictionary *)postJSON Response:(NSData **)response;
+//- (int)PostJSONPartUseUISettings:(NSString *)urlText IsUseProxy:(NSString*)strUseProxy ProxyIPAndPort:(NSString*)strProxyIPAddressAndPort UserNameAndPasswd:(NSString*)strUserNameAndPassword PostJSON:(NSMutableDictionary *)postJSON Response:(NSString **)response;
 
 
 // 向一个地址POST(JSON)

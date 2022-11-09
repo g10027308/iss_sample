@@ -10,10 +10,12 @@
 #import <curl/curl.h>
 #import <openssl/ssl.h>
 #import "SettingWindow.h"
+//#import "LoginWindow.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (strong) SettingWindow *settingWindow;
+//@property (strong) SettingWindow *settingWindow;
+//@property (strong) LoginWindow *loginWindow;
 
 @end
 

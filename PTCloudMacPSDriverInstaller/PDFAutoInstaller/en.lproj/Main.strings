@@ -68,9 +68,6 @@
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
 "AYu-sK-qS6.title" = "Main Menu";
 
-/* Class = "NSTextFieldCell"; title = "Password:"; ObjectID = "All-BA-UKm"; */
-"All-BA-UKm.title" = "Password:";
-
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
 "BOF-NM-1cW.title" = "Preferences…";
 
@@ -128,9 +125,6 @@
 /* Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI"; */
 "HFo-cy-zxI.title" = "Show Spelling and Grammar";
 
-/* Class = "NSTextFieldCell"; title = "Mail:"; ObjectID = "HvX-QK-JcK"; */
-"HvX-QK-JcK.title" = "Mail:";
-
 /* Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO"; */
 "HyV-fh-RgO.title" = "View";
 
@@ -148,9 +142,6 @@
 
 /* Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV"; */
 "J7y-lM-qPV.title" = "Use None";
-
-/* Class = "NSBox"; title = "Authentication Setting"; ObjectID = "KQt-YZ-UF3"; */
-"KQt-YZ-UF3.title" = "Authentication Setting";
 
 /* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H"; */
 "KaW-ft-85H.title" = "Revert to Saved";

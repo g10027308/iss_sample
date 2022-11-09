@@ -38,9 +38,9 @@
 "WarnningTitleServerIP"="Server IP Error";
 "WarnningInforServerIP"="Please enter a IP address.";
 
+
 "WarnningTitleServerPort"="Server Port Error";
 "WarnningInforServerPort"="Please enter a port number.";
-
 
 "WarnningTitleProxyIP"="Proxy Address Error";
 "WarnningInforProxyIP"="Please enter a Proxy Address.";

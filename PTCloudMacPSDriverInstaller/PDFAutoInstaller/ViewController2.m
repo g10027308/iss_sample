@@ -10,10 +10,9 @@
 #import "ViewController2.h"
 #import "RIPDFInstaller.h"
 #import "SettingWindow.h"
-
+#import "RIPDFInstaller.h"
 #include <sys/types.h>
 #include <pwd.h>
-
 
 //static NSString *STRINSTALLING = @"Printer installing...";
 //static NSString *STRINSTALLSUCCESS = @"Printer install success!";
@@ -73,7 +72,8 @@ static NSString *STRVIEWTITLE = @"PS Basic Driver";
     [_buttonFinish setEnabled:NO];
     self.lblInstallInfor.stringValue = NSLocalizedString(@"InforInstallingDriver", nil);
     [self.installProgress startAnimation:nil];
-    [self setTitle:STRVIEWTITLE];
+    //[self setTitle:STRVIEWTITLE];
+    [self setTitle:self.PrinterName];
     [_buttonFinish setTitle:NSLocalizedString(@"TitlButtonFinish", nil)];
     //printerInstaller = [[RIPrinterInstaller alloc] init];
 
@@ -117,11 +117,17 @@ static NSString *STRVIEWTITLE = @"PS Basic Driver";
     [thread start];
 }
 
+//- (IBAction)cliackButtonFinish:(id)sender {
+//    [[NSApplication sharedApplication] terminate:self];
+//}
+
 - (IBAction)cliackButtonFinish:(id)sender {
 #if SHOW_INSTALL_BTN
     [[NSApplication sharedApplication] terminate:self];
 #else
+    //if ([self.view.identifier isEqualToString:@"thirdView"]) {
     [self.view.window close];
+    //}
 #endif
 }
 
@@ -134,11 +140,9 @@ static NSString *STRVIEWTITLE = @"PS Basic Driver";
     uid_t current_user_id = getuid();
     struct passwd *pwentry = getpwuid(current_user_id);
     char *loginUser = pwentry->pw_name;
-    //char *loginUser = getlogin();
     NSString *loginName = [[NSString alloc] initWithUTF8String:loginUser];
     NSString *plistName = [NSString stringWithFormat:@"com.rits.PdfDriverInstaller_%@.plist",loginName];
     NSString *plistPath = [prePath stringByAppendingString:plistName];
-    //NSString *plistPath = [prePath stringByAppendingString:CONFIGPLIST];
     
     //NSMutableDictionary *dicSetting = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     NSMutableDictionary *dicSetting = [[NSMutableDictionary alloc] init];

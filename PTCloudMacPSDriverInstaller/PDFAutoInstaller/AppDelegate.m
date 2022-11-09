@@ -38,16 +38,14 @@
     curl_global_cleanup();
 }
 
-
 - (IBAction)clickPreferencesMemu:(id)sender {
-    /*if(nil == _settingWindow){
-        _settingWindow = [[SettingWindow alloc] initWithWindowNibName:@"SettingWindow"];
-    }
-    
-    [[_settingWindow window] center];
-    [_settingWindow.window orderFront:nil];
-    */
-    //[[NSApplication sharedApplication] runModalForWindow:_settingWindow.window];
+//    if(nil == _settingWindow){
+//        _settingWindow = [[SettingWindow alloc] initWithWindowNibName:@"SettingWindow"];
+//    }
+//
+//    [[_settingWindow window] center];
+//    [_settingWindow.window orderFront:nil];
+ //   [[NSApplication sharedApplication] runModalForWindow:_loginWindow.window];
 }
 
 @end

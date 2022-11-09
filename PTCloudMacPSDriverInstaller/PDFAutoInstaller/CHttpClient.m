@@ -10,8 +10,6 @@
 #import "SettingWindow.h"
 #import <curl/curl.h>
 
-#include <sys/types.h>
-#include <pwd.h>
 
 // Create private interface
 @interface HttpClient (Private)
@@ -124,16 +122,8 @@ size_t write_data(char *ptr, size_t size, size_t nmemb, void *userdata) {
     return theResult;
 }
 
--(NSString *) getloginUser{
-    uid_t current_user_id = getuid();
-    struct passwd *pwentry = getpwuid(current_user_id);
-    char *loginUser = pwentry->pw_name;
-    NSString *loginName = [[NSString alloc] initWithUTF8String:loginUser];
-    return loginName;
-}
-
-- (int)GetPartUseUISettings:(NSString *)urlText IsUseProxy:(NSString*)strUseProxy ProxyIPAndPort:(NSString*)strProxyIPAddressAndPort UserNameAndPasswd:(NSString*)strUserNameAndPassword  Response:(NSString **)response{
-    
+- (int)GetPartUseUISettings:(NSString *)urlText IsUseProxy:(NSString*)strUseProxy ProxyIPAndPort:(NSString*)strProxyIPAddressAndPort UserNameAndPasswd:(NSString*)strUserNameAndPassword  Response:(NSString **)response APISid:(NSString *)sAPISid
+{
     CURLcode theResult;
     if (urlText && ![urlText isEqualToString:@""]) {
         
@@ -176,12 +166,8 @@ size_t write_data(char *ptr, size_t size, size_t nmemb, void *userdata) {
         
         // set URL
         curl_easy_setopt(curl, CURLOPT_URL, [urlText UTF8String]);
-        //curl_easy_setopt(curl, CURLOPT_POSTFIELDS, [strField UTF8String]); //post参数
         
-        NSString *loginName = [self getloginUser];
-        NSString *cookiesName = [NSString stringWithFormat:@"/private/tmp/cookies_eu_mail_%@.txt",loginName];
-        const char *cookies = [cookiesName UTF8String];
-        curl_easy_setopt(curl, CURLOPT_COOKIEFILE, cookies);
+        curl_easy_setopt(curl, CURLOPT_COOKIEFILE, [sAPISid UTF8String]);
         
         theResult = curl_easy_perform(curl);
         if (theResult == CURLE_OK) {
@@ -204,10 +190,8 @@ size_t write_data(char *ptr, size_t size, size_t nmemb, void *userdata) {
         theResult = CURLE_URL_MALFORMAT;
         NSLog(@"ERROR: Invalid _urlText passed.");
     }
-    
     return theResult;
 }
-
 
 - (int)GetPartResponseCode:(NSString *)urlText Response:(NSData **)response{
     
@@ -541,14 +525,14 @@ size_t write_data(char *ptr, size_t size, size_t nmemb, void *userdata) {
 }
 
 
-//- (int)PostJSONPartUseUISettings:(NSString *)urlText IsUseProxy:(NSString*)strUseProxy ProxyIPAndPort:(NSString*)strProxyIPAddressAndPort UserNameAndPasswd:(NSString*)strUserNameAndPassword PostJSON:(NSMutableDictionary *)postJSON Response:(NSData **)response
-- (int)PostJSONPartUseUISettings:(NSString *)urlText IsUseProxy:(NSString*)strUseProxy ProxyIPAndPort:(NSString*)strProxyIPAddressAndPort UserNameAndPasswd:(NSString*)strUserNameAndPassword PostJSON:(NSMutableDictionary *)postJSON Response:(NSString **)response
+- (int)PostJSONPartUseUISettings:(NSString *)urlText IsUseProxy:(NSString*)strUseProxy ProxyIPAndPort:(NSString*)strProxyIPAddressAndPort UserNameAndPasswd:(NSString*)strUserNameAndPassword PostJSON:(NSMutableDictionary *)postJSON Response:(NSData **)response
+//- (int)PostJSONPartUseUISettings:(NSString *)urlText IsUseProxy:(NSString*)strUseProxy ProxyIPAndPort:(NSString*)strProxyIPAddressAndPort UserNameAndPasswd:(NSString*)strUserNameAndPassword PostJSON:(NSMutableDictionary *)postJSON Response:(NSString **)response
 {
     CURLcode theResult;
     
     if (urlText && ![urlText isEqualToString:@""]) {
         
-        //*response = [[NSData alloc]init];
+        *response = [[NSData alloc]init];
         
         CURL* curl = curl_easy_init();
         if(NULL == curl)
@@ -599,26 +583,19 @@ size_t write_data(char *ptr, size_t size, size_t nmemb, void *userdata) {
         headers=curl_slist_append(headers, "charset=UTF-8");
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
         
-        NSString *loginName = [self getloginUser];
-        NSString *cookiesName = [NSString stringWithFormat:@"/private/tmp/cookies_eu_mail_%@.txt",loginName];
-        const char *cookies = [cookiesName UTF8String];
-        
-        FILE *fp = fopen(cookies, "wb");
-        curl_easy_setopt(curl, CURLOPT_COOKIEJAR, cookies);
-        fclose(fp);
-        
         theResult = curl_easy_perform(curl);
         if (theResult == CURLE_OK)
         {
-            
+            /*
             long retcode = 0;
             theResult = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE , &retcode);
             NSNumber *longNumber = [NSNumber numberWithLong:retcode];
             *response = [longNumber stringValue];
-            /*
+             */
+            
             NSString *infoStr= [[NSString alloc]initWithData:_dataReceived encoding:NSUTF8StringEncoding];
             *response = [infoStr dataUsingEncoding:NSUTF8StringEncoding];
-            */
+            
             NSLog(@"theResult: OK");
         }
         else {
@@ -629,6 +606,7 @@ size_t write_data(char *ptr, size_t size, size_t nmemb, void *userdata) {
             NSLog(@"ERROR: %@", resultText);
         }
         
+        //fclose(fp);
         curl_easy_cleanup(curl);
         
     } else {

@@ -42,7 +42,6 @@
 "WarnningTitleServerPort"="Server Port Error";
 "WarnningInforServerPort"="ポートが未入力です。ご確認ください。";
 
-
 "WarnningTitleProxyIP"="プロキシアドレスエラー";
 "WarnningInforProxyIP"="プロキシアドレスが未入力です。ご確認ください。";
 
@@ -54,7 +53,6 @@
 
 "WarnningTitleProxyPassword"="プロキシパスワードエラー";
 "WarnningInforProxyPassword"="プロキシパスワードが未入力です。ご確認ください。";
-
 
 "WarnningTitleUIDPort"="UID Error";
 "WarnningInforUIDPort"="Please enter a UID.";
