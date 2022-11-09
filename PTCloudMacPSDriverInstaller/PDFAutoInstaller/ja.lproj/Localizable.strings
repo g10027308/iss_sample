@@ -1,0 +1,108 @@
+/* 
+  Localizable.strings
+  PDFAutoInstaller
+
+  Created by rits on 2018/12/19.
+  Copyright © 2018年 rits. All rights reserved.
+*/
+"TitleUIIstall"="Ricoh Cloud Printer Server Settings";
+"TitleUISave"="Ricoh Cloud Printer Server Settings";
+
+
+"TitlePrinterDescriptionName"="プリンター名称:";
+
+"TitleServerGroup"="Server Settings";
+"TitleServerIPAddress"="Server IP:";
+"TitleServerUseHttps"="Use HTTPS";
+"TitleServerPort"="Port:";
+
+"TitleProxyUseProxy"="プロキシサーバーを使用する";
+"TitleProxyGroup"="プロキシサーバー";
+"TitleProxyIPAddress"="アドレス:";
+"TitleProxyPort"="ポート:";
+"TitleProxyUser"="ユーザー名称:";
+"TitleProxyPasswd"="パスワード:";
+
+"TitleUID"="UID:";
+"TitleHelp"="How to get UID";
+
+"TitleAuthenGroup"="ログイン情報";
+"TitleMail"="メールアドレス:";
+"TitleMailPassword"="パスワード:";
+
+"TitleCheckButton"="Test Connection";
+"TitleCancleButton"="閉じる";
+"TitleInstallButton"="インストール";
+"TitleSaveButton"="保存";
+
+"WarnningTitleServerIP"="Server IP Error";
+"WarnningInforServerIP"="Please enter a IP address.";
+
+
+"WarnningTitleServerPort"="Server Port Error";
+"WarnningInforServerPort"="ポートが未入力です。ご確認ください。";
+
+
+"WarnningTitleProxyIP"="プロキシアドレスエラー";
+"WarnningInforProxyIP"="プロキシアドレスが未入力です。ご確認ください。";
+
+"WarnningTitleProxyPort"="プロキシポートエラー";
+"WarnningInforProxyPort"="ポートが未入力です。ご確認ください。";
+
+"WarnningTitleProxyUserName"="プロキシユーザー名称エラー";
+"WarnningInforProxyUserName"="プロキシユーザー名称が未入力です。ご確認ください。";
+
+"WarnningTitleProxyPassword"="プロキシパスワードエラー";
+"WarnningInforProxyPassword"="プロキシパスワードが未入力です。ご確認ください。";
+
+
+"WarnningTitleUIDPort"="UID Error";
+"WarnningInforUIDPort"="Please enter a UID.";
+
+"WarnningTitleMail"="メールアドレスエラー";
+"WarnningInforMail"="メールアドレスが未入力です。ご確認ください。";
+
+"WarnningTitleMailPassword"="パスワードエラー";
+"WarnningInforMailPassword"="パスワードが未入力です。ご確認ください。";
+
+"ErrorTitle"="Error";
+
+"ErrorTitleConnectSuccess"="Connection success";
+"ErrorInforConnectSuccess"="Verification success!";
+
+"ErrorTitleConnectFail"="Connection failed";
+"ErrorInforConnectFail"="Verification server.";
+
+"ErrorPleaseCheckSettings"="ログインに矢敗しました。認証情報を確認してください。";
+"ErrorPleaseNetworkSettings"="ﾈｯﾄﾜｰｸ接続設定もしくはプロキシ設定が有効になっているかをご確認ください。解決しない場合は、管理者にお問い合わせください。";
+
+"255" = "255";
+"65535" = "65535";
+"443" = "443";
+
+"Continue" = "続ける";
+"Cancel" = "キャンセル";
+"WarnningProxyIP" = "プロキシアドレスの設定欄に、IPアドレス,英数字, ':', '.', '/' 以外の文字が含まれています。\n設定を見直す場合は”キャンセル”を選択してください。\n設定する場合は”続ける”を選択してください。";
+
+"ErrorPleaseInputCorrectServerIP"="Please enter the correctly IP address( [0-255].[0-255].[0-255].[0-255])";
+
+"InforInstallingDriver"="インストールを準備中...";
+"InforInstallSuccess"="インストール終了.";
+"InforInstallFail"="インストール失敗.";
+"TitlButtonFinish"="完了";
+
+
+"FileNameHelpPage1"="HelpPage1_eng";
+"FileNameHelpPage2"="HelpPage2_eng";
+"FileNameHelpPage3"="HelpPage3_eng";
+
+
+"TitleHelpPage1"="Input print server IP address on browser to open print server website. \nInput user name and pass word  on the login page, then click Login button.";
+"TitleHelpPage2"="After logined in, click \"Personal data\".";
+"TitleHelpPage3"="On this page, you can see the User Login Code.";
+
+
+"SaveAlertTitle"="Warning";
+"SaveAlertButtonSave"="Save";
+"SaveAlertButtonUnSave"="Not Save";
+"SaveAlertMsg"="User setting was changed.\nClick \"Not Save\" button will lost the new user setting. \nClick \"Save\" button to save user setting.";

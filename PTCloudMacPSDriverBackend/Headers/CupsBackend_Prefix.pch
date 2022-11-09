@@ -1,0 +1,12 @@
+//
+// Prefix header for all source files of the 'CupsFilter_MacX105' target in the 'CupsFilter_MacX105' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
+
+#define BUFSIZE 4096
+#define TBUFSIZE "4096"
+
+typedef char cp_string[BUFSIZE];

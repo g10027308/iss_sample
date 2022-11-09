@@ -1,0 +1,832 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5511B3F021AE7CA8005062E3 /* showHelpHowToGetUID.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55EF06BE21AE4583007E1604 /* showHelpHowToGetUID.xib */; };
+		55159B6021CA095E000468AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55B6723721C9E81300872DB1 /* Localizable.strings */; };
+		551896C5216B0790007527D0 /* CopyPlist.sh in Resources */ = {isa = PBXBuildFile; fileRef = 551896C4216B0790007527D0 /* CopyPlist.sh */; };
+		55233C4025BE67F900F9451B /* Ricoh_PS_Basic_Driver_Installer.pkg in Resources */ = {isa = PBXBuildFile; fileRef = 55233C3E25BE67F800F9451B /* Ricoh_PS_Basic_Driver_Installer.pkg */; };
+		553BAF7020C7E6F1001FFB04 /* InstallPkg.sh in Resources */ = {isa = PBXBuildFile; fileRef = 553BAF6D20C7E6F1001FFB04 /* InstallPkg.sh */; };
+		5545C6E720DA2D1200672EC1 /* libldap.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5545C6E620DA2D1200672EC1 /* libldap.tbd */; };
+		5545C6E920DA2D1F00672EC1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5545C6E820DA2D1F00672EC1 /* libz.tbd */; };
+		5545C6EE20DA2E9100672EC1 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5545C6EA20DA2E9100672EC1 /* libcrypto.a */; };
+		5545C6EF20DA2E9100672EC1 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5545C6EB20DA2E9100672EC1 /* libcurl.a */; };
+		5545C6F020DA2E9100672EC1 /* libnghttp2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5545C6EC20DA2E9100672EC1 /* libnghttp2.a */; };
+		5545C6F120DA2E9100672EC1 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5545C6ED20DA2E9100672EC1 /* libssl.a */; };
+		5545C6F320DA2EE600672EC1 /* cacert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 5545C6F220DA2EE600672EC1 /* cacert.pem */; };
+		5545C6F620DA406500672EC1 /* CHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5545C6F520DA406500672EC1 /* CHttpClient.m */; };
+		554E55BF25C41477005FAEEB /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554E55BE25C41477005FAEEB /* ApplicationServices.framework */; };
+		555BE74D21B75C5E0096B191 /* InstallerInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 555BE74C21B75C5E0096B191 /* InstallerInfo.plist */; };
+		55888579235FDD1B00C354BB /* setDefalutPrinter.sh in Resources */ = {isa = PBXBuildFile; fileRef = 55888578235FDD1B00C354BB /* setDefalutPrinter.sh */; };
+		5588857A235FDD4000C354BB /* setDefalutPrinter.sh in Resources */ = {isa = PBXBuildFile; fileRef = 55888578235FDD1B00C354BB /* setDefalutPrinter.sh */; };
+		5589E87D20C8C473003413CF /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5589E87C20C8C473003413CF /* ViewController2.m */; };
+		5592E79F20EC57DE0072AE56 /* InitConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5592E79E20EC57DE0072AE56 /* InitConfig.plist */; };
+		55B6CDCC25BA9449001BD064 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55B6723721C9E81300872DB1 /* Localizable.strings */; };
+		55C32FE420C7768900578771 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C32FE320C7768900578771 /* AppDelegate.m */; };
+		55C32FE720C7768900578771 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C32FE620C7768900578771 /* main.m */; };
+		55C32FEA20C7768900578771 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C32FE920C7768900578771 /* ViewController.m */; };
+		55C32FEC20C7768900578771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55C32FEB20C7768900578771 /* Assets.xcassets */; };
+		55C32FEF20C7768900578771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55C32FED20C7768900578771 /* Main.storyboard */; };
+		55C32FFA20C7768900578771 /* PDFAutoInstallerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C32FF920C7768900578771 /* PDFAutoInstallerTests.m */; };
+		55C3300520C7768900578771 /* PDFAutoInstallerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C3300420C7768900578771 /* PDFAutoInstallerUITests.m */; };
+		55C3301420C7772B00578771 /* RIPDFInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C3301320C7772B00578771 /* RIPDFInstaller.m */; };
+		55CF1CF720F884FB00281BC2 /* html in Resources */ = {isa = PBXBuildFile; fileRef = 55CF1CF620F884FB00281BC2 /* html */; };
+		55E61A5720E0EF5800D0B99A /* SettingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E61A5520E0EF5800D0B99A /* SettingWindow.m */; };
+		55ECC95421ACDC9E0071045A /* CHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5545C6F520DA406500672EC1 /* CHttpClient.m */; };
+		55ECC95521ACDC9E0071045A /* SettingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E61A5520E0EF5800D0B99A /* SettingWindow.m */; };
+		55ECC95721ACDC9E0071045A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C32FE920C7768900578771 /* ViewController.m */; };
+		55ECC95821ACDC9E0071045A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C32FE620C7768900578771 /* main.m */; };
+		55ECC95921ACDC9E0071045A /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5589E87C20C8C473003413CF /* ViewController2.m */; };
+		55ECC95A21ACDC9E0071045A /* RIPDFInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C3301320C7772B00578771 /* RIPDFInstaller.m */; };
+		55ECC95B21ACDC9E0071045A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C32FE320C7768900578771 /* AppDelegate.m */; };
+		55ECC95D21ACDC9E0071045A /* libldap.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5545C6E620DA2D1200672EC1 /* libldap.tbd */; };
+		55ECC95E21ACDC9E0071045A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5545C6E820DA2D1F00672EC1 /* libz.tbd */; };
+		55ECC95F21ACDC9E0071045A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5545C6EA20DA2E9100672EC1 /* libcrypto.a */; };
+		55ECC96021ACDC9E0071045A /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5545C6EB20DA2E9100672EC1 /* libcurl.a */; };
+		55ECC96121ACDC9E0071045A /* libnghttp2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5545C6EC20DA2E9100672EC1 /* libnghttp2.a */; };
+		55ECC96221ACDC9E0071045A /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5545C6ED20DA2E9100672EC1 /* libssl.a */; };
+		55ECC96321ACDC9E0071045A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55FA96FE20D38C60007D68B7 /* WebKit.framework */; };
+		55ECC96721ACDC9E0071045A /* cacert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 5545C6F220DA2EE600672EC1 /* cacert.pem */; };
+		55ECC96821ACDC9E0071045A /* CopyPlist.sh in Resources */ = {isa = PBXBuildFile; fileRef = 551896C4216B0790007527D0 /* CopyPlist.sh */; };
+		55ECC96A21ACDC9E0071045A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55C32FEB20C7768900578771 /* Assets.xcassets */; };
+		55ECC96B21ACDC9E0071045A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55C32FED20C7768900578771 /* Main.storyboard */; };
+		55ECC96C21ACDC9E0071045A /* InitConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5592E79E20EC57DE0072AE56 /* InitConfig.plist */; };
+		55ECC96D21ACDC9E0071045A /* html in Resources */ = {isa = PBXBuildFile; fileRef = 55CF1CF620F884FB00281BC2 /* html */; };
+		55ECC96E21ACDC9E0071045A /* InstallPkg.sh in Resources */ = {isa = PBXBuildFile; fileRef = 553BAF6D20C7E6F1001FFB04 /* InstallPkg.sh */; };
+		55EF06BF21AE4583007E1604 /* showHelpHowToGetUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EF06BD21AE4583007E1604 /* showHelpHowToGetUID.m */; };
+		55EF06C021AE4583007E1604 /* showHelpHowToGetUID.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55EF06BE21AE4583007E1604 /* showHelpHowToGetUID.xib */; };
+		55EF06CA21AE78FC007E1604 /* showHelpHowToGetUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EF06BD21AE4583007E1604 /* showHelpHowToGetUID.m */; };
+		55FA96FF20D38C60007D68B7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55FA96FE20D38C60007D68B7 /* WebKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		55C32FF620C7768900578771 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55C32FD720C7768900578771 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55C32FDE20C7768900578771;
+			remoteInfo = PDFAutoInstaller;
+		};
+		55C3300120C7768900578771 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55C32FD720C7768900578771 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55C32FDE20C7768900578771;
+			remoteInfo = PDFAutoInstaller;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		55159B7C21CA2311000468AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		551896C4216B0790007527D0 /* CopyPlist.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = CopyPlist.sh; path = Resource/CopyPlist.sh; sourceTree = SOURCE_ROOT; };
+		55233C3E25BE67F800F9451B /* Ricoh_PS_Basic_Driver_Installer.pkg */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ricoh_PS_Basic_Driver_Installer.pkg; path = Resource/Ricoh_PS_Basic_Driver_Installer.pkg; sourceTree = SOURCE_ROOT; };
+		553BAF6D20C7E6F1001FFB04 /* InstallPkg.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = InstallPkg.sh; path = Resource/InstallPkg.sh; sourceTree = SOURCE_ROOT; };
+		5545C6E620DA2D1200672EC1 /* libldap.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libldap.tbd; path = usr/lib/libldap.tbd; sourceTree = SDKROOT; };
+		5545C6E820DA2D1F00672EC1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		5545C6EA20DA2E9100672EC1 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = libcurl/libs/libcrypto.a; sourceTree = "<group>"; };
+		5545C6EB20DA2E9100672EC1 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = libcurl/libs/libcurl.a; sourceTree = "<group>"; };
+		5545C6EC20DA2E9100672EC1 /* libnghttp2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libnghttp2.a; path = libcurl/libs/libnghttp2.a; sourceTree = "<group>"; };
+		5545C6ED20DA2E9100672EC1 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = libcurl/libs/libssl.a; sourceTree = "<group>"; };
+		5545C6F220DA2EE600672EC1 /* cacert.pem */ = {isa = PBXFileReference; lastKnownFileType = text; name = cacert.pem; path = libcurl/libs/cacert.pem; sourceTree = "<group>"; };
+		5545C6F420DA406500672EC1 /* CHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHttpClient.h; sourceTree = "<group>"; };
+		5545C6F520DA406500672EC1 /* CHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHttpClient.m; sourceTree = "<group>"; };
+		554E55BE25C41477005FAEEB /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		555BE74C21B75C5E0096B191 /* InstallerInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InstallerInfo.plist; sourceTree = "<group>"; };
+		55888578235FDD1B00C354BB /* setDefalutPrinter.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = setDefalutPrinter.sh; path = Resource/setDefalutPrinter.sh; sourceTree = SOURCE_ROOT; };
+		5589E87C20C8C473003413CF /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
+		5589E87E20C8C485003413CF /* ViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
+		5592E79E20EC57DE0072AE56 /* InitConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InitConfig.plist; sourceTree = "<group>"; };
+		55C32FDF20C7768900578771 /* Ricoh PS Print Setting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ricoh PS Print Setting.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		55C32FE220C7768900578771 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		55C32FE320C7768900578771 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		55C32FE620C7768900578771 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		55C32FE820C7768900578771 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		55C32FE920C7768900578771 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		55C32FEB20C7768900578771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		55C32FEE20C7768900578771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		55C32FF020C7768900578771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55C32FF520C7768900578771 /* PDFAutoInstallerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDFAutoInstallerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		55C32FF920C7768900578771 /* PDFAutoInstallerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFAutoInstallerTests.m; sourceTree = "<group>"; };
+		55C32FFB20C7768900578771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55C3300020C7768900578771 /* PDFAutoInstallerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDFAutoInstallerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		55C3300420C7768900578771 /* PDFAutoInstallerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFAutoInstallerUITests.m; sourceTree = "<group>"; };
+		55C3300620C7768900578771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55C3301220C7772B00578771 /* RIPDFInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPDFInstaller.h; sourceTree = "<group>"; };
+		55C3301320C7772B00578771 /* RIPDFInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPDFInstaller.m; sourceTree = "<group>"; };
+		55CF1CF620F884FB00281BC2 /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; name = html; path = Resource/html; sourceTree = SOURCE_ROOT; };
+		55E5632825B94EBB005EA259 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		55E5632925B94EBB005EA259 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55E61A5420E0EF5800D0B99A /* SettingWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingWindow.h; sourceTree = "<group>"; };
+		55E61A5520E0EF5800D0B99A /* SettingWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingWindow.m; sourceTree = "<group>"; };
+		55E8D88C25E8D97900E0F9E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		55EC0F682192B9D2003A5968 /* SacnQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SacnQRCode.h; sourceTree = "<group>"; };
+		55EC0F692192B9D2003A5968 /* SacnQRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SacnQRCode.m; sourceTree = "<group>"; };
+		55EC0F6A2192B9D2003A5968 /* SacnQRCode.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SacnQRCode.xib; sourceTree = "<group>"; };
+		55ECC97221ACDC9E0071045A /* Ricoh PS Print installer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ricoh PS Print installer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		55EF06BC21AE4583007E1604 /* showHelpHowToGetUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showHelpHowToGetUID.h; sourceTree = "<group>"; };
+		55EF06BD21AE4583007E1604 /* showHelpHowToGetUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showHelpHowToGetUID.m; sourceTree = "<group>"; };
+		55EF06BE21AE4583007E1604 /* showHelpHowToGetUID.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = showHelpHowToGetUID.xib; sourceTree = "<group>"; };
+		55FA96FE20D38C60007D68B7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		55C32FDC20C7768900578771 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554E55BF25C41477005FAEEB /* ApplicationServices.framework in Frameworks */,
+				5545C6E720DA2D1200672EC1 /* libldap.tbd in Frameworks */,
+				5545C6E920DA2D1F00672EC1 /* libz.tbd in Frameworks */,
+				5545C6EE20DA2E9100672EC1 /* libcrypto.a in Frameworks */,
+				5545C6EF20DA2E9100672EC1 /* libcurl.a in Frameworks */,
+				5545C6F020DA2E9100672EC1 /* libnghttp2.a in Frameworks */,
+				5545C6F120DA2E9100672EC1 /* libssl.a in Frameworks */,
+				55FA96FF20D38C60007D68B7 /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55C32FF220C7768900578771 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55C32FFD20C7768900578771 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55ECC95C21ACDC9E0071045A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55ECC95D21ACDC9E0071045A /* libldap.tbd in Frameworks */,
+				55ECC95E21ACDC9E0071045A /* libz.tbd in Frameworks */,
+				55ECC95F21ACDC9E0071045A /* libcrypto.a in Frameworks */,
+				55ECC96021ACDC9E0071045A /* libcurl.a in Frameworks */,
+				55ECC96121ACDC9E0071045A /* libnghttp2.a in Frameworks */,
+				55ECC96221ACDC9E0071045A /* libssl.a in Frameworks */,
+				55ECC96321ACDC9E0071045A /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		55C32FD620C7768900578771 = {
+			isa = PBXGroup;
+			children = (
+				5545C6F220DA2EE600672EC1 /* cacert.pem */,
+				55C32FE120C7768900578771 /* PDFAutoInstaller */,
+				55C32FF820C7768900578771 /* PDFAutoInstallerTests */,
+				55C3300320C7768900578771 /* PDFAutoInstallerUITests */,
+				55C32FE020C7768900578771 /* Products */,
+				55FA96FD20D38C5F007D68B7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		55C32FE020C7768900578771 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55C32FDF20C7768900578771 /* Ricoh PS Print Setting.app */,
+				55C32FF520C7768900578771 /* PDFAutoInstallerTests.xctest */,
+				55C3300020C7768900578771 /* PDFAutoInstallerUITests.xctest */,
+				55ECC97221ACDC9E0071045A /* Ricoh PS Print installer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		55C32FE120C7768900578771 /* PDFAutoInstaller */ = {
+			isa = PBXGroup;
+			children = (
+				55233C3E25BE67F800F9451B /* Ricoh_PS_Basic_Driver_Installer.pkg */,
+				55888578235FDD1B00C354BB /* setDefalutPrinter.sh */,
+				553BAF6D20C7E6F1001FFB04 /* InstallPkg.sh */,
+				551896C4216B0790007527D0 /* CopyPlist.sh */,
+				55C32FE220C7768900578771 /* AppDelegate.h */,
+				55C32FE320C7768900578771 /* AppDelegate.m */,
+				5545C6F420DA406500672EC1 /* CHttpClient.h */,
+				5545C6F520DA406500672EC1 /* CHttpClient.m */,
+				55C3301220C7772B00578771 /* RIPDFInstaller.h */,
+				55C3301320C7772B00578771 /* RIPDFInstaller.m */,
+				55C32FE820C7768900578771 /* ViewController.h */,
+				55C32FE920C7768900578771 /* ViewController.m */,
+				5589E87C20C8C473003413CF /* ViewController2.m */,
+				5589E87E20C8C485003413CF /* ViewController2.h */,
+				55C32FEB20C7768900578771 /* Assets.xcassets */,
+				55C32FED20C7768900578771 /* Main.storyboard */,
+				55C32FF020C7768900578771 /* Info.plist */,
+				555BE74C21B75C5E0096B191 /* InstallerInfo.plist */,
+				55CF1CF620F884FB00281BC2 /* html */,
+				55C32FE520C7768900578771 /* Supporting Files */,
+				55E61A5420E0EF5800D0B99A /* SettingWindow.h */,
+				55E61A5520E0EF5800D0B99A /* SettingWindow.m */,
+				5592E79E20EC57DE0072AE56 /* InitConfig.plist */,
+				55B6723721C9E81300872DB1 /* Localizable.strings */,
+			);
+			path = PDFAutoInstaller;
+			sourceTree = "<group>";
+		};
+		55C32FE520C7768900578771 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				55C32FE620C7768900578771 /* main.m */,
+				55EC0F682192B9D2003A5968 /* SacnQRCode.h */,
+				55EC0F692192B9D2003A5968 /* SacnQRCode.m */,
+				55EC0F6A2192B9D2003A5968 /* SacnQRCode.xib */,
+				55EF06BC21AE4583007E1604 /* showHelpHowToGetUID.h */,
+				55EF06BD21AE4583007E1604 /* showHelpHowToGetUID.m */,
+				55EF06BE21AE4583007E1604 /* showHelpHowToGetUID.xib */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		55C32FF820C7768900578771 /* PDFAutoInstallerTests */ = {
+			isa = PBXGroup;
+			children = (
+				55C32FF920C7768900578771 /* PDFAutoInstallerTests.m */,
+				55C32FFB20C7768900578771 /* Info.plist */,
+			);
+			path = PDFAutoInstallerTests;
+			sourceTree = "<group>";
+		};
+		55C3300320C7768900578771 /* PDFAutoInstallerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				55C3300420C7768900578771 /* PDFAutoInstallerUITests.m */,
+				55C3300620C7768900578771 /* Info.plist */,
+			);
+			path = PDFAutoInstallerUITests;
+			sourceTree = "<group>";
+		};
+		55FA96FD20D38C5F007D68B7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				554E55BE25C41477005FAEEB /* ApplicationServices.framework */,
+				5545C6EA20DA2E9100672EC1 /* libcrypto.a */,
+				5545C6EB20DA2E9100672EC1 /* libcurl.a */,
+				5545C6EC20DA2E9100672EC1 /* libnghttp2.a */,
+				5545C6ED20DA2E9100672EC1 /* libssl.a */,
+				5545C6E820DA2D1F00672EC1 /* libz.tbd */,
+				5545C6E620DA2D1200672EC1 /* libldap.tbd */,
+				55FA96FE20D38C60007D68B7 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		55C32FDE20C7768900578771 /* Ricoh PS Print Setting */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55C3300920C7768900578771 /* Build configuration list for PBXNativeTarget "Ricoh PS Print Setting" */;
+			buildPhases = (
+				55C32FDB20C7768900578771 /* Sources */,
+				55C32FDC20C7768900578771 /* Frameworks */,
+				55C32FDD20C7768900578771 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Ricoh PS Print Setting";
+			productName = PDFAutoInstaller;
+			productReference = 55C32FDF20C7768900578771 /* Ricoh PS Print Setting.app */;
+			productType = "com.apple.product-type.application";
+		};
+		55C32FF420C7768900578771 /* PDFAutoInstallerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55C3300C20C7768900578771 /* Build configuration list for PBXNativeTarget "PDFAutoInstallerTests" */;
+			buildPhases = (
+				55C32FF120C7768900578771 /* Sources */,
+				55C32FF220C7768900578771 /* Frameworks */,
+				55C32FF320C7768900578771 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				55C32FF720C7768900578771 /* PBXTargetDependency */,
+			);
+			name = PDFAutoInstallerTests;
+			productName = PDFAutoInstallerTests;
+			productReference = 55C32FF520C7768900578771 /* PDFAutoInstallerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		55C32FFF20C7768900578771 /* PDFAutoInstallerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55C3300F20C7768900578771 /* Build configuration list for PBXNativeTarget "PDFAutoInstallerUITests" */;
+			buildPhases = (
+				55C32FFC20C7768900578771 /* Sources */,
+				55C32FFD20C7768900578771 /* Frameworks */,
+				55C32FFE20C7768900578771 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				55C3300220C7768900578771 /* PBXTargetDependency */,
+			);
+			name = PDFAutoInstallerUITests;
+			productName = PDFAutoInstallerUITests;
+			productReference = 55C3300020C7768900578771 /* PDFAutoInstallerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		55ECC95221ACDC9E0071045A /* Ricoh PS Print installer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55ECC96F21ACDC9E0071045A /* Build configuration list for PBXNativeTarget "Ricoh PS Print installer" */;
+			buildPhases = (
+				55ECC95321ACDC9E0071045A /* Sources */,
+				55ECC95C21ACDC9E0071045A /* Frameworks */,
+				55ECC96421ACDC9E0071045A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Ricoh PS Print installer";
+			productName = PDFAutoInstaller;
+			productReference = 55ECC97221ACDC9E0071045A /* Ricoh PS Print installer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		55C32FD720C7768900578771 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = rits;
+				TargetAttributes = {
+					55C32FDE20C7768900578771 = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+					};
+					55C32FF420C7768900578771 = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 55C32FDE20C7768900578771;
+					};
+					55C32FFF20C7768900578771 = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 55C32FDE20C7768900578771;
+					};
+				};
+			};
+			buildConfigurationList = 55C32FDA20C7768900578771 /* Build configuration list for PBXProject "PDFAutoInstaller" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+				ja,
+			);
+			mainGroup = 55C32FD620C7768900578771;
+			productRefGroup = 55C32FE020C7768900578771 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				55C32FDE20C7768900578771 /* Ricoh PS Print Setting */,
+				55C32FF420C7768900578771 /* PDFAutoInstallerTests */,
+				55C32FFF20C7768900578771 /* PDFAutoInstallerUITests */,
+				55ECC95221ACDC9E0071045A /* Ricoh PS Print installer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		55C32FDD20C7768900578771 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55B6CDCC25BA9449001BD064 /* Localizable.strings in Resources */,
+				5545C6F320DA2EE600672EC1 /* cacert.pem in Resources */,
+				551896C5216B0790007527D0 /* CopyPlist.sh in Resources */,
+				55888579235FDD1B00C354BB /* setDefalutPrinter.sh in Resources */,
+				555BE74D21B75C5E0096B191 /* InstallerInfo.plist in Resources */,
+				55C32FEC20C7768900578771 /* Assets.xcassets in Resources */,
+				55C32FEF20C7768900578771 /* Main.storyboard in Resources */,
+				5592E79F20EC57DE0072AE56 /* InitConfig.plist in Resources */,
+				55EF06C021AE4583007E1604 /* showHelpHowToGetUID.xib in Resources */,
+				55CF1CF720F884FB00281BC2 /* html in Resources */,
+				553BAF7020C7E6F1001FFB04 /* InstallPkg.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55C32FF320C7768900578771 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55C32FFE20C7768900578771 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55ECC96421ACDC9E0071045A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5588857A235FDD4000C354BB /* setDefalutPrinter.sh in Resources */,
+				5511B3F021AE7CA8005062E3 /* showHelpHowToGetUID.xib in Resources */,
+				55ECC96821ACDC9E0071045A /* CopyPlist.sh in Resources */,
+				55ECC96721ACDC9E0071045A /* cacert.pem in Resources */,
+				55233C4025BE67F900F9451B /* Ricoh_PS_Basic_Driver_Installer.pkg in Resources */,
+				55ECC96A21ACDC9E0071045A /* Assets.xcassets in Resources */,
+				55159B6021CA095E000468AE /* Localizable.strings in Resources */,
+				55ECC96B21ACDC9E0071045A /* Main.storyboard in Resources */,
+				55ECC96C21ACDC9E0071045A /* InitConfig.plist in Resources */,
+				55ECC96D21ACDC9E0071045A /* html in Resources */,
+				55ECC96E21ACDC9E0071045A /* InstallPkg.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		55C32FDB20C7768900578771 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5545C6F620DA406500672EC1 /* CHttpClient.m in Sources */,
+				55EF06BF21AE4583007E1604 /* showHelpHowToGetUID.m in Sources */,
+				55E61A5720E0EF5800D0B99A /* SettingWindow.m in Sources */,
+				55C32FEA20C7768900578771 /* ViewController.m in Sources */,
+				55C32FE720C7768900578771 /* main.m in Sources */,
+				5589E87D20C8C473003413CF /* ViewController2.m in Sources */,
+				55C3301420C7772B00578771 /* RIPDFInstaller.m in Sources */,
+				55C32FE420C7768900578771 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55C32FF120C7768900578771 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55C32FFA20C7768900578771 /* PDFAutoInstallerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55C32FFC20C7768900578771 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55C3300520C7768900578771 /* PDFAutoInstallerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55ECC95321ACDC9E0071045A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55EF06CA21AE78FC007E1604 /* showHelpHowToGetUID.m in Sources */,
+				55ECC95421ACDC9E0071045A /* CHttpClient.m in Sources */,
+				55ECC95521ACDC9E0071045A /* SettingWindow.m in Sources */,
+				55ECC95721ACDC9E0071045A /* ViewController.m in Sources */,
+				55ECC95821ACDC9E0071045A /* main.m in Sources */,
+				55ECC95921ACDC9E0071045A /* ViewController2.m in Sources */,
+				55ECC95A21ACDC9E0071045A /* RIPDFInstaller.m in Sources */,
+				55ECC95B21ACDC9E0071045A /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		55C32FF720C7768900578771 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55C32FDE20C7768900578771 /* Ricoh PS Print Setting */;
+			targetProxy = 55C32FF620C7768900578771 /* PBXContainerItemProxy */;
+		};
+		55C3300220C7768900578771 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55C32FDE20C7768900578771 /* Ricoh PS Print Setting */;
+			targetProxy = 55C3300120C7768900578771 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		55B6723721C9E81300872DB1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55159B7C21CA2311000468AE /* en */,
+				55E5632925B94EBB005EA259 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		55C32FED20C7768900578771 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C32FEE20C7768900578771 /* Base */,
+				55E5632825B94EBB005EA259 /* ja */,
+				55E8D88C25E8D97900E0F9E5 /* en */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		55C3300720C7768900578771 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		55C3300820C7768900578771 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		55C3300A20C7768900578771 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libcurl/include\"";
+				INFOPLIST_FILE = PDFAutoInstaller/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libcurl/libs",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricoh.PDFAutoInstaller;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		55C3300B20C7768900578771 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libcurl/include\"";
+				INFOPLIST_FILE = PDFAutoInstaller/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libcurl/libs",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricoh.PDFAutoInstaller;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		55C3300D20C7768900578771 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PDFAutoInstallerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricoh.PDFAutoInstallerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PDFAutoInstaller.app/Contents/MacOS/PDFAutoInstaller";
+			};
+			name = Debug;
+		};
+		55C3300E20C7768900578771 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PDFAutoInstallerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricoh.PDFAutoInstallerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PDFAutoInstaller.app/Contents/MacOS/PDFAutoInstaller";
+			};
+			name = Release;
+		};
+		55C3301020C7768900578771 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PDFAutoInstallerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricoh.PDFAutoInstallerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PDFAutoInstaller;
+			};
+			name = Debug;
+		};
+		55C3301120C7768900578771 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PDFAutoInstallerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricoh.PDFAutoInstallerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PDFAutoInstaller;
+			};
+			name = Release;
+		};
+		55ECC97021ACDC9E0071045A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
+					"DEBUG=1",
+					"$(inherited)",
+					"SHOW_INSTALL_BTN=1",
+				);
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libcurl/include\"";
+				INFOPLIST_FILE = PDFAutoInstaller/InstallerInfo.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libcurl/libs",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricoh.PDFAutoInstaller;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		55ECC97121ACDC9E0071045A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "SHOW_INSTALL_BTN=1";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libcurl/include\"";
+				INFOPLIST_FILE = PDFAutoInstaller/InstallerInfo.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libcurl/libs",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricoh.PDFAutoInstaller;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		55C32FDA20C7768900578771 /* Build configuration list for PBXProject "PDFAutoInstaller" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55C3300720C7768900578771 /* Debug */,
+				55C3300820C7768900578771 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		55C3300920C7768900578771 /* Build configuration list for PBXNativeTarget "Ricoh PS Print Setting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55C3300A20C7768900578771 /* Debug */,
+				55C3300B20C7768900578771 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		55C3300C20C7768900578771 /* Build configuration list for PBXNativeTarget "PDFAutoInstallerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55C3300D20C7768900578771 /* Debug */,
+				55C3300E20C7768900578771 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		55C3300F20C7768900578771 /* Build configuration list for PBXNativeTarget "PDFAutoInstallerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55C3301020C7768900578771 /* Debug */,
+				55C3301120C7768900578771 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		55ECC96F21ACDC9E0071045A /* Build configuration list for PBXNativeTarget "Ricoh PS Print installer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55ECC97021ACDC9E0071045A /* Debug */,
+				55ECC97121ACDC9E0071045A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 55C32FD720C7768900578771 /* Project object */;
+}

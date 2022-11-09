@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2752610620FDF38300FD9A0F /* log.c in Sources */ = {isa = PBXBuildFile; fileRef = 2752610520FDF38300FD9A0F /* log.c */; };
+		2752610920FDF83B00FD9A0F /* httpclient.c in Sources */ = {isa = PBXBuildFile; fileRef = 2752610720FDF83B00FD9A0F /* httpclient.c */; };
+		278E121820F5AE110032D673 /* libcups.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 278E121720F5AE110032D673 /* libcups.tbd */; };
+		278E122020F5C6B10032D673 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 278E121F20F5C6B10032D673 /* libiconv.2.4.0.tbd */; };
+		279959C5210E9ACD0099C1FA /* print2serverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 279959C2210E9ACA0099C1FA /* print2serverTests.m */; };
+		27CC1FBF20F84213001079E5 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC1FBA20F84213001079E5 /* libcrypto.a */; };
+		27CC1FC020F84213001079E5 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC1FBB20F84213001079E5 /* libcurl.a */; };
+		27CC1FC120F84213001079E5 /* libnghttp2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC1FBC20F84213001079E5 /* libnghttp2.a */; };
+		27CC1FC220F84213001079E5 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC1FBD20F84213001079E5 /* libssl.a */; };
+		27CC1FC920F8765D001079E5 /* libldap.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC1FC820F8765D001079E5 /* libldap.tbd */; };
+		27CC1FCB20F87669001079E5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC1FCA20F87669001079E5 /* libz.tbd */; };
+		553729662029D9B400B4FD29 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 553729652029D9B400B4FD29 /* libiconv.2.4.0.dylib */; };
+		A4EDDEA414EB2B9700029645 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4EDDEA314EB2B9700029645 /* Carbon.framework */; };
+		C141CB5514EB9A360025AB45 /* print2server.c in Sources */ = {isa = PBXBuildFile; fileRef = C141CB4D14EB9A360025AB45 /* print2server.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		275260FA20FDE0F100FD9A0F /* print2serverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = print2serverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2752610320FDF2F600FD9A0F /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = log.h; path = Headers/log.h; sourceTree = "<group>"; };
+		2752610520FDF38300FD9A0F /* log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = log.c; path = Source/log.c; sourceTree = "<group>"; };
+		2752610720FDF83B00FD9A0F /* httpclient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = httpclient.c; path = Source/httpclient.c; sourceTree = "<group>"; };
+		2752610820FDF83B00FD9A0F /* httpclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = httpclient.h; path = Headers/httpclient.h; sourceTree = "<group>"; };
+		278E121420F597140032D673 /* print2server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = print2server.h; path = Headers/print2server.h; sourceTree = "<group>"; };
+		278E121720F5AE110032D673 /* libcups.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcups.tbd; path = usr/lib/libcups.tbd; sourceTree = SDKROOT; };
+		278E121F20F5C6B10032D673 /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = usr/lib/libiconv.2.4.0.tbd; sourceTree = SDKROOT; };
+		279959C1210E9ACA0099C1FA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = print2serverTests/Info.plist; sourceTree = SOURCE_ROOT; };
+		279959C2210E9ACA0099C1FA /* print2serverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = print2serverTests.m; path = print2serverTests/print2serverTests.m; sourceTree = SOURCE_ROOT; };
+		27CC1FBA20F84213001079E5 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = libcurl/libs/libcrypto.a; sourceTree = "<group>"; };
+		27CC1FBB20F84213001079E5 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = libcurl/libs/libcurl.a; sourceTree = "<group>"; };
+		27CC1FBC20F84213001079E5 /* libnghttp2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libnghttp2.a; path = libcurl/libs/libnghttp2.a; sourceTree = "<group>"; };
+		27CC1FBD20F84213001079E5 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = libcurl/libs/libssl.a; sourceTree = "<group>"; };
+		27CC1FC820F8765D001079E5 /* libldap.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libldap.tbd; path = usr/lib/libldap.tbd; sourceTree = SDKROOT; };
+		27CC1FCA20F87669001079E5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		553729652029D9B400B4FD29 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
+		555C638F25EE35120074779E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A48D50DC14E488B700DF3CD8 /* print2server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = print2server; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4A923CF14E510BA005B270B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4EDDAFE14EB2AE800029645 /* libcups.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcups.dylib; path = usr/lib/libcups.dylib; sourceTree = SDKROOT; };
+		A4EDDBAF14EB2B4100029645 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		A4EDDD1F14EB2B7B00029645 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		A4EDDEA314EB2B9700029645 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		A4EDDF5C14EB2BAC00029645 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		C141CB4D14EB9A360025AB45 /* print2server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = print2server.c; path = Source/print2server.c; sourceTree = "<group>"; };
+		C141CB9F14EB9BCF0025AB45 /* CupsBackend_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CupsBackend_Prefix.pch; path = Headers/CupsBackend_Prefix.pch; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		275260F720FDE0F100FD9A0F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27CC1FCB20F87669001079E5 /* libz.tbd in Frameworks */,
+				27CC1FC920F8765D001079E5 /* libldap.tbd in Frameworks */,
+				27CC1FBF20F84213001079E5 /* libcrypto.a in Frameworks */,
+				27CC1FC020F84213001079E5 /* libcurl.a in Frameworks */,
+				27CC1FC120F84213001079E5 /* libnghttp2.a in Frameworks */,
+				27CC1FC220F84213001079E5 /* libssl.a in Frameworks */,
+				278E122020F5C6B10032D673 /* libiconv.2.4.0.tbd in Frameworks */,
+				278E121820F5AE110032D673 /* libcups.tbd in Frameworks */,
+				553729662029D9B400B4FD29 /* libiconv.2.4.0.dylib in Frameworks */,
+				A4EDDEA414EB2B9700029645 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A48D50DC14E488B700DF3CD8 /* print2server */,
+				275260FA20FDE0F100FD9A0F /* print2serverTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		275260EF20FDD57D00FD9A0F /* BackendTests */ = {
+			isa = PBXGroup;
+			children = (
+				279959C1210E9ACA0099C1FA /* Info.plist */,
+				279959C2210E9ACA0099C1FA /* print2serverTests.m */,
+			);
+			path = BackendTests;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CupsFilter_MacX105 */ = {
+			isa = PBXGroup;
+			children = (
+				C141CB3A14EB99DE0025AB45 /* Backend */,
+				A48D51B514E48B2D00DF3CD8 /* External Frameworks and Libraries */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				275260EF20FDD57D00FD9A0F /* BackendTests */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CupsFilter_MacX105;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A4A923CF14E510BA005B270B /* Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		A48D51B514E48B2D00DF3CD8 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				27CC1FCA20F87669001079E5 /* libz.tbd */,
+				27CC1FC820F8765D001079E5 /* libldap.tbd */,
+				27CC1FBA20F84213001079E5 /* libcrypto.a */,
+				27CC1FBB20F84213001079E5 /* libcurl.a */,
+				27CC1FBC20F84213001079E5 /* libnghttp2.a */,
+				27CC1FBD20F84213001079E5 /* libssl.a */,
+				278E121F20F5C6B10032D673 /* libiconv.2.4.0.tbd */,
+				278E121720F5AE110032D673 /* libcups.tbd */,
+				A4EDDAFE14EB2AE800029645 /* libcups.dylib */,
+				553729652029D9B400B4FD29 /* libiconv.2.4.0.dylib */,
+				A4EDDBAF14EB2B4100029645 /* IOKit.framework */,
+				A4EDDD1F14EB2B7B00029645 /* ApplicationServices.framework */,
+				A4EDDEA314EB2B9700029645 /* Carbon.framework */,
+				A4EDDF5C14EB2BAC00029645 /* CoreServices.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		C141CB3A14EB99DE0025AB45 /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				C141CB3B14EB99E60025AB45 /* header */,
+				C141CB3C14EB99ED0025AB45 /* source */,
+			);
+			name = Backend;
+			sourceTree = "<group>";
+		};
+		C141CB3B14EB99E60025AB45 /* header */ = {
+			isa = PBXGroup;
+			children = (
+				C141CB9F14EB9BCF0025AB45 /* CupsBackend_Prefix.pch */,
+				278E121420F597140032D673 /* print2server.h */,
+				2752610320FDF2F600FD9A0F /* log.h */,
+				2752610820FDF83B00FD9A0F /* httpclient.h */,
+			);
+			name = header;
+			sourceTree = "<group>";
+		};
+		C141CB3C14EB99ED0025AB45 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				C141CB4D14EB9A360025AB45 /* print2server.c */,
+				2752610520FDF38300FD9A0F /* log.c */,
+				2752610720FDF83B00FD9A0F /* httpclient.c */,
+			);
+			name = source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		275260F920FDE0F100FD9A0F /* print2serverTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 275260FF20FDE0F100FD9A0F /* Build configuration list for PBXNativeTarget "print2serverTests" */;
+			buildPhases = (
+				275260F620FDE0F100FD9A0F /* Sources */,
+				275260F720FDE0F100FD9A0F /* Frameworks */,
+				275260F820FDE0F100FD9A0F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = print2serverTests;
+			productName = print2serverTests;
+			productReference = 275260FA20FDE0F100FD9A0F /* print2serverTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8D1107260486CEB800E47090 /* print2server */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "print2server" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = print2server;
+			productInstallPath = "$(HOME)/Applications";
+			productName = CupsFilter_MacX105;
+			productReference = A48D50DC14E488B700DF3CD8 /* print2server */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 1000;
+				TargetAttributes = {
+					275260F920FDE0F100FD9A0F = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "CupsBackend" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				Base,
+				en,
+				ja,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CupsFilter_MacX105 */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* print2server */,
+				275260F920FDE0F100FD9A0F /* print2serverTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		275260F820FDE0F100FD9A0F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		275260F620FDE0F100FD9A0F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				279959C5210E9ACD0099C1FA /* print2serverTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2752610620FDF38300FD9A0F /* log.c in Sources */,
+				C141CB5514EB9A360025AB45 /* print2server.c in Sources */,
+				2752610920FDF83B00FD9A0F /* httpclient.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				555C638F25EE35120074779E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2752610020FDE0F100FD9A0F /* Develpment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = print2serverTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = GJ.print2serverTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Develpment;
+		};
+		2752610120FDE0F100FD9A0F /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = print2serverTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = GJ.print2serverTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Deployment;
+		};
+		A4A921DB14E4FD02005B270B /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = /usr/libexec/cups/backend;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					Info.plist,
+					"-lcups",
+				);
+				SDKROOT = macosx;
+			};
+			name = Deployment;
+		};
+		A4A921DC14E4FD02005B270B /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Headers/CupsBackend_Prefix.pch;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libcurl/include\"";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)/libcurl/libs",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYSTEM_LIBRARY_DIR)/Printers/Libraries\"";
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					Info.plist,
+					"-lcups",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ricoh.print.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = print2server;
+				STRIP_INSTALLED_PRODUCT = YES;
+				VERSION_INFO_BUILDER = "";
+			};
+			name = Deployment;
+		};
+		A4A921EF14E4FD41005B270B /* Develpment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ADDITIONAL_SDKS = "";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_GDB,
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = /usr/libexec/cups/backend;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					Info.plist,
+					"-lcups",
+				);
+				SDKROOT = macosx;
+			};
+			name = Develpment;
+		};
+		A4A921F014E4FD41005B270B /* Develpment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Headers/CupsBackend_Prefix.pch;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libcurl/include\"";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)/libcurl/libs",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYSTEM_LIBRARY_DIR)/Printers/Libraries\"";
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					Info.plist,
+					"-lcups",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ricoh.print.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = print2server;
+			};
+			name = Develpment;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		275260FF20FDE0F100FD9A0F /* Build configuration list for PBXNativeTarget "print2serverTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2752610020FDE0F100FD9A0F /* Develpment */,
+				2752610120FDE0F100FD9A0F /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Develpment;
+		};
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "print2server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4A921F014E4FD41005B270B /* Develpment */,
+				A4A921DC14E4FD02005B270B /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Develpment;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "CupsBackend" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4A921EF14E4FD41005B270B /* Develpment */,
+				A4A921DB14E4FD02005B270B /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Develpment;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

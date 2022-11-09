@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>PDFAutoInstaller(INSTALL).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>PDFAutoInstaller(SETTING).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>55C32FDE20C7768900578771</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>55C32FF420C7768900578771</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>55C32FFF20C7768900578771</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>55ECC95221ACDC9E0071045A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,106 @@
+/* 
+  Localizable.strings
+  PDFAutoInstaller
+
+  Created by rits on 2018/12/19.
+  Copyright © 2018年 rits. All rights reserved.
+*/
+"TitleUIIstall"="Ricoh Cloud Printer Server Settings";
+"TitleUISave"="Ricoh Cloud Printer Server Settings";
+
+
+"TitlePrinterDescriptionName"="Printer Name:";
+
+"TitleServerGroup"="Server Settings";
+"TitleServerIPAddress"="Server IP:";
+"TitleServerUseHttps"="Use HTTPS";
+"TitleServerPort"="Port:";
+
+"TitleProxyUseProxy"="Use a Proxy Server";
+"TitleProxyGroup"="Proxy Server";
+"TitleProxyIPAddress"="Address:";
+"TitleProxyPort"="Port:";
+"TitleProxyUser"="User Name:";
+"TitleProxyPasswd"="Password:";
+
+"TitleUID"="UID:";
+"TitleHelp"="How to get UID";
+
+"TitleAuthenGroup"="Login";
+"TitleMail"="Mail Address:";
+"TitleMailPassword"="Password:";
+
+"TitleCheckButton"="Test Connection";
+"TitleCancleButton"="Close";
+"TitleInstallButton"="Install";
+"TitleSaveButton"="Save";
+
+"WarnningTitleServerIP"="Server IP Error";
+"WarnningInforServerIP"="Please enter a IP address.";
+
+"WarnningTitleServerPort"="Server Port Error";
+"WarnningInforServerPort"="Please enter a port number.";
+
+
+"WarnningTitleProxyIP"="Proxy Address Error";
+"WarnningInforProxyIP"="Please enter a Proxy Address.";
+
+"WarnningTitleProxyPort"="Proxy Port Error";
+"WarnningInforProxyPort"="Please enter a port number.";
+
+"WarnningTitleProxyUserName"="Proxy User Name Error";
+"WarnningInforProxyUserName"="Please enter a Proxy User Name.";
+
+"WarnningTitleProxyPassword"="Proxy Password Error";
+"WarnningInforProxyPassword"="Please enter a Proxy Password.";
+
+"WarnningTitleUIDPort"="UID Error";
+"WarnningInforUIDPort"="Please enter a UID.";
+
+"WarnningTitleMail"="Mail Error";
+"WarnningInforMail"="Please enter a Mail Address.";
+
+"WarnningTitleMailPassword"="Mail Password Error";
+"WarnningInforMailPassword"="Please enter a Password.";
+
+"ErrorTitle"="Error";
+
+"ErrorTitleConnectSuccess"="Connection success";
+"ErrorInforConnectSuccess"="Verification success!";
+
+"ErrorTitleConnectFail"="Connection failed";
+"ErrorInforConnectFail"="Verification server.";
+
+"ErrorPleaseCheckSettings"="Failed to login. Check the authentication information is correct.";
+"ErrorPleaseNetworkSettings"="There might be problems with the network settings or proxy settings. If you can not fix this problem, Please contact your administrator.";
+
+"255" = "255";
+"65535" = "65535";
+"443" = "443";
+
+"Continue" = "Continue";
+"Cancel" = "Cancel";
+"WarnningProxyIP" = "The input of proxy address contain characters other than IP address, letters, numbers and ':','.','/'.\nTo review the setting, select \"Cancel\".\nTo keep setting, select \"Continue\".";
+
+"ErrorPleaseInputCorrectServerIP"="Please enter the correctly IP address( [0-255].[0-255].[0-255].[0-255])";
+
+"InforInstallingDriver"="Installing the printer driver,please wait...";
+"InforInstallSuccess"="The installation ended.";
+"InforInstallFail"="Installation failed.";
+"TitlButtonFinish"="Finish";
+
+
+"FileNameHelpPage1"="HelpPage1_eng";
+"FileNameHelpPage2"="HelpPage2_eng";
+"FileNameHelpPage3"="HelpPage3_eng";
+
+
+"TitleHelpPage1"="Input print server IP address on browser to open print server website. \nInput user name and pass word  on the login page, then click Login button.";
+"TitleHelpPage2"="After logined in, click \"Personal data\".";
+"TitleHelpPage3"="On this page, you can see the User Login Code.";
+
+
+"SaveAlertTitle"="Warning";
+"SaveAlertButtonSave"="Save";
+"SaveAlertButtonUnSave"="Not Save";
+"SaveAlertMsg"="User setting was changed.\nClick \"Not Save\" button will lost the new user setting. \nClick \"Save\" button to save user setting.";
