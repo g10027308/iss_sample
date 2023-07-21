@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo chmod 700 /usr/libexec/cups/backend/print2server

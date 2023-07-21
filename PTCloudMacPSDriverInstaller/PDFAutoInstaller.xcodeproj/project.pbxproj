@@ -68,6 +68,8 @@
 		55EF06C021AE4583007E1604 /* showHelpHowToGetUID.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55EF06BE21AE4583007E1604 /* showHelpHowToGetUID.xib */; };
 		55EF06CA21AE78FC007E1604 /* showHelpHowToGetUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EF06BD21AE4583007E1604 /* showHelpHowToGetUID.m */; };
 		55FA96FF20D38C60007D68B7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55FA96FE20D38C60007D68B7 /* WebKit.framework */; };
+		897721ED29D18605000FDE39 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897721EC29D18604000FDE39 /* SystemConfiguration.framework */; };
+		897721EE29D1862E000FDE39 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897721EC29D18604000FDE39 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +145,7 @@
 		55EF06BD21AE4583007E1604 /* showHelpHowToGetUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showHelpHowToGetUID.m; sourceTree = "<group>"; };
 		55EF06BE21AE4583007E1604 /* showHelpHowToGetUID.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = showHelpHowToGetUID.xib; sourceTree = "<group>"; };
 		55FA96FE20D38C60007D68B7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		897721EC29D18604000FDE39 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				897721ED29D18605000FDE39 /* SystemConfiguration.framework in Frameworks */,
 				554E55BF25C41477005FAEEB /* ApplicationServices.framework in Frameworks */,
 				5545C6E720DA2D1200672EC1 /* libldap.tbd in Frameworks */,
 				5545C6E920DA2D1F00672EC1 /* libz.tbd in Frameworks */,
@@ -179,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				897721EE29D1862E000FDE39 /* SystemConfiguration.framework in Frameworks */,
 				55ECC95D21ACDC9E0071045A /* libldap.tbd in Frameworks */,
 				55ECC95E21ACDC9E0071045A /* libz.tbd in Frameworks */,
 				55ECC95F21ACDC9E0071045A /* libcrypto.a in Frameworks */,
@@ -286,6 +291,7 @@
 		55FA96FD20D38C5F007D68B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				897721EC29D18604000FDE39 /* SystemConfiguration.framework */,
 				554E55BE25C41477005FAEEB /* ApplicationServices.framework */,
 				5545C6EA20DA2E9100672EC1 /* libcrypto.a */,
 				5545C6EB20DA2E9100672EC1 /* libcurl.a */,
