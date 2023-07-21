@@ -19,6 +19,7 @@
 		27CC1FC920F8765D001079E5 /* libldap.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC1FC820F8765D001079E5 /* libldap.tbd */; };
 		27CC1FCB20F87669001079E5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC1FCA20F87669001079E5 /* libz.tbd */; };
 		553729662029D9B400B4FD29 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 553729652029D9B400B4FD29 /* libiconv.2.4.0.dylib */; };
+		89E5E45929D183B6002EA30E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E5E45829D183B6002EA30E /* SystemConfiguration.framework */; };
 		A4EDDEA414EB2B9700029645 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4EDDEA314EB2B9700029645 /* Carbon.framework */; };
 		C141CB5514EB9A360025AB45 /* print2server.c in Sources */ = {isa = PBXBuildFile; fileRef = C141CB4D14EB9A360025AB45 /* print2server.c */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		27CC1FCA20F87669001079E5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		551E7C3A25F5C22B009892BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		553729652029D9B400B4FD29 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
+		89E5E45829D183B6002EA30E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A48D50DC14E488B700DF3CD8 /* print2server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = print2server; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A923CF14E510BA005B270B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4EDDAFE14EB2AE800029645 /* libcups.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcups.dylib; path = usr/lib/libcups.dylib; sourceTree = SDKROOT; };
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89E5E45929D183B6002EA30E /* SystemConfiguration.framework in Frameworks */,
 				27CC1FCB20F87669001079E5 /* libz.tbd in Frameworks */,
 				27CC1FC920F8765D001079E5 /* libldap.tbd in Frameworks */,
 				27CC1FBF20F84213001079E5 /* libcrypto.a in Frameworks */,
@@ -107,6 +110,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				275260EF20FDD57D00FD9A0F /* BackendTests */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				89E5E45729D183B5002EA30E /* Frameworks */,
 			);
 			name = CupsFilter_MacX105;
 			sourceTree = "<group>";
@@ -118,6 +122,14 @@
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		89E5E45729D183B5002EA30E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				89E5E45829D183B6002EA30E /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A48D51B514E48B2D00DF3CD8 /* External Frameworks and Libraries */ = {

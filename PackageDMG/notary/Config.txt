@@ -1,0 +1,4 @@
+notarization_mode=0
+bundle_id=com.ricoh.PDFAutoInstaller
+
+

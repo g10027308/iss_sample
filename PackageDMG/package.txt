@@ -1,0 +1,44 @@
+  
+1.make package:
+pkgbuild --root driver_root/ --component-plist driver.plist Ricoh_PDF_Basic_Driver.pkg
+
+
+
+
+2.codesign for pkg:
+
+tar -zcf pkg.tgz ./Ricoh_PDF_Basic_Driver.pkg
+ssh -T -i ~/.ssh/rits_sh_zls_id_rsa lisong.zhu@10.60.98.221 < pkg.tgz > signed_pkg.tgz
+tar -zxf signed_pkg.tgz
+
+tar -zcf pkg.tgz ./ModifyBackendPermission.pkg
+ssh -T -i ~/.ssh/rits_sh_zls_id_rsa lisong.zhu@10.63.100.36 < pkg.tgz > signed_pkg.tgz
+tar -zxf signed_pkg.tgz
+
+
+#create the pkg file
+productbuild --distribution ./Distribution --package-path ./contents/ Ricoh_PDF_Basic_Driver_Installer.pkg
+
+tar -zcf pkg.tgz ./Ricoh_PDF_Basic_Driver_Installer.pkg
+ssh -T -i ~/.ssh/rits_sh_zls_id_rsa lisong.zhu@10.60.98.221 < pkg.tgz > signed_pkg.tgz
+tar -zxf signed_pkg.tgz
+
+
+
+
+
+
+
+1.codesign for one click installer
+cd code_sign
+tar -zcf app.tgz ./RiTrac Print installer.app
+ssh -T -i ~/.ssh/rits_sh_zls_id_rsa lisong.zhu@10.60.98.221 < app.tgz > signed_app.tgz
+tar -zxf signed_app.tgz
+
+
+
+
+2.make dmg:
+create new folder Ding_Print_Driver_V0.0.1.0
+hdiutil create -srcfolder Ritrac\ Pro\ PDF\ Driver\ for\ mac_V1.0.1.0 Ritrac\ Pro\ PDF\ Driver\ for\ mac_V1.0.1.0.dmg
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="1">
+    <title>PDF_Driver</title>
+    <volume-check>
+        <allowed-os-versions>
+            <os-version min="10.10.0"/>
+        </allowed-os-versions>
+    </volume-check>
+    <pkg-ref id="com.ricoh.print.pdftopdfRV1"/>
+    <pkg-ref id="com.Ricoh.ModifyBackendPermission"/>
+    <options customize="never" require-scripts="false"/>
+    <choices-outline>
+        <line choice="default">
+            <line choice="com.ricoh.print.pdftopdfRV1"/>
+            <line choice="com.Ricoh.ModifyBackendPermission"/>
+        </line>
+    </choices-outline>
+    <choice id="default"/>
+    <choice id="com.ricoh.print.pdftopdfRV1" visible="false">
+        <pkg-ref id="com.ricoh.print.pdftopdfRV1"/>
+    </choice>
+    <pkg-ref id="com.ricoh.print.pdftopdfRV1" version="1.0.0" onConclusion="none">Ricoh_Cloud_PS_Printer_LIO_Driver.pkg</pkg-ref>
+    <choice id="com.Ricoh.ModifyBackendPermission" visible="false">
+        <pkg-ref id="com.Ricoh.ModifyBackendPermission"/>
+    </choice>
+    <pkg-ref id="com.Ricoh.ModifyBackendPermission" version="0" onConclusion="none">ModifyBackendPermission.pkg</pkg-ref>
+</installer-gui-script>
