@@ -304,6 +304,7 @@
 				55C32FDB20C7768900578771 /* Sources */,
 				55C32FDC20C7768900578771 /* Frameworks */,
 				55C32FDD20C7768900578771 /* Resources */,
+				89177A642A9DE513000CA829 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -357,6 +358,7 @@
 				55ECC95321ACDC9E0071045A /* Sources */,
 				55ECC95C21ACDC9E0071045A /* Frameworks */,
 				55ECC96421ACDC9E0071045A /* Resources */,
+				89177A632A9DE4FA000CA829 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -467,6 +469,43 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		89177A632A9DE4FA000CA829 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncp -pr $BUILT_PRODUCTS_DIR/\"${EXECUTABLE_NAME}\".app $SRCROOT/../PackageDMG/InstallerApp/\"${EXECUTABLE_NAME}\".app\n";
+		};
+		89177A642A9DE513000CA829 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncp -pr $BUILT_PRODUCTS_DIR/\"${EXECUTABLE_NAME}\".app $SRCROOT/../PackageDMG/SettingsApp/\"${EXECUTABLE_NAME}\".app\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		55C32FDB20C7768900578771 /* Sources */ = {
