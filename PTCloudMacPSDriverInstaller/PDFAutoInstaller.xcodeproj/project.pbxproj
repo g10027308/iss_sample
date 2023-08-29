@@ -70,6 +70,8 @@
 		55FA96FF20D38C60007D68B7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55FA96FE20D38C60007D68B7 /* WebKit.framework */; };
 		897721ED29D18605000FDE39 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897721EC29D18604000FDE39 /* SystemConfiguration.framework */; };
 		897721EE29D1862E000FDE39 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897721EC29D18604000FDE39 /* SystemConfiguration.framework */; };
+		89D573662A98831100117A27 /* EncryptPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D573652A98831000117A27 /* EncryptPassword.m */; };
+		89D573672A98873400117A27 /* EncryptPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D573652A98831000117A27 /* EncryptPassword.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +148,8 @@
 		55EF06BE21AE4583007E1604 /* showHelpHowToGetUID.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = showHelpHowToGetUID.xib; sourceTree = "<group>"; };
 		55FA96FE20D38C60007D68B7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		897721EC29D18604000FDE39 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		89D573642A98831000117A27 /* EncryptPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptPassword.h; sourceTree = "<group>"; };
+		89D573652A98831000117A27 /* EncryptPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncryptPassword.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +227,8 @@
 		55C32FE120C7768900578771 /* PDFAutoInstaller */ = {
 			isa = PBXGroup;
 			children = (
+				89D573642A98831000117A27 /* EncryptPassword.h */,
+				89D573652A98831000117A27 /* EncryptPassword.m */,
 				554DEE34260AC93400198B85 /* Ricoh_PS_Basic_Driver_Installer.pkg */,
 				55888578235FDD1B00C354BB /* setDefalutPrinter.sh */,
 				553BAF6D20C7E6F1001FFB04 /* InstallPkg.sh */,
@@ -488,6 +494,7 @@
 				5545C6F620DA406500672EC1 /* CHttpClient.m in Sources */,
 				55EF06BF21AE4583007E1604 /* showHelpHowToGetUID.m in Sources */,
 				55E61A5720E0EF5800D0B99A /* SettingWindow.m in Sources */,
+				89D573662A98831100117A27 /* EncryptPassword.m in Sources */,
 				55C32FEA20C7768900578771 /* ViewController.m in Sources */,
 				55B8937325E4EEE1002CD51C /* ViewController3.m in Sources */,
 				55B8936925E4C00A002CD51C /* LoginWindow.m in Sources */,
@@ -518,6 +525,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89D573672A98873400117A27 /* EncryptPassword.m in Sources */,
 				55EF06CA21AE78FC007E1604 /* showHelpHowToGetUID.m in Sources */,
 				55ECC95421ACDC9E0071045A /* CHttpClient.m in Sources */,
 				55ECC95521ACDC9E0071045A /* SettingWindow.m in Sources */,
