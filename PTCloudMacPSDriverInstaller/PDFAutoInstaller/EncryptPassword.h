@@ -3,7 +3,7 @@
 //  theResult
 //
 //  Created by g10027308 on 2023/02/01.
-//  Copyright © 2023 rits. All rights reserved.
+//  Copyright © 2023 ricoh. All rights reserved.
 //
 
 #ifndef EncryptPassword_h

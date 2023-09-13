@@ -3,6 +3,7 @@
 //  CGetSerial
 //
 //  Created by g10027308 on 2023/01/16.
+//  Copyright © 2023 ricoh. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -21,6 +22,7 @@
 @end
 
 @implementation NSData (AES)
+//指定したkeyword, initial vectorでAES128方式の暗号/復号を行い、結果を返す
 - (NSData *)AES128crypte:(CCOperation)operation key:(NSString *)key iv:(NSString *)iv
 {
     char keyPtr[kCCKeySizeAES128 + 1];
@@ -54,17 +56,20 @@
     return nil;
 }
 
+//指定したkeyword, initial vectorで暗号化
 - (NSData *)AES128EncryptWithKey:(NSString *)key iv:(NSString *)iv
 {
     return [self AES128crypte:kCCEncrypt key:key iv:iv];
 }
 
+//指定したkeyword, initial vectorで復号化
 - (NSData *)AES128DecryptWithKey:(NSString *)key iv:(NSString *)iv
 {
     return [self AES128crypte:kCCDecrypt key:key iv:iv];
 }
 @end
 
+//文字列をSHA256でハッシュして返す
 NSString *_sha256(NSString *text)
 {
     const char *s=[text cStringUsingEncoding:NSASCIIStringEncoding];
@@ -81,18 +86,23 @@ NSString *_sha256(NSString *text)
     return hash;
 }
 
+//文字列をSHA256でハッシュして返す（C言語用interface）
 const char *sha256(char *str) {
     NSString *text = [NSString stringWithCString: str encoding: NSUTF8StringEncoding];
     return [_sha256(text) UTF8String];
 }
 
+//文字列をSHA256でハッシュして返す（サイズ制限あり）（C言語用interface）
 const char *sha256WithLen(char *str, unsigned long size) {
     NSString *st = [NSString stringWithCString:str encoding: NSUTF8StringEncoding];
     NSString *text = [NSMutableString stringWithString:[_sha256(st) substringToIndex: size]];
     return [text UTF8String];
 }
 
-
+// 平文パスワード、keyword、initial vectorから
+// AES128方式で暗号化されたパスワードを返す
+// デバイスのシリアル番号＋ログインユーザIDをSHA256でハッシュし、
+// 最初のCRYPTLENバイトをkey、最後のCRYPTLENバイトを逆順に使用してinitial vectorとして渡す前提
 unsigned char *encode(char *str, char *key, char *iv) {
     unsigned char *buf;
     NSString *mypassword = [NSString stringWithCString:str encoding:NSUTF8StringEncoding];
@@ -104,7 +114,14 @@ unsigned char *encode(char *str, char *key, char *iv) {
     return buf;
 }
 
-//get NSData password from PLIST file
+/**
+ * getmypass
+ * プロパティリストから暗号化されたデータを取得する
+ * @param[in]    plistfile    プロパティリストファイル名（パスを含む）
+ * @param[in]    key    取得する項目名
+ * @param[out]   size    取得したデータのサイズ
+ * @retval  取得したデータ（取得に失敗した場合はNULL）
+ */
 unsigned char *getmypass(char *plistfile, char *key, int *size) {
     NSString *plistName = [NSString stringWithCString:plistfile encoding:NSUTF8StringEncoding];
     NSMutableDictionary *dicSetting = [NSMutableDictionary dictionaryWithContentsOfFile:plistName];
@@ -125,6 +142,7 @@ unsigned char *getmypass(char *plistfile, char *key, int *size) {
     return NULL;
 }
 
+//デバイスのシリアル番号、ログインユーザID、キーワードサイズから暗号化・復号化に使うkeywordとinitial vectorを返す
 void getKeyIV(char *sid, char *uid, char *keystr, char *ivstr, int len) {
     static cp_string keyword;
 
@@ -158,6 +176,10 @@ void getKeyIV(char *sid, char *uid, char *keystr, char *ivstr, int len) {
     }
 }
 
+// 暗号化されたパスワード、keyword、initial vector、データサイズから
+// AES128方式で復号化して平文パスワードを返す
+// デバイスのシリアル番号＋ログインユーザIDをSHA256でハッシュし、
+// 最初のCRYPTLENバイトをkey、最後のCRYPTLENバイトを逆順に使用してinitial vectorとして渡す前提
 char *decode(unsigned char *str, char *key, char *iv, int size) {
     static cp_string _decode;
 
@@ -174,6 +196,15 @@ char *decode(unsigned char *str, char *key, char *iv, int size) {
     return _decode;
 }
 
+/**
+ * decrypt
+ * 暗号化されたデータを復号化して返す
+ * @param[in]    str    暗号化されたデータ
+ * @param[in]    sid    デバイスのシリアル番号
+ * @param[in]    uid    ログインしてユーザID
+ * @param[in]   size    暗号化データのサイズ
+ * @retval  復号化したデータ（取得に失敗した場合はNULL）
+ */
 char *decrypt(unsigned char *str, char *sid, char *uid, int size) {
     int len = CRYPTLEN;
     char keystr[len+1];
