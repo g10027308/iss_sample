@@ -3,7 +3,7 @@
 //  Ricoh PS Print Setting
 //
 //  Created by g10027308 on 2023/02/01.
-//  Copyright © 2023 rits. All rights reserved.
+//  Copyright © 2023 ricoh. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,9 +14,6 @@
 #include <sys/types.h>
 #include <pwd.h>
 
-//const char* CRYPTKEY = "abcd1234";                // 鍵のテスト用デフォルト値
-//const char* CRYPTVEC = "4321dcba";                // 初期化のテスト用デフォルト値
-
 const int CRYPTLEN = 16;    //暗号化に使うキーの長さ
 
 @interface NSData (AES)
@@ -26,6 +23,7 @@ const int CRYPTLEN = 16;    //暗号化に使うキーの長さ
 @end
 
 @implementation NSData (AES)
+//指定したkeyword, initial vectorでAES128方式の暗号/復号を行い、結果を返す
 - (NSData *)AES128crypte:(CCOperation)operation key:(NSString *)key iv:(NSString *)iv
 {
     char keyPtr[kCCKeySizeAES128 + 1];
@@ -58,12 +56,13 @@ const int CRYPTLEN = 16;    //暗号化に使うキーの長さ
     free(buffer);
     return nil;
 }
-
+//指定したkeyword, initial vectorで暗号化
 - (NSData *)AES128EncryptWithKey:(NSString *)key iv:(NSString *)iv
 {
     return [self AES128crypte:kCCEncrypt key:key iv:iv];
 }
 
+//指定したkeyword, initial vectorで復号化
 - (NSData *)AES128DecryptWithKey:(NSString *)key iv:(NSString *)iv
 {
     return [self AES128crypte:kCCDecrypt key:key iv:iv];
@@ -79,6 +78,7 @@ const int CRYPTLEN = 16;    //暗号化に使うキーの長さ
 
 @implementation EncryptPassword
 
+//文字列をSHA256でハッシュして返す
 - (NSString *)sha256:(NSString *)text
 {
     const char *s=[text cStringUsingEncoding:NSASCIIStringEncoding];
@@ -95,6 +95,7 @@ const int CRYPTLEN = 16;    //暗号化に使うキーの長さ
     return hash;
 }
 
+//デバイスのシリアル番号を返す（暗号化キーに使用）
 - (NSString *)getSerialNumber
 {
     NSString *serial = nil;
@@ -109,6 +110,15 @@ const int CRYPTLEN = 16;    //暗号化に使うキーの長さ
     return serial;
 }
 
+/**
+ * EncryptPassword::getEncryptPassword
+ * AES128方式で暗号化されたパスワードを返す
+ * デバイスのシリアル番号＋ログインユーザIDをSHA256でハッシュし、
+ * 最初のCRYPTLENバイトをkey、最後のCRYPTLENバイトを逆順に使用してinitial vectorとする
+ * @param[in]    strPassword    平文のパスワード
+ * @param[in]    userid    ログインユーザID
+ * @retval  暗号化されたパスワード
+ */
 - (NSData *)getEncryptPassword:(NSString *)strPassword userid:(NSString *)userid
 {
     NSString *serialnumber = [self getSerialNumber];
@@ -146,6 +156,13 @@ const int CRYPTLEN = 16;    //暗号化に使うキーの長さ
     return mypd;
 }
 
+/**
+ * EncryptPassword::getDecryptPassword
+ * 暗号化されたパスワードを復号化して返す
+ * @param[in]    password    暗号化されたパスワード
+ * @param[in]    userid    ログインユーザID
+ * @retval  平文に復号されたパスワード
+ */
 - (NSString *)getDecryptPassword:(NSData *)password userid:(NSString *)userid
 {
     NSString *serialnumber = [self getSerialNumber];
