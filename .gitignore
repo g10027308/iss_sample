@@ -32,3 +32,17 @@ xcuserdata/
 ## Xcode 8 and earlier
 *.xcscmblueprint
 *.xccheckout
+
+## App
+PackageDMG/code_sign/
+!PackageDMG/code_sign/.gitkeep
+PackageDMG/stapled/*.dmg
+PackageDMG/stapled/staple.log
+PackageDMG/notary/notary.log
+PackageDMG/notary/notary.tgz
+PackageDMG/notary/uuid.txt
+PackageDMG/notarized/check_notary.log
+PackageDMG/notarized/uuidcheck.tgz
+PackageDMG/notarized/Config.txt
+
+
