@@ -5,13 +5,13 @@
 *%    for "Cloud PS Printer"
 *%
 *%    CreationDate: 2019/04/22
-*%    Modified:    2023/03/27
+*%    Modified:    2023/10/26
 *%
 *%    COPYRIGHT (C) 2019-2023 RICOH COMPANY, LTD.
 *%    All rights reserved.
 *%
 
-*FileVersion: "1.2"
+*FileVersion: "1.3"
 *FormatVersion: "4.3"
 *LanguageEncoding: ISOLatin1
 *LanguageVersion: English
@@ -665,7 +665,7 @@ true setedgetoedge"
 
 *OpenUI *ColorModel/Color Mode: PickOne
 *OrderDependency: 100 AnySetup *ColorModel
-*DefaultColorModel: Gray
+*DefaultColorModel: CMYK
 *ColorModel CMYK/Color: "(cmyk) RCsetdevicecolor"
 *ColorModel Gray/Black and White: "(gray) RCsetdevicecolor"
 *CloseUI: *ColorModel
