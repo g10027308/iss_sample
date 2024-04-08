@@ -10,31 +10,31 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
-		gxoV6yrOSqJYFwLbjIeblME2+gA=
+		KxKd833qLogmsDHMChnXJCs7s6M=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<data>
-		HgbMe6wtM6Z7aG1SU+tod7hvqJo=
+		LjHLxNHyCF8AfQMcGu0nI/K8O8M=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<data>
-		N9uo99lPNpp3WQ1+qJPeK9t85ns=
+		rjeXIkeTfra6s5MDj65P3Xdg6Yo=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-vfy-GN-ww7.nib</key>
 		<data>
-		3Ai7IkYm0hhC+6bmmDBR/eS3Rac=
+		eFYbNVnmiU3UWBR2MN8aNg5GbL4=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
 		<data>
-		WpX1Mf/63GmJp1P9NMWgULZHhAw=
+		hCvSZbJAUMBNzRufbk22qjjSnms=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<data>
-		ROGBfQhFfhd+2bOLICv5odBDUZE=
+		YLMLTbi9dYnjXmfBao/p0UN4UhI=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/vfy-GN-ww7-view-DWp-n7-tc0.nib</key>
 		<data>
-		8IEb0M1j4Oq0EJfcO5s7JHN1b0Y=
+		TWdvDkugdiGXM7MyhWM82w/XvIQ=
 		</data>
 		<key>Resources/CopyPlist.sh</key>
 		<data>
@@ -50,7 +50,7 @@
 		</data>
 		<key>Resources/InstallerInfo.plist</key>
 		<data>
-		+/RFbdPp1earVXtG4iASU9vGGL4=
+		bkvUT25WSlkTRKUNwrKfJZThJkU=
 		</data>
 		<key>Resources/cacert.pem</key>
 		<data>
@@ -74,9 +74,29 @@
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/html/.gitkeep</key>
+		<key>Resources/html/ConnectFailed_files/Thumbs.db</key>
 		<data>
-		2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+		YcbPYQiY++L/pYLtGIFzVYa8YMk=
+		</data>
+		<key>Resources/html/ConnectFailed_files/terminal.css</key>
+		<data>
+		k14g8bsDNU6zaT1Yl9zAHElBmjk=
+		</data>
+		<key>Resources/html/ConnectFailed_files/warning.gif</key>
+		<data>
+		T2F/owaFIaqnfzq7ZJkPaBfw3J0=
+		</data>
+		<key>Resources/html/login_files/Thumbs.db</key>
+		<data>
+		BaNNOvoSyuTkvdDSd305oUAIb7g=
+		</data>
+		<key>Resources/html/login_files/logfailed_icon.png</key>
+		<data>
+		BDgEmQsDTjgpaV7TkDycOxBuX6s=
+		</data>
+		<key>Resources/html/login_files/logsuccess_icon.png</key>
+		<data>
+		qzzuPvSdrFCAAT2SqMjtckZRd4c=
 		</data>
 		<key>Resources/ja.lproj/Localizable.strings</key>
 		<dict>
@@ -122,77 +142,77 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			gxoV6yrOSqJYFwLbjIeblME2+gA=
+			KxKd833qLogmsDHMChnXJCs7s6M=
 			</data>
 			<key>hash2</key>
 			<data>
-			1+mSCbNAdEuHVIx/6WXmX2/zVNCWxhsMquMtKx25wSc=
+			j3STEpHTargdP1Q1uO9LKbbOqrq6bcAsVjeKFJiDQO4=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			HgbMe6wtM6Z7aG1SU+tod7hvqJo=
+			LjHLxNHyCF8AfQMcGu0nI/K8O8M=
 			</data>
 			<key>hash2</key>
 			<data>
-			Nb30x0f1q6/n1lnoaEo03FSNnIclmAFeSYG32F+U314=
+			T7a+WjFTPApAYQIvwzq8eGsB2iECtNeo5FkU3lhQSvQ=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			N9uo99lPNpp3WQ1+qJPeK9t85ns=
+			rjeXIkeTfra6s5MDj65P3Xdg6Yo=
 			</data>
 			<key>hash2</key>
 			<data>
-			1Ywkn54gtkr3TZvSn6sprIF4OSv8fv4BGYsi8JDSbKo=
+			RBjIzyf3uOW3B/luDz3G1VDx2mN1+pry0exzMqIEoOE=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-vfy-GN-ww7.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			3Ai7IkYm0hhC+6bmmDBR/eS3Rac=
+			eFYbNVnmiU3UWBR2MN8aNg5GbL4=
 			</data>
 			<key>hash2</key>
 			<data>
-			XG8k7pNjrlV8wLCAuo9aEiwJDbKi5ax0IdSVwaHsE4E=
+			O5zB7xl1X14fvAZFPXn00bVHHfRgl8jQU5ozyDxGaLY=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			WpX1Mf/63GmJp1P9NMWgULZHhAw=
+			hCvSZbJAUMBNzRufbk22qjjSnms=
 			</data>
 			<key>hash2</key>
 			<data>
-			p7w+Y3k2OBNTqcfXOXjXPGP9+62FWuj2TslQuvouFXc=
+			YM3dtTq4ubcTYdWAub+4qPG1dLjKaM7ifpXsHZFX0QQ=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ROGBfQhFfhd+2bOLICv5odBDUZE=
+			YLMLTbi9dYnjXmfBao/p0UN4UhI=
 			</data>
 			<key>hash2</key>
 			<data>
-			WY5PJrZO8Z1df29vOVunrdvZp7eZ+8eHqIFn4GdaU+c=
+			bgdVVcno4zHeKGJId2FC6Bg07buIzMmdcDxTX0Y9VoE=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/vfy-GN-ww7-view-DWp-n7-tc0.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			8IEb0M1j4Oq0EJfcO5s7JHN1b0Y=
+			TWdvDkugdiGXM7MyhWM82w/XvIQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			StAH4Kr+9ophQv6RLdnO+zUdett97k2mkIpo0ZH6/no=
+			+8x18SmhCTGS8P9lCReYNw3iP8tPcwxoAMprp0nhyJA=
 			</data>
 		</dict>
 		<key>Resources/CopyPlist.sh</key>
@@ -232,11 +252,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+/RFbdPp1earVXtG4iASU9vGGL4=
+			bkvUT25WSlkTRKUNwrKfJZThJkU=
 			</data>
 			<key>hash2</key>
 			<data>
-			v4vu+kQPyT5LdkOa0CogOepBVK4HMBSuMY91RxOsBH8=
+			3J/cOgKkvgjFDz1uUIfXM1fgZ5hLFkSDwsywvwvmi7A=
 			</data>
 		</dict>
 		<key>Resources/cacert.pem</key>
@@ -276,15 +296,70 @@
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/html/.gitkeep</key>
+		<key>Resources/html/ConnectFailed_files/Thumbs.db</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+			YcbPYQiY++L/pYLtGIFzVYa8YMk=
 			</data>
 			<key>hash2</key>
 			<data>
-			47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+			m31qI3k+kLjiImgNvkFI3Bg+XWD6gDG29EzTLlFtQoE=
+			</data>
+		</dict>
+		<key>Resources/html/ConnectFailed_files/terminal.css</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			k14g8bsDNU6zaT1Yl9zAHElBmjk=
+			</data>
+			<key>hash2</key>
+			<data>
+			ltuvIJPLCWeLTa6K+uUXJK7xvsr6VZa8S3Q8DGzMxnM=
+			</data>
+		</dict>
+		<key>Resources/html/ConnectFailed_files/warning.gif</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			T2F/owaFIaqnfzq7ZJkPaBfw3J0=
+			</data>
+			<key>hash2</key>
+			<data>
+			kbtMIdr2abRsmmZZrDMqL5j5BUyp4lAUC4CzoTw/Yiw=
+			</data>
+		</dict>
+		<key>Resources/html/login_files/Thumbs.db</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			BaNNOvoSyuTkvdDSd305oUAIb7g=
+			</data>
+			<key>hash2</key>
+			<data>
+			8/0Og0KTiN09y/ECb3twPbzq+GLGXDfVQ+8gho+sFFc=
+			</data>
+		</dict>
+		<key>Resources/html/login_files/logfailed_icon.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			BDgEmQsDTjgpaV7TkDycOxBuX6s=
+			</data>
+			<key>hash2</key>
+			<data>
+			p0fI0VEwfab/kLJ9GOrHJfrt2bVREt1enb5U7oeeQ88=
+			</data>
+		</dict>
+		<key>Resources/html/login_files/logsuccess_icon.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			qzzuPvSdrFCAAT2SqMjtckZRd4c=
+			</data>
+			<key>hash2</key>
+			<data>
+			0Yzn8sdtneiB2PV0iCuhEb+oxfAp9TVVDKnXWDe9yps=
 			</data>
 		</dict>
 		<key>Resources/ja.lproj/Localizable.strings</key>

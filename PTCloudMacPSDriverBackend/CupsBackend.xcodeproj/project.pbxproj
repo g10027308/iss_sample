@@ -19,6 +19,9 @@
 		27CC1FC920F8765D001079E5 /* libldap.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC1FC820F8765D001079E5 /* libldap.tbd */; };
 		27CC1FCB20F87669001079E5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC1FCA20F87669001079E5 /* libz.tbd */; };
 		553729662029D9B400B4FD29 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 553729652029D9B400B4FD29 /* libiconv.2.4.0.dylib */; };
+		896C4CA32A9743EA00CD08EC /* GetSerialNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 896C4CA12A9743EA00CD08EC /* GetSerialNumber.m */; };
+		896C4CA42A9743EA00CD08EC /* EncodeDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 896C4CA22A9743EA00CD08EC /* EncodeDecode.m */; };
+		896C4CA52A9748AE00CD08EC /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4EDDBAF14EB2B4100029645 /* IOKit.framework */; };
 		89E5E45929D183B6002EA30E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E5E45829D183B6002EA30E /* SystemConfiguration.framework */; };
 		A4EDDEA414EB2B9700029645 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4EDDEA314EB2B9700029645 /* Carbon.framework */; };
 		C141CB5514EB9A360025AB45 /* print2server.c in Sources */ = {isa = PBXBuildFile; fileRef = C141CB4D14EB9A360025AB45 /* print2server.c */; };
@@ -43,6 +46,8 @@
 		27CC1FCA20F87669001079E5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		551E7C3A25F5C22B009892BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		553729652029D9B400B4FD29 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
+		896C4CA12A9743EA00CD08EC /* GetSerialNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetSerialNumber.m; sourceTree = "<group>"; };
+		896C4CA22A9743EA00CD08EC /* EncodeDecode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodeDecode.m; sourceTree = "<group>"; };
 		89E5E45829D183B6002EA30E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A48D50DC14E488B700DF3CD8 /* print2server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = print2server; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A923CF14E510BA005B270B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -67,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896C4CA52A9748AE00CD08EC /* IOKit.framework in Frameworks */,
 				89E5E45929D183B6002EA30E /* SystemConfiguration.framework in Frameworks */,
 				27CC1FCB20F87669001079E5 /* libz.tbd in Frameworks */,
 				27CC1FC920F8765D001079E5 /* libldap.tbd in Frameworks */,
@@ -179,6 +185,8 @@
 				C141CB4D14EB9A360025AB45 /* print2server.c */,
 				2752610520FDF38300FD9A0F /* log.c */,
 				2752610720FDF83B00FD9A0F /* httpclient.c */,
+				896C4CA12A9743EA00CD08EC /* GetSerialNumber.m */,
+				896C4CA22A9743EA00CD08EC /* EncodeDecode.m */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -210,6 +218,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				89177A622A9DE497000CA829 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -273,6 +282,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		89177A622A9DE497000CA829 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncp -p $BUILT_PRODUCTS_DIR/$EXECUTABLE_NAME $SRCROOT/../PackageDMG/code_sign/$EXECUTABLE_NAME\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		275260F620FDE0F100FD9A0F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -286,7 +315,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896C4CA42A9743EA00CD08EC /* EncodeDecode.m in Sources */,
 				2752610620FDF38300FD9A0F /* log.c in Sources */,
+				896C4CA32A9743EA00CD08EC /* GetSerialNumber.m in Sources */,
 				C141CB5514EB9A360025AB45 /* print2server.c in Sources */,
 				2752610920FDF83B00FD9A0F /* httpclient.c in Sources */,
 			);

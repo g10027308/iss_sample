@@ -13,6 +13,7 @@
 #import "RIPDFInstaller.h"
 #import "CHttpClient.h"
 //#import "SettingWindow.h"
+#import "EncryptPassword.h"
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 #include <sys/types.h>
@@ -21,6 +22,7 @@
 @implementation ViewController
 {
     RIPrinterInstaller * printerInstaller;
+    EncryptPassword * encryptPassword;
     NSString *UserName;
     NSString *UserAccount;
     NSString *DistributedIP;
@@ -32,7 +34,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    encryptPassword = [EncryptPassword new];        //encoded password
+
     [self initWindow];
     printerInstaller = [[RIPrinterInstaller alloc] init];
 }
@@ -257,18 +261,22 @@
     [dicSetting setObject:strUseHttps forKey:@"UseHttps"];
     [dicSetting setObject:strServerPort forKey:@"ServerPort"];
     
+    NSString *userid = [self getloginUser];
+
     // Proxy Server
     [dicSetting setObject:strUseProxy forKey:@"UseProxy"];
     [dicSetting setObject:strProxyIPAddress forKey:@"ProxyIP"];
     [dicSetting setObject:strProxyPort forKey:@"ProxyPort"];
     [dicSetting setObject:strUserName forKey:@"UserName"];
     [dicSetting setObject:strPassword forKey:@"Password"];
-    
+    [dicSetting setObject:[encryptPassword getEncryptPassword:strPassword userid:userid] forKey:@"Password"];     //encoded password
+
     // Print User
     [dicSetting setObject:strTenantID forKey:@"TenantID"];
     [dicSetting setObject:strUserID forKey:@"UserID"];
     [dicSetting setObject:strUserPassword forKey:@"UserPassword"];
-    
+    [dicSetting setObject:[encryptPassword getEncryptPassword:strUserPassword userid:userid] forKey:@"UserPassword"];     //encoded password
+
     
     //Token
     [dicSetting setObject:refreshToken forKey:@"RefreshToken"];
@@ -579,19 +587,33 @@
 }
 
 - (NSString *)getUserPassword {
+    NSString *strUserPassword = nil;
 #if SHOW_INSTALL_BTN
-    NSString *getUserPassword = nil;
+    NSData *userPass = nil;
 #else
-    NSString *getUserPassword = [self getConfigValue:@"UserPassword"];
+    NSData *userPass = [self getConfigData:@"UserPassword"];
 #endif
-    if(nil == getUserPassword){
+    
+    NSString *userid = [self getloginUser];
+
+    if(nil == userPass){
         if (YES == [self judgePlistExist]){
-            getUserPassword = [self getConfigValue:@"UserPassword"];
+            userPass = [self getConfigData:@"UserPassword"];
         } else{
-            getUserPassword = [self getInitConfigValue:@"UserPassword"];
+            userPass = nil;
         }
     }
-    return getUserPassword;
+    if (userPass != nil) {
+        if ([userPass isKindOfClass:[NSString class]]) {
+            strUserPassword = [self getConfigValue:@"UserPassword"];    //clear text (older version)
+        } else {
+            strUserPassword = [encryptPassword getDecryptPassword:userPass userid:userid];
+        }
+    } else {
+        strUserPassword = [self getInitConfigValue:@"UserPassword"];
+    }
+
+    return strUserPassword;
 }
 
 
@@ -815,20 +837,35 @@
 
 
 - (NSString *)getPassword {
-#if SHOW_INSTALL_BTN
     NSString *strPassword = nil;
+#if SHOW_INSTALL_BTN
+    NSData *Pass = nil;
 #else
-    NSString *strPassword = [self getConfigValue:@"Password"];
+    NSData *Pass = [self getConfigData:@"Password"];
 #endif
-    if(nil == strPassword){
+    
+    NSString *userid = [self getloginUser];
+    
+    if(nil == Pass){
         if (YES == [self judgePlistExist]){
-            strPassword = [self getConfigValue:@"Password"];
-        } else{
-            strPassword = [self getInitConfigValue:@"Password"];
+            Pass = [self getConfigData:@"Password"];
+        } else {
+            Pass = nil;
         }
     }
+    if (Pass != nil) {
+        if ([Pass isKindOfClass:[NSString class]]) {
+            strPassword = [self getConfigValue:@"Password"];    //clear text (older version)
+        } else {
+            strPassword = [encryptPassword getDecryptPassword:Pass userid:userid];
+        }
+    } else {
+        strPassword = [self getInitConfigValue:@"Password"];
+    }
+    
     return strPassword;
-}
+
+ }
 
 - (NSString *)getUseHttps {
 #if SHOW_INSTALL_BTN
@@ -1061,6 +1098,25 @@
     return strValue;
 }
 
+- (NSData *)getConfigData: (NSString *) strConfigName {
+    
+    NSString *prePath = [self getReadPreferenceDirectory];
+    
+    NSString *loginName = [self getloginUser];
+    NSString *plistName = [NSString stringWithFormat:@"com.rits.PdfDriverInstaller_%@.plist",loginName];
+    NSString *plistPath = [prePath stringByAppendingString:plistName];
+    //NSLog(@"[SettingWindow.getProxyIPAddress] prePath = %@", prePath);
+    //NSString *plistPath = [prePath stringByAppendingString:CONFIGPLIST];
+    NSMutableDictionary *dicSetting = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+    
+    NSData *val = nil;
+    if(nil != dicSetting){
+        val = [dicSetting objectForKey:strConfigName];
+    }
+    
+    return val;
+}
+
 
 
 //Default values when not found in InitConfig.plist
@@ -1166,14 +1222,31 @@
     NSString *strUseProxy = [NSString stringWithFormat:@"%@", self.btnChkProxy.stringValue];
     NSString *strProxyIPAddressAndPort = [NSString stringWithFormat:@"%@:%@", self.txtFldProxyIP.stringValue, self.txtFldProxyPort.stringValue];
     NSString *strUserNameAndPassword = [NSString stringWithFormat:@"%@:%@", self.txtFldUserName.stringValue, self.txtFldPassword.stringValue];
-    
+    Boolean passwordCheck = false;
     
     NSMutableDictionary *dict1=[[NSMutableDictionary alloc]init];
     [dict1 setObject:@"userId" forKey:@"type"];
     [dict1 setObject:strTenantID forKey:@"tenantId"];
     [dict1 setObject:strUserID forKey:@"userId"];
     [dict1 setObject:strUserPassword forKey:@"password"];
+
+    if (strUserPassword.length > 0) {   //@ERRORCHECK
+        if ([encryptPassword getEncryptPassword:strUserPassword userid:[self getloginUser]] != nil) {
+            passwordCheck = true;
+        }
+    } else {
+        passwordCheck = true;
+    }
     
+    if (passwordCheck != true) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:NSLocalizedString(@"ErrorTitle", nil)];
+        //[alert setInformativeText:STRPLEASECHECKNETWORKSETTING];
+        [alert setInformativeText:NSLocalizedString(@"ErrorPleaseCheckSettings", nil)];
+        [alert runModal];
+        return NO;
+    }
+
     NSString *url = [NSString stringWithFormat:@"%@://api.%@/v1/aut/login/user", strHttp, strServerName];
     
     //NSData *response;
