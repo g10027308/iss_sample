@@ -22,8 +22,9 @@ fi
 echo "Start."
 echo "=================================================="
 echo ""
-DMGName=Ricoh\ PS\ Driver\ for\ mac_na_O365_V1.6.0.0
+DMGName=Ricoh\ PS\ Driver\ for\ mac_na_O365_V1.7.0.0
 SignServer=${CodeSignServer}
+OSSLicenseTextFile=OSS\ License.txt
 
 function createInstallerPkg(){
 	echo "createInstallerPkg"
@@ -136,6 +137,8 @@ function createDrvDMG(){
 		mkdir "${DMGName}"
     	#rm -R -rf /${DMGName}/*
 		mv "${InstallerApp}" "${DMGName}"
+		echo "Copy ${OSSLicenseTextFile}"
+		cp -p "../${OSSLicenseTextFile}" "${DMGName}"
 		hdiutil create -srcfolder "${DMGName}" "${DMGName}.dmg"
 		cp "${DMGName}.dmg" ./
 

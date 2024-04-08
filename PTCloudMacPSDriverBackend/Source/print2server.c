@@ -61,6 +61,11 @@ char lastIpAddress[16] = {0};  //last ip address (may have tail blanks)
 char lastIpPort[6] = {0};  //last ip port (may have tail blanks)
 char cUserCode[32] = {0}; // user code return from API /citicUserLogin
 
+extern char *GetSerialNumber(void);
+extern void SetUserID(char *);
+extern char *GetUserID(void);
+extern unsigned char *getmypass(char *, char *, int *);
+extern char *decrypt(unsigned char *, char *, char *, int);
 
 static int create_dir(char *dirname, int nolog) {
     struct stat fstatus;
@@ -190,6 +195,26 @@ static void read_config_file(char *filename) {
     return;
 }
 
+static int _assign_plistdata2(char *key, unsigned char *value, int size) {
+    unsigned char *p;
+    int i, option;
+    
+    for (option = 0; option < END_OF_PLISTOPTIONS; option++) {
+        if (!strcasecmp(key, plistData[option].keyname))
+            break;
+    }
+    
+    if (option == END_OF_PLISTOPTIONS) {
+        return 0;
+    }
+    
+    memset(plistData[option].value.pval, 0x00, BUFSIZE);
+    memcpy(plistData[option].value.pval, value, size);
+    log_event(CPSTATUS, "MyMailPassword: %s ,size: %d\n", plistData[option].value.pval, size);
+    
+    return 1;
+}
+
 static int _assign_plistdata(char *key, char *value, int isBE) {
     int tmp;
     int option;
@@ -223,8 +248,19 @@ static int _assign_plistdata(char *key, char *value, int isBE) {
         //Set User Setting
     switch(option) {
         case PASSWORD:
-            strncpy(plistData[PASSWORD].value.sval, value, BUFSIZE);
-            break;
+        case MAILPASSWORD:
+        case USERPASSWORD:
+            memset(plistData[option].value.pval, 0x00, BUFSIZE);
+            unsigned char *p;
+            int i = 0;
+            for (i = 0, p = (unsigned char *)value; i < BUFSIZE; i++, p++) {
+                if (!*p) {
+                    break;
+                }
+                plistData[option].value.pval[i] = *p;
+            }
+            log_event(CPSTATUS, "Password[%d]: %s ,size: %d\n", option, plistData[option].value.pval, i);
+           break;
         case PRINTERDESCRIPTION:
             strncpy(plistData[PRINTERDESCRIPTION].value.sval, value, BUFSIZE);
             break;
@@ -269,9 +305,6 @@ static int _assign_plistdata(char *key, char *value, int isBE) {
         case MAIL:
             strncpy(plistData[MAIL].value.sval, value, BUFSIZE);
             break;
-        case MAILPASSWORD:
-            strncpy(plistData[MAILPASSWORD].value.sval, value, BUFSIZE);
-            break;
         case CLIENTID:
             strncpy(plistData[CLIENTID].value.sval, value, BUFSIZE);
             break;
@@ -286,9 +319,6 @@ static int _assign_plistdata(char *key, char *value, int isBE) {
             break;
         case TUSERID:
             strncpy(plistData[TUSERID].value.sval, value, BUFSIZE);
-            break;
-        case USERPASSWORD:
-            strncpy(plistData[USERPASSWORD].value.sval, value, BUFSIZE);
             break;
         default:
             //log_event(CPERROR, "Program error: option not treated: %s = %s\n", key, value);
@@ -334,7 +364,23 @@ static void read_plist_file(char *filename, int isBE) {
                     _assign_plistdata(key, value, isBE);
                     bFindKey = false; // clear flag
                 }
-                
+            } else if (bFindKey == true) {  //test string以外（NSData型）
+                if (!strcmp(key, plistData[PASSWORD].keyname) || !strcmp(key, plistData[MAILPASSWORD].keyname) || !strcmp(key, plistData[USERPASSWORD].keyname)) {  //encoded password
+                    int size = 0;
+                    log_event(CPSTATUS, "PASSDWORDATA:%s, %s¥n", filename, key);
+                    
+                    unsigned char *p = getmypass(filename, key, &size);
+                    _assign_plistdata2(key, p, size);
+                    char *sid = GetSerialNumber();
+                    char *uid = GetUserID();
+                    
+                    char *pw = decrypt(p, sid, uid, size);
+                    log_event(CPSTATUS, "keystr:%s, ivstr:%s, size:%d", sid, uid, size);
+                    log_event(CPSTATUS, "PASSWORDDATA:decode:%s", pw);
+                    free(p);
+                    bFindKey = false; // clear flag
+                }
+
             }
         }
     }
@@ -364,9 +410,26 @@ static void read_plist_file(char *filename, int isBE) {
         if (strlen(plistData[USERNAME].value.sval))
         {
             cp_string ProxUserPW;
+            cp_string decrypt_pass;
+            char *sid = GetSerialNumber();
+            char *uid = GetUserID();
+            int size = 0;
+            char *p = decrypt_pass;
+            
+            for (; size<sizeof(pwd_string); size++) {       //???
+                if (!plistData[PASSWORD].value.pval[size])
+                    break;
+            }
+            
+            strncpy(p, decrypt(plistData[PASSWORD].value.pval, sid, uid, size), size);
+            log_event(CPSTATUS, "PROXY_PASSWORD:decrypt:%s, sid:%s, ivstr:%s, size:%d", p, sid, uid, size);
+            
+            //            snprintf(ProxUserPW, BUFSIZE, "%s:%s"
+            //                    , plistData[USERNAME].value.sval, plistData[PASSWORD].value.pval);
             snprintf(ProxUserPW, BUFSIZE, "%s:%s"
-                     , plistData[USERNAME].value.sval, plistData[PASSWORD].value.sval);
+                     , plistData[USERNAME].value.sval, p);
             strncpy(Conf_ProxyUserPWD, ProxUserPW, BUFSIZE);
+            log_event(CPSTATUS, "Conf_ProxyUserPWD:%s", Conf_ProxyUserPWD);
         }
         
         // cloud addr mode
@@ -2092,7 +2155,7 @@ struct passwd* getUserAndPasswd(char *argv[], FILE *fStderr)
         (void) fputs("print2server: failed to allocate memory\n", fStderr);
         fputs(MSGOUT_CONTECT_TO_DEVICE, fStderr);
         //return 5;
-        return;
+        return NULL;
     }
     snprintf(user, size, "%s", argv[2]);
     passwd=getpwnam(user);
@@ -2114,7 +2177,7 @@ struct passwd* getUserAndPasswd(char *argv[], FILE *fStderr)
                 log_close();
                 fputs(MSGOUT_CONTECT_TO_DEVICE, fStderr);
                 //return 5;
-                return;
+                return NULL;
             }
             log_event(CPDEBUG, "unknown user: %s", user);
         }
@@ -2124,7 +2187,7 @@ struct passwd* getUserAndPasswd(char *argv[], FILE *fStderr)
             log_close();
             fputs(MSGOUT_CONTECT_TO_DEVICE, fStderr);
             //return 0;
-            return;
+            return NULL;
         }
         //mode=(mode_t)(0666&~Conf_AnonUMask);
     }
@@ -2351,6 +2414,9 @@ int main(int argc, char *argv[]) {
     
     // Get user and password
     passwd = getUserAndPasswd(argv, stderr);
+    if (passwd == NULL) {
+        return (CUPS_BACKEND_CANCEL);
+    }
 
     // Create spool file for input data
     size=strlen(Conf_Spool)+22+4;

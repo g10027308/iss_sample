@@ -152,6 +152,7 @@ struct {
     union {
         cp_string sval;
         int ival;
+        pwd_string pval;
     } value;
 } plistData[] = {
     { "LastIP", {""}},
@@ -192,10 +193,10 @@ struct {
 #define Plist_RefreshToken        plistData[REFRESHTOKEN].value.sval
 #define Plist_Redirecturi         plistData[REDIRECTURI].value.sval
 #define Plist_Mail                plistData[MAIL].value.sval
-#define Plist_MailPassword        plistData[MAILPASSWORD].value.sval
+#define Plist_MailPassword        plistData[MAILPASSWORD].value.pval
 #define Plist_TenantID            plistData[TENANTID].value.sval
 #define Plist_UserID              plistData[TUSERID].value.sval
-#define Plist_UserPassword        plistData[USERPASSWORD].value.sval
+#define Plist_UserPassword        plistData[USERPASSWORD].value.pval
 #define Plist_ClientId            plistData[CLIENTID].value.sval
 #define Plist_CodeChallenge       plistData[CODECHALLENGE].value.sval
 #define Plist_CodeVerifier        plistData[CODEVERIFIER].value.sval

@@ -13,6 +13,7 @@
 #import "RIPDFInstaller.h"
 #import "CHttpClient.h"
 //#import "SettingWindow.h"
+#import "EncryptPassword.h"
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 #include <sys/types.h>
@@ -21,6 +22,7 @@
 @implementation ViewController
 {
     RIPrinterInstaller * printerInstaller;
+    EncryptPassword * encryptPassword;
     NSString *UserName;
     NSString *UserAccount;
     NSString *DistributedIP;
@@ -32,6 +34,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    encryptPassword = [EncryptPassword new];        //encoded password
     
     [self initWindow];
     printerInstaller = [[RIPrinterInstaller alloc] init];
@@ -248,13 +252,16 @@
     [dicSetting setObject:strUseHttps forKey:@"UseHttps"];
     [dicSetting setObject:strServerPort forKey:@"ServerPort"];
     
+    NSString *userid = [self getloginUser];
+    
     // Proxy Server
     [dicSetting setObject:strUseProxy forKey:@"UseProxy"];
     [dicSetting setObject:strProxyIPAddress forKey:@"ProxyIP"];
     [dicSetting setObject:strProxyPort forKey:@"ProxyPort"];
     [dicSetting setObject:strUserName forKey:@"UserName"];
     [dicSetting setObject:strPassword forKey:@"Password"];
-    
+    [dicSetting setObject:[encryptPassword getEncryptPassword:strPassword userid:userid] forKey:@"Password"];     //encoded password
+
     //Token
     [dicSetting setObject:refreshToken forKey:@"RefreshToken"];
     [dicSetting setObject:accessToken forKey:@"AccessToken"];
@@ -534,18 +541,32 @@
 }
 
 - (NSString *)getMailPassword {
-#if SHOW_INSTALL_BTN
     NSString *strMailPassword = nil;
+#if SHOW_INSTALL_BTN
+    NSData *mailPass = nil;
 #else
-    NSString *strMailPassword = [self getConfigValue:@"MailPassword"];
+    NSData *mailPass = [self getConfigData:@"MailPassword"];
 #endif
-    if(nil == strMailPassword){
+    
+    NSString *userid = [self getloginUser];
+    
+    if(nil == mailPass){
         if (YES == [self judgePlistExist]){
-            strMailPassword = [self getConfigValue:@"MailPassword"];
-        } else{
-            strMailPassword = [self getInitConfigValue:@"MailPassword"];
+            mailPass = [self getConfigData:@"MailPassword"];
+        } else {
+            mailPass = nil;
         }
     }
+    if (mailPass != nil) {
+        if ([mailPass isKindOfClass:[NSString class]]) {
+            strMailPassword = [self getConfigValue:@"MailPassword"];    //clear text (older version)
+        } else {
+            strMailPassword = [encryptPassword getDecryptPassword:mailPass userid:userid];
+        }
+    } else {
+        strMailPassword = [self getInitConfigValue:@"MailPassword"];
+    }
+    
     return strMailPassword;
 }
 
@@ -766,18 +787,32 @@
 
 
 - (NSString *)getPassword {
-#if SHOW_INSTALL_BTN
     NSString *strPassword = nil;
+#if SHOW_INSTALL_BTN
+    NSData *Pass = nil;
 #else
-    NSString *strPassword = [self getConfigValue:@"Password"];
+    NSData *Pass = [self getConfigData:@"Password"];
 #endif
-    if(nil == strPassword){
+    
+    NSString *userid = [self getloginUser];
+    
+    if(nil == Pass){
         if (YES == [self judgePlistExist]){
-            strPassword = [self getConfigValue:@"Password"];
-        } else{
-            strPassword = [self getInitConfigValue:@"Password"];
+            Pass = [self getConfigData:@"Password"];
+        } else {
+            Pass = nil;
         }
     }
+    if (Pass != nil) {
+        if ([Pass isKindOfClass:[NSString class]]) {
+            strPassword = [self getConfigValue:@"Password"];    //clear text (older version)
+        } else {
+            strPassword = [encryptPassword getDecryptPassword:Pass userid:userid];
+        }
+    } else {
+        strPassword = [self getInitConfigValue:@"Password"];
+    }
+    
     return strPassword;
 }
 
@@ -1011,6 +1046,24 @@
     return strValue;
 }
 
+- (NSData *)getConfigData: (NSString *) strConfigName {
+    
+    NSString *prePath = [self getReadPreferenceDirectory];
+    
+    NSString *loginName = [self getloginUser];
+    NSString *plistName = [NSString stringWithFormat:@"com.rits.PdfDriverInstaller_%@.plist",loginName];
+    NSString *plistPath = [prePath stringByAppendingString:plistName];
+    //NSLog(@"[SettingWindow.getProxyIPAddress] prePath = %@", prePath);
+    //NSString *plistPath = [prePath stringByAppendingString:CONFIGPLIST];
+    NSMutableDictionary *dicSetting = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+    
+    NSData *val = nil;
+    if(nil != dicSetting){
+        val = [dicSetting objectForKey:strConfigName];
+    }
+    
+    return val;
+}
 
 
 //Default values when not found in InitConfig.plist

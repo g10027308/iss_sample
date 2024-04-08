@@ -10,6 +10,33 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
+<<<<<<< HEAD
+		vtLYhgnhn9msiszJrSHmuvPN9KU=
+		</data>
+		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
+		<data>
+		0Fqys1dnzKiERWJ9oIsfP7htSFo=
+		</data>
+		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
+		<data>
+		zmK4O/gMra15yQvMio4huYT6sKo=
+		</data>
+		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-cH4-ph-9dw.nib</key>
+		<data>
+		58+ILc54cc/pWca5ACCMoMPyrEw=
+		</data>
+		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-vfy-GN-ww7.nib</key>
+		<data>
+		70sgF1Ut4LStkh0kN45NllEVhHU=
+		</data>
+		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
+		<data>
+		ZwfdFoDFTPUyWwA6BJH7lczPXjY=
+		</data>
+		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
+		<data>
+		DVluBD99csMUnYtnrpcb0AYluDE=
+=======
 		yH6qfwLjAo0Nrc9kHFodD7RmM5o=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
@@ -35,6 +62,7 @@
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<data>
 		oahB+i3VXXJcyEgqIQWio/k8qTY=
+>>>>>>> origin/develop_na_o365
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/cH4-ph-9dw-view-Sry-kX-IVX.nib</key>
 		<data>
@@ -42,7 +70,11 @@
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/vfy-GN-ww7-view-DWp-n7-tc0.nib</key>
 		<data>
+<<<<<<< HEAD
+		eKfBolS4/DrQdcy9V7/S5TENaD4=
+=======
 		eUQn3PJiEIqxwK1N9ZklXI3TPKg=
+>>>>>>> origin/develop_na_o365
 		</data>
 		<key>Resources/CopyPlist.sh</key>
 		<data>
@@ -58,7 +90,11 @@
 		</data>
 		<key>Resources/InstallerInfo.plist</key>
 		<data>
+<<<<<<< HEAD
+		bkvUT25WSlkTRKUNwrKfJZThJkU=
+=======
 		+/RFbdPp1earVXtG4iASU9vGGL4=
+>>>>>>> origin/develop_na_o365
 		</data>
 		<key>Resources/LoginWindow.nib</key>
 		<data>
@@ -134,49 +170,77 @@
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
+			MmXEuQLTDGYIsoL6483sFoneJZLOkU3VLuzGNmW2Scc=
+=======
 			mHSMS+76K/BGpggSDYE36IPjyjhkQ+YfQLhIRg9VI1U=
+>>>>>>> origin/develop_na_o365
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
+			kgxZhn7PDgRacMFe+Tsa/ePLUi/IxaPK5h0ovNDzRAU=
+=======
 			pLbMqBxwcvioFSjSBsvdg+gl8PVxPAow2CzJHLwptkc=
+>>>>>>> origin/develop_na_o365
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
+			NTAsQWufxDxLM3C0Qzh5ZB+WwQDFtQcKv3WqDt5p0gk=
+=======
 			iT8iXFuTR9m+k3BzBjA0v7mrTq6m14QX7t+tvIh+KO4=
+>>>>>>> origin/develop_na_o365
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-cH4-ph-9dw.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
+			zdNkV4G+FfZa6joZTzwg9/gLL7EJWZWUEGB7ziPPHcA=
+=======
 			Z39qTcnZb0Q+d/Dk1GCo8LQg3ov5Of/G10E2Xn/JBzE=
+>>>>>>> origin/develop_na_o365
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-vfy-GN-ww7.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
+			8J/D2VNxlpdKwIKDsBdguBvm9HwkuKZBszzLeaBAJ7w=
+=======
 			QQQ9gLYrpbS9eqe+mLmrZzRMeP7d7sVGaDb1FNCTbD4=
+>>>>>>> origin/develop_na_o365
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
+			+rx9lgokqAE92JhaGJ3SMRZ/g0Ko2FZ4r1xoq+T73LA=
+=======
 			iXgYvnDjYg1fb5I64atYlOSKS+ioWxP14ZGv1AfQOOU=
+>>>>>>> origin/develop_na_o365
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
+			K85wZRtusPHHG2Eoq468p0HErRn/JfkKHlHsPi03kvI=
+=======
 			BB+AFg2Xe+CsJPydq1pMqI57W9/efzQ54H3im8K6bXc=
+>>>>>>> origin/develop_na_o365
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/cH4-ph-9dw-view-Sry-kX-IVX.nib</key>
@@ -190,7 +254,11 @@
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
+			sxtUahKQ6ltxGJqMImngQ5LXpQWe/jRgsUZs396HzaM=
+=======
 			dDUcrnuTU8K9yWfGzv7ptQr7sw6X1JAorLi8FUcxyT0=
+>>>>>>> origin/develop_na_o365
 			</data>
 		</dict>
 		<key>Resources/CopyPlist.sh</key>
@@ -218,7 +286,11 @@
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
+			3J/cOgKkvgjFDz1uUIfXM1fgZ5hLFkSDwsywvwvmi7A=
+=======
 			v4vu+kQPyT5LdkOa0CogOepBVK4HMBSuMY91RxOsBH8=
+>>>>>>> origin/develop_na_o365
 			</data>
 		</dict>
 		<key>Resources/LoginWindow.nib</key>

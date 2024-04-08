@@ -86,18 +86,23 @@ static NSString *STRVIEWTITLE = @"PS Basic Driver";
     //Install PKG and printer, and copy Plist form "tmp" folder to "~/Library/Preferences/" and "/Library/Preferences/"
     BOOL bRet = [printerInstaller runShellInstallPkg:self.UserID PrinterName:printerName Url:UrlProtocol];
     
-    if(bRet == YES)
-    {
-        _lblInstallInfor.stringValue = NSLocalizedString(@"InforInstallSuccess", nil);
-    }
-    else
-    {
-        _lblInstallInfor.stringValue = NSLocalizedString(@"InforInstallFail", nil);
-    }
-    
-    [_installProgress stopAnimation:nil];
-    [_installProgress setHidden:YES];
-    [_buttonFinish setEnabled:YES];
+    dispatch_async(
+        dispatch_get_main_queue(),
+        ^{
+            if(bRet == YES)
+            {
+                self->_lblInstallInfor.stringValue = NSLocalizedString(@"InforInstallSuccess", nil);
+            }
+            else
+            {
+                self->_lblInstallInfor.stringValue = NSLocalizedString(@"InforInstallFail", nil);
+            }
+                       
+            [self->_installProgress stopAnimation:nil];
+            [self->_installProgress setHidden:YES];
+            [self->_buttonFinish setEnabled:YES];
+        }
+    );
 }
 
 -(void)viewDidAppear{

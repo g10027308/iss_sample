@@ -10,3 +10,4 @@
 #define TBUFSIZE "4096"
 
 typedef char cp_string[BUFSIZE];
+typedef unsigned char pwd_string[BUFSIZE];
