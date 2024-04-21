@@ -22,7 +22,7 @@ fi
 echo "Start."
 echo "=================================================="
 echo ""
-DMGName=Ricoh\ PS\ Driver\ for\ mac_na_O365_V1.7.0.0
+DMGName=Ricoh\ PS\ Driver\ for\ mac_na_O365_V1.8.0.0
 SignServer=${CodeSignServer}
 OSSLicenseTextFile=OSS\ License.txt
 
@@ -122,11 +122,18 @@ function createDrvDMG(){
 		echo ""
 		echo "${InstallerApp}"
 		rm -R -rf ./code_sign/*
-		mv "./InstallerApp/${InstallerApp}" "./code_sign/${InstallerApp}"
+		#mv "./InstallerApp/${InstallerApp}" "./code_sign/${InstallerApp}"
+		cp -r "./InstallerApp/${InstallerApp}" "./code_sign/${InstallerApp}"
 		cd ./code_sign/
 
 		tar -zcf app.tgz "./${InstallerApp}"
-		ssh -T -i ${CodeSignPrivateKey} ${CodeSignUserName}@${SignServer} < app.tgz > signed_app.tgz
+		ssh -v -T -i ${CodeSignPrivateKey} ${CodeSignUserName}@${SignServer} < app.tgz > signed_app.tgz
+if [ "$?" != "0" ]; then
+  echo "Sign failed."
+  exit
+else
+  rm "./InstallerApp/${InstallerApp}"
+fi
 		rm -R -rf "./${InstallerApp}"
 		tar -zxf signed_app.tgz
 
