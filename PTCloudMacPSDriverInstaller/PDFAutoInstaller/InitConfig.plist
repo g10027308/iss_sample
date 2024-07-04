@@ -27,7 +27,7 @@
 	<key>ServerName</key>
 	<string>eu.smart-integration.ricoh.com</string>
 	<key>PrintServerName</key>
-	<string>eu.start.ricoh.com</string>
+	<string>api.eu.smart-integration.ricoh.com</string>
 	<key>ServerPort</key>
 	<string>443</string>
 	<key>UseHttps</key>

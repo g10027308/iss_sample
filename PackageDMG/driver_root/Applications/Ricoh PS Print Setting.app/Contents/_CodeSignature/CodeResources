@@ -10,31 +10,31 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
-		KxKd833qLogmsDHMChnXJCs7s6M=
+		vII4RDR//gNCQncyXHphXfaLY6g=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<data>
-		LjHLxNHyCF8AfQMcGu0nI/K8O8M=
+		h3k21iJiXYhsjQGauSy1oDWblXI=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<data>
-		rjeXIkeTfra6s5MDj65P3Xdg6Yo=
+		JTJMCCDMRsyIQoxW7ygcDIs3m8U=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-vfy-GN-ww7.nib</key>
 		<data>
-		eFYbNVnmiU3UWBR2MN8aNg5GbL4=
+		Jko1PjLxq+ByPvPCv4pyRbei43Q=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
 		<data>
-		hCvSZbJAUMBNzRufbk22qjjSnms=
+		dX2QyxDXSC5aINL5Bd6qmy1SEQE=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<data>
-		YLMLTbi9dYnjXmfBao/p0UN4UhI=
+		MRRwk8VxMH+UP2zxgqHuWtoNbzw=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/vfy-GN-ww7-view-DWp-n7-tc0.nib</key>
 		<data>
-		TWdvDkugdiGXM7MyhWM82w/XvIQ=
+		O0Os887rglvXvaeYm3nZb1eynHg=
 		</data>
 		<key>Resources/CopyPlist.sh</key>
 		<data>
@@ -42,7 +42,7 @@
 		</data>
 		<key>Resources/InitConfig.plist</key>
 		<data>
-		T7jBQ+t7/6OZgNHIvAGkvlketV4=
+		HcWZVefq8+QBxvFNcKwUWvvVZb4=
 		</data>
 		<key>Resources/InstallPkg.sh</key>
 		<data>
@@ -50,7 +50,7 @@
 		</data>
 		<key>Resources/InstallerInfo.plist</key>
 		<data>
-		bkvUT25WSlkTRKUNwrKfJZThJkU=
+		MtR/FSca/VINuL8wbM/6Cl60hc8=
 		</data>
 		<key>Resources/cacert.pem</key>
 		<data>
@@ -74,6 +74,10 @@
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>Resources/html/.gitkeep</key>
+		<data>
+		2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+		</data>
 		<key>Resources/html/ConnectFailed_files/Thumbs.db</key>
 		<data>
 		YcbPYQiY++L/pYLtGIFzVYa8YMk=
@@ -142,77 +146,77 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			KxKd833qLogmsDHMChnXJCs7s6M=
+			vII4RDR//gNCQncyXHphXfaLY6g=
 			</data>
 			<key>hash2</key>
 			<data>
-			j3STEpHTargdP1Q1uO9LKbbOqrq6bcAsVjeKFJiDQO4=
+			scO/uiPBPp+bUi3mFvhEG9+xRqzMFUTKObgqereTmKA=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			LjHLxNHyCF8AfQMcGu0nI/K8O8M=
+			h3k21iJiXYhsjQGauSy1oDWblXI=
 			</data>
 			<key>hash2</key>
 			<data>
-			T7a+WjFTPApAYQIvwzq8eGsB2iECtNeo5FkU3lhQSvQ=
+			Cf8UvYfPRg8gnH9/vp5er4H7mKPe7derIVSrXiaeQqU=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			rjeXIkeTfra6s5MDj65P3Xdg6Yo=
+			JTJMCCDMRsyIQoxW7ygcDIs3m8U=
 			</data>
 			<key>hash2</key>
 			<data>
-			RBjIzyf3uOW3B/luDz3G1VDx2mN1+pry0exzMqIEoOE=
+			kbNF0IR4AE23lUIF17gWi77SFDmeUkq/i86JPQjujd8=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-vfy-GN-ww7.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			eFYbNVnmiU3UWBR2MN8aNg5GbL4=
+			Jko1PjLxq+ByPvPCv4pyRbei43Q=
 			</data>
 			<key>hash2</key>
 			<data>
-			O5zB7xl1X14fvAZFPXn00bVHHfRgl8jQU5ozyDxGaLY=
+			JaVHVvTshsZa5Dj4Q8sSh2jfL/R0WP/S+73WU+NIrbc=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			hCvSZbJAUMBNzRufbk22qjjSnms=
+			dX2QyxDXSC5aINL5Bd6qmy1SEQE=
 			</data>
 			<key>hash2</key>
 			<data>
-			YM3dtTq4ubcTYdWAub+4qPG1dLjKaM7ifpXsHZFX0QQ=
+			OxTS5xwu76Z4m+VcCHE3ghGXnm9tu69J4JVutCw7b4M=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			YLMLTbi9dYnjXmfBao/p0UN4UhI=
+			MRRwk8VxMH+UP2zxgqHuWtoNbzw=
 			</data>
 			<key>hash2</key>
 			<data>
-			bgdVVcno4zHeKGJId2FC6Bg07buIzMmdcDxTX0Y9VoE=
+			r/ZvURbGQE7r7Sl71ibbE3NMOE5IXQFxi9JAjsbJQdI=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/vfy-GN-ww7-view-DWp-n7-tc0.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			TWdvDkugdiGXM7MyhWM82w/XvIQ=
+			O0Os887rglvXvaeYm3nZb1eynHg=
 			</data>
 			<key>hash2</key>
 			<data>
-			+8x18SmhCTGS8P9lCReYNw3iP8tPcwxoAMprp0nhyJA=
+			xS8Rxm7rX92L4+RCItacPgWdaGlcDzazfVEBAfbFRbc=
 			</data>
 		</dict>
 		<key>Resources/CopyPlist.sh</key>
@@ -230,11 +234,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			T7jBQ+t7/6OZgNHIvAGkvlketV4=
+			HcWZVefq8+QBxvFNcKwUWvvVZb4=
 			</data>
 			<key>hash2</key>
 			<data>
-			inKYtJoASvLid2QvmlZEi+Nd0KErGM+kHRnc2aOLCcg=
+			MK17bu9m9ra5kLRmhLMKZHaro6yfY4r89MfcFX7AgVA=
 			</data>
 		</dict>
 		<key>Resources/InstallPkg.sh</key>
@@ -252,11 +256,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			bkvUT25WSlkTRKUNwrKfJZThJkU=
+			MtR/FSca/VINuL8wbM/6Cl60hc8=
 			</data>
 			<key>hash2</key>
 			<data>
-			3J/cOgKkvgjFDz1uUIfXM1fgZ5hLFkSDwsywvwvmi7A=
+			Fz67HSVk1FQae6WAk1kmjLNO4pdK7lZIhCQrk8l3QBQ=
 			</data>
 		</dict>
 		<key>Resources/cacert.pem</key>
@@ -295,6 +299,17 @@
 			</data>
 			<key>optional</key>
 			<true/>
+		</dict>
+		<key>Resources/html/.gitkeep</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+			</data>
+			<key>hash2</key>
+			<data>
+			47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+			</data>
 		</dict>
 		<key>Resources/html/ConnectFailed_files/Thumbs.db</key>
 		<dict>

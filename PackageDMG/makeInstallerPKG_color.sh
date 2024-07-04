@@ -22,12 +22,18 @@ fi
 echo "Start."
 echo "=================================================="
 echo ""
-DMGName=Ricoh\ PS\ Driver\ for\ mac_eu_user_V1.8.0.0
+DefaultColorModel=color
+DMGName=Ricoh\ PS\ Driver\ for\ mac_eu_user_${DefaultColorModel}_V1.8.0.0
 SignServer=${CodeSignServer}
 OSSLicenseTextFile=OSS\ License.txt
+PPDFileSource=Cloud\ PS\ Printer.${DefaultColorModel}
+PPDFileTarget=Cloud\ PS\ Printer
+PPDDir=driver_root/Library/Printers/PPDs/Contents/Resources
 
 function createInstallerPkg(){
 	echo "createInstallerPkg"
+	echo "Copy ${PPDFileTarget}"
+	cp -p "${PPDFileSource}" "${PPDDir}/${PPDFileTarget}"
 	SettingApp=`ls  "./SettingsApp/" | grep ".app"`
 	if [ -n "${SettingApp}" ]
     then
@@ -36,11 +42,15 @@ function createInstallerPkg(){
 		echo ""
 		echo "${SettingApp}"
 		rm -R -rf ./code_sign/*
-		mv "./SettingsApp/${SettingApp}" "./code_sign/${SettingApp}"
+		cp -r "./SettingsApp/${SettingApp}" "./code_sign/"
 		cd ./code_sign/
 
 		tar -zcf app.tgz "./${SettingApp}"
 		ssh -T -i ${CodeSignPrivateKey} ${CodeSignUserName}@${SignServer} < app.tgz > signed_app.tgz
+if [ "$?" != "0" ]; then
+  echo "Sign failed."
+  exit
+fi
 		rm -R -rf "./${SettingApp}"
 		tar -zxf signed_app.tgz
 
@@ -64,7 +74,7 @@ function createInstallerPkg(){
 	echo ""
 	echo "Create Ricoh_Cloud_PS_Printer_LIO_Driver.pkg."
 	echo ""
-	mv ./Ricoh_Cloud_PS_Printer_LIO_Driver.pkg ./code_sign/Ricoh_Cloud_PS_Printer_LIO_Driver.pkg
+	cp -r ./Ricoh_Cloud_PS_Printer_LIO_Driver.pkg ./code_sign/
 
 	cd ./code_sign/
  
@@ -73,6 +83,10 @@ function createInstallerPkg(){
 	echo ""
 	tar -zcf pkg.tgz ./Ricoh_Cloud_PS_Printer_LIO_Driver.pkg
 	ssh -T -i ${CodeSignPrivateKey} ${CodeSignUserName}@${SignServer} < pkg.tgz > signed_pkg.tgz
+if [ "$?" != "0" ]; then
+  echo "Sign failed."
+  exit
+fi
 	rm ./Ricoh_Cloud_PS_Printer_LIO_Driver.pkg
 	tar -zxf signed_pkg.tgz
 
@@ -93,7 +107,7 @@ function createInstallerPkg(){
 	productbuild --distribution ./Distribution --package-path ./contents/ Ricoh_PS_Basic_Driver_Installer.pkg
 
 	rm -R -rf ./code_sign/*
-	mv ./Ricoh_PS_Basic_Driver_Installer.pkg ./code_sign/Ricoh_PS_Basic_Driver_Installer.pkg
+	cp -r ./Ricoh_PS_Basic_Driver_Installer.pkg ./code_sign/
 
 	cd ./code_sign/
 
@@ -102,6 +116,14 @@ function createInstallerPkg(){
 
 	tar -zcf pkg.tgz ./Ricoh_PS_Basic_Driver_Installer.pkg
 	ssh -T -i ${CodeSignPrivateKey} ${CodeSignUserName}@${SignServer} < pkg.tgz > signed_pkg.tgz
+if [ "$?" != "0" ]; then
+  echo "Sign failed."
+  exit
+else
+  rm -rf "../SettingsApp/${SettingApp}"
+  rm -rf ../Ricoh_Cloud_PS_Printer_LIO_Driver.pkg
+  rm -rf ./Ricoh_PS_Basic_Driver_Installer.pkg
+fi
 	rm ./Ricoh_PS_Basic_Driver_Installer.pkg
 	tar -zxf signed_pkg.tgz
 
@@ -122,11 +144,17 @@ function createDrvDMG(){
 		echo ""
 		echo "${InstallerApp}"
 		rm -R -rf ./code_sign/*
-		mv "./InstallerApp/${InstallerApp}" "./code_sign/${InstallerApp}"
-		cd ./code_sign/
+		cp -r "./InstallerApp/${InstallerApp}" "./code_sign/"
+		cd ./code_sign
 
 		tar -zcf app.tgz "./${InstallerApp}"
 		ssh -T -i ${CodeSignPrivateKey} ${CodeSignUserName}@${SignServer} < app.tgz > signed_app.tgz
+if [ "$?" != "0" ]; then
+  echo "Sign failed."
+  exit
+else
+  rm -rf "../InstallerApp/${InstallerApp}"
+fi
 		rm -R -rf "./${InstallerApp}"
 		tar -zxf signed_app.tgz
 
@@ -135,12 +163,10 @@ function createDrvDMG(){
 		codesign -dvvv "${InstallerApp}"
 
 		mkdir "${DMGName}"
-    	#rm -R -rf /${DMGName}/*
 		mv "${InstallerApp}" "${DMGName}"
 		echo "Copy ${OSSLicenseTextFile}"
 		cp -p "../${OSSLicenseTextFile}" "${DMGName}"
 		hdiutil create -srcfolder "${DMGName}" "${DMGName}.dmg"
-		cp "${DMGName}.dmg" ./
 
 		cd ../
 	fi
@@ -152,6 +178,10 @@ function signBackend(){
 
 		tar -zcf app.tgz "./print2server"
 		ssh -T -i ${CodeSignPrivateKey} ${CodeSignUserName}@${SignServer} < app.tgz > signed_app.tgz
+if [ "$?" != "0" ]; then
+  echo "Sign failed."
+  exit
+fi
 		rm -R -rf "./print2server"
 		tar -zxf signed_app.tgz
 

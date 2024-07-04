@@ -10,7 +10,7 @@ echo ${NotaryServiceUserName}
 cp ../code_sign/*.dmg .
 
 tar -zcvf notary.tgz Config.txt *.dmg
-ssh -i ${NotaryServicePrivateKey} ${NotaryServiceUserName}@${CodeSignServer} < notary.tgz 2>&1 | tee notary.log
+ssh -T -i ${NotaryServicePrivateKey} ${NotaryServiceUserName}@${CodeSignServer} < notary.tgz 2>&1 | tee notary.log
 
 #
 # 20231027 changed 公証サーバ変更対応
