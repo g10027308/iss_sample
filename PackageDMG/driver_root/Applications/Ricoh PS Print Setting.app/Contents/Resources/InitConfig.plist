@@ -29,7 +29,7 @@
 	<key>ServerName</key>
 	<string>na.smart-integration.ricoh.com</string>
 	<key>PrintServerName</key>
-	<string>www.start.ricoh.com</string>
+	<string>api.na.smart-integration.ricoh.com</string>
 	<key>ServerPort</key>
 	<string></string>
 	<key>UseHttps</key>

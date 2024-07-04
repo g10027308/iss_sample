@@ -10,59 +10,31 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
-<<<<<<< HEAD
-		vtLYhgnhn9msiszJrSHmuvPN9KU=
+		RR7DYAVWflHEOfyiavjOBbv1WWg=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<data>
-		0Fqys1dnzKiERWJ9oIsfP7htSFo=
+		mDA+TCNqB+ogs9Lq5Kd2w/HLhN4=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<data>
-		zmK4O/gMra15yQvMio4huYT6sKo=
+		O7RuJVM8pOpi8iiXOzRgBEkq+fo=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-cH4-ph-9dw.nib</key>
 		<data>
-		58+ILc54cc/pWca5ACCMoMPyrEw=
+		prt4mCI62yk9oALz1pMHOPN/k5A=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-vfy-GN-ww7.nib</key>
 		<data>
-		70sgF1Ut4LStkh0kN45NllEVhHU=
+		xGziHys0xJTPHXgUxMoJ/sbbhbA=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
 		<data>
-		ZwfdFoDFTPUyWwA6BJH7lczPXjY=
+		4/W3AunDTn3iTb8Izo5p2qZJYSQ=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<data>
-		DVluBD99csMUnYtnrpcb0AYluDE=
-=======
-		yH6qfwLjAo0Nrc9kHFodD7RmM5o=
-		</data>
-		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
-		<data>
-		D81tWhEo5PyR8uH3S5+6fwhMerU=
-		</data>
-		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
-		<data>
-		A2pDR6zQ8UDWI15Jtp6t+J95I/U=
-		</data>
-		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-cH4-ph-9dw.nib</key>
-		<data>
-		SjZB/y8R7d5//2D5mXvAWOHq5zc=
-		</data>
-		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-vfy-GN-ww7.nib</key>
-		<data>
-		vvfs6dd3xE/9nM/taqLInVNUMoM=
-		</data>
-		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
-		<data>
-		TSsVov9Jgbeislxms6BBiJCPI4o=
-		</data>
-		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
-		<data>
-		oahB+i3VXXJcyEgqIQWio/k8qTY=
->>>>>>> origin/develop_na_o365
+		lpsvEXMHcS2Ni8bV1jJ2/kodfUQ=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/cH4-ph-9dw-view-Sry-kX-IVX.nib</key>
 		<data>
@@ -70,11 +42,7 @@
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/vfy-GN-ww7-view-DWp-n7-tc0.nib</key>
 		<data>
-<<<<<<< HEAD
-		eKfBolS4/DrQdcy9V7/S5TENaD4=
-=======
-		eUQn3PJiEIqxwK1N9ZklXI3TPKg=
->>>>>>> origin/develop_na_o365
+		LUVZ3Wxv/aX13vpNvl3woi3BadQ=
 		</data>
 		<key>Resources/CopyPlist.sh</key>
 		<data>
@@ -82,7 +50,7 @@
 		</data>
 		<key>Resources/InitConfig.plist</key>
 		<data>
-		35LxDSlN8C1UKWpK+pf09m5qR58=
+		Tv/QAuwRiNVinewbif4brA2cdqc=
 		</data>
 		<key>Resources/InstallPkg.sh</key>
 		<data>
@@ -90,11 +58,7 @@
 		</data>
 		<key>Resources/InstallerInfo.plist</key>
 		<data>
-<<<<<<< HEAD
-		bkvUT25WSlkTRKUNwrKfJZThJkU=
-=======
-		+/RFbdPp1earVXtG4iASU9vGGL4=
->>>>>>> origin/develop_na_o365
+		MtR/FSca/VINuL8wbM/6Cl60hc8=
 		</data>
 		<key>Resources/LoginWindow.nib</key>
 		<data>
@@ -170,77 +134,49 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-<<<<<<< HEAD
-			MmXEuQLTDGYIsoL6483sFoneJZLOkU3VLuzGNmW2Scc=
-=======
-			mHSMS+76K/BGpggSDYE36IPjyjhkQ+YfQLhIRg9VI1U=
->>>>>>> origin/develop_na_o365
+			VIZLwd74wImDKr14+ywgSX2zTYMQdfPGOTJQHkr1eDg=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-<<<<<<< HEAD
-			kgxZhn7PDgRacMFe+Tsa/ePLUi/IxaPK5h0ovNDzRAU=
-=======
-			pLbMqBxwcvioFSjSBsvdg+gl8PVxPAow2CzJHLwptkc=
->>>>>>> origin/develop_na_o365
+			WzHa4jU7dip//CducLOtX/eXrl4u6xtrCv7t58OzJfs=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-<<<<<<< HEAD
-			NTAsQWufxDxLM3C0Qzh5ZB+WwQDFtQcKv3WqDt5p0gk=
-=======
-			iT8iXFuTR9m+k3BzBjA0v7mrTq6m14QX7t+tvIh+KO4=
->>>>>>> origin/develop_na_o365
+			im9yOcTUFjI5RWXpvfJ0HlAYLKFJCERDO766pB6/nrE=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-cH4-ph-9dw.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-<<<<<<< HEAD
-			zdNkV4G+FfZa6joZTzwg9/gLL7EJWZWUEGB7ziPPHcA=
-=======
-			Z39qTcnZb0Q+d/Dk1GCo8LQg3ov5Of/G10E2Xn/JBzE=
->>>>>>> origin/develop_na_o365
+			EpuNkxW4IrGCWtz3oPa6oFyLRSHQPvNrun/xregpKUk=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/NSViewController-vfy-GN-ww7.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-<<<<<<< HEAD
-			8J/D2VNxlpdKwIKDsBdguBvm9HwkuKZBszzLeaBAJ7w=
-=======
-			QQQ9gLYrpbS9eqe+mLmrZzRMeP7d7sVGaDb1FNCTbD4=
->>>>>>> origin/develop_na_o365
+			vmRLPChwrbcvRsvgOjqIKO/1wI2r3UTuov3CAZBdLBk=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-<<<<<<< HEAD
-			+rx9lgokqAE92JhaGJ3SMRZ/g0Ko2FZ4r1xoq+T73LA=
-=======
-			iXgYvnDjYg1fb5I64atYlOSKS+ioWxP14ZGv1AfQOOU=
->>>>>>> origin/develop_na_o365
+			dzjXz7nszz8JY3CJ1HxALyxm5xBWi41dnU8PaYFN2LE=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-<<<<<<< HEAD
-			K85wZRtusPHHG2Eoq468p0HErRn/JfkKHlHsPi03kvI=
-=======
-			BB+AFg2Xe+CsJPydq1pMqI57W9/efzQ54H3im8K6bXc=
->>>>>>> origin/develop_na_o365
+			HSprHUJub9PnROTm6XLlxQVO/qjpnJAS8cXRUt/xxig=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/cH4-ph-9dw-view-Sry-kX-IVX.nib</key>
@@ -254,11 +190,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-<<<<<<< HEAD
-			sxtUahKQ6ltxGJqMImngQ5LXpQWe/jRgsUZs396HzaM=
-=======
-			dDUcrnuTU8K9yWfGzv7ptQr7sw6X1JAorLi8FUcxyT0=
->>>>>>> origin/develop_na_o365
+			OLykgvGZiefZcokj25uZsYKmlstX6n2rpV36u3cFf/E=
 			</data>
 		</dict>
 		<key>Resources/CopyPlist.sh</key>
@@ -272,7 +204,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			6pFK0jhr98zK0VuTT1oVI1Tg9Z1BZ8yQVs3pMC8jJ5g=
+			1he7wl3d42AjLKzTlR9c3S1TZMBeZ0bie62UYRm7CVo=
 			</data>
 		</dict>
 		<key>Resources/InstallPkg.sh</key>
@@ -286,11 +218,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-<<<<<<< HEAD
-			3J/cOgKkvgjFDz1uUIfXM1fgZ5hLFkSDwsywvwvmi7A=
-=======
-			v4vu+kQPyT5LdkOa0CogOepBVK4HMBSuMY91RxOsBH8=
->>>>>>> origin/develop_na_o365
+			Fz67HSVk1FQae6WAk1kmjLNO4pdK7lZIhCQrk8l3QBQ=
 			</data>
 		</dict>
 		<key>Resources/LoginWindow.nib</key>
