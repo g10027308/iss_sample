@@ -112,17 +112,6 @@ NSString *password = @"certpass123uzu";
     NSLog(@"Did Fail Provisional Navigation");
 }
 
-- (void)webView:(WKWebView *)webView
-decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
-decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
-{
-    NSLog(@"navigationAction");
-    if([navigationAction.request.URL.host isEqualToString:myHost]){
-        decisionHandler(WKNavigationActionPolicyAllow);
-    }else{
-        decisionHandler(WKNavigationActionPolicyCancel);
-    }
-}
 
 - (NSMutableDictionary *)getJSONParameters: (NSString *)loginName {
     NSMutableDictionary *dict1=[[NSMutableDictionary alloc]init];
@@ -132,7 +121,7 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
     NSString *path2 = [NSString stringWithFormat:@"/tmp/code_verifier_na_sample_%@.txt",loginName];
     NSString *code_verifier = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
     NSString *redirecturi = @"https://www.na.smart-integration.ricoh.com/frcxport/login-success.html";
-
+    
     [dict1 setObject:@"authorization_code" forKey:@"grant_type"];
     [dict1 setObject:redirecturi forKey:@"redirect_uri"];
     [dict1 setObject:code forKey:@"code"];
@@ -156,7 +145,7 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
         [resultStr appendString:oneStr];
     }
     
-//    NSString *loginName = [self getloginUser];
+    //    NSString *loginName = [self getloginUser];
     NSString *path = [NSString stringWithFormat:@"/tmp/code_verifier_na_sample_%@.txt",loginName];
     
     //NSString *resultStr = @"dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk";
@@ -335,21 +324,24 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
     return YES;
 }
 
-//not called
+
 - (void)webView:(WKWebView *)webView
-decidePolycyForNavigationAction:(WKNavigationAction *)navigationAction
-decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
+decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
     NSLog(@"navigationAction");
-  
+
     if ([navigationAction.sourceFrame.webView.URL.absoluteString isEqualToString: myURL] && [navigationAction.request.URL.absoluteString isNotEqualTo:myURL]) {
         NSString *loginName = @"g10024931";
         BOOL ret = [self getAuthorization: loginName];
         if (ret != YES){
             NSLog(@"Authentication Error");
-            decisionHandler(WKNavigationActionPolicyCancel);
-        } else {
-            decisionHandler(WKNavigationActionPolicyAllow);
         }
+    }
+    if([navigationAction.request.URL.host isEqualToString:myHost]){
+        decisionHandler(WKNavigationActionPolicyAllow);
+    }else{
+        decisionHandler(WKNavigationActionPolicyCancel);
     }
 }
 
