@@ -330,6 +330,12 @@ decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
 decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     NSLog(@"navigationAction");
+    
+    NSDictionary *sHeaders = navigationAction.request.allHTTPHeaderFields;
+
+    for (id hd in sHeaders) {
+        NSLog(@"%@ -> %@", hd, sHeaders[hd]);
+    }
 
     if ([navigationAction.sourceFrame.webView.URL.absoluteString isEqualToString: myURL] && [navigationAction.request.URL.absoluteString isNotEqualTo:myURL]) {
         NSString *loginName = @"g10024931";
