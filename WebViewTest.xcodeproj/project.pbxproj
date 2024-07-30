@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8947EFC12C52148A00EE95F0 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947EFBF2C52148A00EE95F0 /* libssl.a */; };
+		8947EFC32C5219E200EE95F0 /* libldap.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947EFC22C5219E200EE95F0 /* libldap.tbd */; };
+		8947EFC52C5219F600EE95F0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947EFC42C5219F600EE95F0 /* libz.tbd */; };
+		8947EFC82C521FDE00EE95F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947EFC72C521FDE00EE95F0 /* SystemConfiguration.framework */; };
+		8947EFCA2C521FE900EE95F0 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947EFC92C521FE900EE95F0 /* ApplicationServices.framework */; };
+		8947EFCC2C52207A00EE95F0 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947EFCB2C52207A00EE95F0 /* libcurl.a */; };
+		8947EFCF2C5220B800EE95F0 /* CHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8947EFCE2C5220B800EE95F0 /* CHttpClient.m */; };
+		8947EFD12C52214F00EE95F0 /* libnghttp2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947EFD02C52214F00EE95F0 /* libnghttp2.a */; };
+		8947EFD32C5221A200EE95F0 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8947EFD22C5221A200EE95F0 /* libcrypto.a */; };
 		898ACA5F2B720D40003C9F25 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 898ACA5E2B720D40003C9F25 /* AppDelegate.m */; };
 		898ACA622B720D40003C9F25 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898ACA612B720D40003C9F25 /* ViewController.m */; };
 		898ACA642B720D43003C9F25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 898ACA632B720D43003C9F25 /* Assets.xcassets */; };
@@ -14,6 +23,7 @@
 		898ACA6A2B720D43003C9F25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 898ACA692B720D43003C9F25 /* main.m */; };
 		898ACA752B720D43003C9F25 /* WebViewTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 898ACA742B720D43003C9F25 /* WebViewTestTests.m */; };
 		898ACA802B720D43003C9F25 /* WebViewTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 898ACA7F2B720D43003C9F25 /* WebViewTestUITests.m */; };
+		898ACA8F2B7211B9003C9F25 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 898ACA8E2B7211B9003C9F25 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +44,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8947EFBE2C52148A00EE95F0 /* libcurl.la */ = {isa = PBXFileReference; lastKnownFileType = text; name = libcurl.la; path = libcurl/libs/libcurl.la; sourceTree = "<group>"; };
+		8947EFBF2C52148A00EE95F0 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = libcurl/libs/libssl.a; sourceTree = "<group>"; };
+		8947EFC22C5219E200EE95F0 /* libldap.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libldap.tbd; path = usr/lib/libldap.tbd; sourceTree = SDKROOT; };
+		8947EFC42C5219F600EE95F0 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		8947EFC72C521FDE00EE95F0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8947EFC92C521FE900EE95F0 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		8947EFCB2C52207A00EE95F0 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = libcurl/libs/libcurl.a; sourceTree = "<group>"; };
+		8947EFCD2C5220B800EE95F0 /* CHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHttpClient.h; sourceTree = "<group>"; };
+		8947EFCE2C5220B800EE95F0 /* CHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHttpClient.m; sourceTree = "<group>"; };
+		8947EFD02C52214F00EE95F0 /* libnghttp2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libnghttp2.a; path = libcurl/libs/libnghttp2.a; sourceTree = "<group>"; };
+		8947EFD22C5221A200EE95F0 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = libcurl/libs/libcrypto.a; sourceTree = "<group>"; };
 		898ACA5A2B720D40003C9F25 /* WebViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		898ACA5D2B720D40003C9F25 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		898ACA5E2B720D40003C9F25 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -50,6 +71,8 @@
 		898ACA7B2B720D43003C9F25 /* WebViewTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebViewTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		898ACA7F2B720D43003C9F25 /* WebViewTestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewTestUITests.m; sourceTree = "<group>"; };
 		898ACA812B720D43003C9F25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		898ACA8E2B7211B9003C9F25 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		899778312C521335002B6376 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +80,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8947EFCA2C521FE900EE95F0 /* ApplicationServices.framework in Frameworks */,
+				8947EFC82C521FDE00EE95F0 /* SystemConfiguration.framework in Frameworks */,
+				8947EFC32C5219E200EE95F0 /* libldap.tbd in Frameworks */,
+				8947EFC52C5219F600EE95F0 /* libz.tbd in Frameworks */,
+				8947EFD32C5221A200EE95F0 /* libcrypto.a in Frameworks */,
+				8947EFCC2C52207A00EE95F0 /* libcurl.a in Frameworks */,
+				8947EFD12C52214F00EE95F0 /* libnghttp2.a in Frameworks */,
+				8947EFC12C52148A00EE95F0 /* libssl.a in Frameworks */,
+				898ACA8F2B7211B9003C9F25 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +116,7 @@
 				898ACA732B720D43003C9F25 /* WebViewTestTests */,
 				898ACA7E2B720D43003C9F25 /* WebViewTestUITests */,
 				898ACA5B2B720D40003C9F25 /* Products */,
+				898ACA8D2B7211B8003C9F25 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +133,8 @@
 		898ACA5C2B720D40003C9F25 /* WebViewTest */ = {
 			isa = PBXGroup;
 			children = (
+				8947EFCD2C5220B800EE95F0 /* CHttpClient.h */,
+				8947EFCE2C5220B800EE95F0 /* CHttpClient.m */,
 				898ACA5D2B720D40003C9F25 /* AppDelegate.h */,
 				898ACA5E2B720D40003C9F25 /* AppDelegate.m */,
 				898ACA602B720D40003C9F25 /* ViewController.h */,
@@ -129,6 +164,24 @@
 				898ACA812B720D43003C9F25 /* Info.plist */,
 			);
 			path = WebViewTestUITests;
+			sourceTree = "<group>";
+		};
+		898ACA8D2B7211B8003C9F25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8947EFD22C5221A200EE95F0 /* libcrypto.a */,
+				8947EFD02C52214F00EE95F0 /* libnghttp2.a */,
+				8947EFCB2C52207A00EE95F0 /* libcurl.a */,
+				8947EFC92C521FE900EE95F0 /* ApplicationServices.framework */,
+				8947EFC72C521FDE00EE95F0 /* SystemConfiguration.framework */,
+				8947EFC42C5219F600EE95F0 /* libz.tbd */,
+				8947EFC22C5219E200EE95F0 /* libldap.tbd */,
+				8947EFBE2C52148A00EE95F0 /* libcurl.la */,
+				8947EFBF2C52148A00EE95F0 /* libssl.a */,
+				899778312C521335002B6376 /* libcurl.tbd */,
+				898ACA8E2B7211B9003C9F25 /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +251,11 @@
 				TargetAttributes = {
 					898ACA592B720D40003C9F25 = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					898ACA6F2B720D43003C9F25 = {
 						CreatedOnToolsVersion = 10.3;
@@ -262,6 +320,7 @@
 			files = (
 				898ACA622B720D40003C9F25 /* ViewController.m in Sources */,
 				898ACA6A2B720D43003C9F25 /* main.m in Sources */,
+				8947EFCF2C5220B800EE95F0 /* CHttpClient.m in Sources */,
 				898ACA5F2B720D40003C9F25 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,13 +483,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = WebViewTest/WebViewTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libcurl/include\"";
 				INFOPLIST_FILE = WebViewTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libcurl/libs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-23.WebViewTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -441,13 +504,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = WebViewTest/WebViewTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libcurl/include\"";
 				INFOPLIST_FILE = WebViewTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libcurl/libs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-23.WebViewTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
