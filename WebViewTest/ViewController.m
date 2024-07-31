@@ -20,6 +20,9 @@
 NSString *myHost = @"na.accounts.ricoh.com";
 NSString *myURL = @"https://na.accounts.ricoh.com/portal/login.html";
 NSString *strServerName = @"na.smart-integration.ricoh.com";    //NSString *strServerPort = @"443";
+NSString *redirecturi = @"https://www.na.smart-integration.ricoh.com/frcxport/login-success.html";
+NSString *client_id = @"70wKayW6zIAzH6KIGHZq74DDosjjnAdj";
+
 // Get Proxy setting from UI
 NSString *strUseProxy = @"";
 NSString *strIP = @"";
@@ -112,26 +115,35 @@ NSString *password = @"certpass123uzu";
     NSLog(@"Did Fail Provisional Navigation");
 }
 
+- (NSString *)getSuffix {
+    NSString *loginName = @"g10024931";
+    
+    return loginName;
+}
 
-- (NSMutableDictionary *)getJSONParameters: (NSString *)loginName {
+- (NSString *)getTmpFilePath: prefix {
+    return [NSString stringWithFormat:@"/tmp/%@_na_sample_%@.txt", prefix, [self getSuffix]];
+}
+
+- (NSMutableDictionary *)getJSONParameters
+{
     NSMutableDictionary *dict1=[[NSMutableDictionary alloc]init];
     
-    NSString *path1 = [NSString stringWithFormat:@"/tmp/code_na_sample_%@.txt",loginName];
+    NSString *path1 = [self getTmpFilePath:@"code"];
     NSString *code = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
-    NSString *path2 = [NSString stringWithFormat:@"/tmp/code_verifier_na_sample_%@.txt",loginName];
+    NSString *path2 = [self getTmpFilePath:@"code_verifier"];
     NSString *code_verifier = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
-    NSString *redirecturi = @"https://www.na.smart-integration.ricoh.com/frcxport/login-success.html";
     
     [dict1 setObject:@"authorization_code" forKey:@"grant_type"];
     [dict1 setObject:redirecturi forKey:@"redirect_uri"];
     [dict1 setObject:code forKey:@"code"];
     [dict1 setObject:code_verifier forKey:@"code_verifier"];
-    [dict1 setObject:@"70wKayW6zIAzH6KIGHZq74DDosjjnAdj" forKey:@"client_id"];
+    [dict1 setObject:client_id forKey:@"client_id"];
     [dict1 setObject:@"43200" forKey:@"expires_in"];
     return dict1;
 }
 
--(NSString *)codeChallenge: (NSString *)loginName
+-(NSString *)codeChallenge
 {
     
     static int kNumber = 43;
@@ -145,8 +157,7 @@ NSString *password = @"certpass123uzu";
         [resultStr appendString:oneStr];
     }
     
-    //    NSString *loginName = [self getloginUser];
-    NSString *path = [NSString stringWithFormat:@"/tmp/code_verifier_na_sample_%@.txt",loginName];
+    NSString *path = [self getTmpFilePath:@"code_verifier"];
     
     //NSString *resultStr = @"dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk";
     NSString *code_verifier = resultStr;
@@ -174,19 +185,19 @@ NSString *password = @"certpass123uzu";
     
 }
 
--(BOOL)getToken: loginName {
+-(BOOL)getToken {
     HttpClient *client = [[HttpClient alloc]init];
-    
+
     NSString *strProxyIPAddressAndPort = [NSString stringWithFormat: @"%@:%@", strIP, strPort];
     NSString *strUserNameAndPassword = [NSString stringWithFormat: @"%@:%@",mailAddress, password];
     
-    NSString *path1 = [NSString stringWithFormat:@"/tmp/code_na_sample_%@.txt",loginName];
+    NSString *path1 = [self getTmpFilePath:@"code"];
     NSString *code = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
     
-    NSString *path2 = [NSString stringWithFormat:@"/tmp/code_verifier_na_sample_%@.txt",loginName];
+    NSString *path2 = [self getTmpFilePath:@"code_verifier"];
     NSString *code_verifier = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
     
-    NSMutableDictionary *dict1 = [self getJSONParameters: loginName];
+    NSMutableDictionary *dict1 = [self getJSONParameters];
     
     NSString *url = [NSString stringWithFormat:@"https://api.%@/v1/aut/oauth/provider/token", strServerName];
     
@@ -212,7 +223,7 @@ NSString *password = @"certpass123uzu";
         }else{
             NSString *access_token = [NSString stringWithFormat:@"%@", (NSString*)access_tokenStr];
             
-            NSString *path1 = [NSString stringWithFormat:@"/tmp/access_token_na_sample_%@.txt",loginName];
+            NSString *path1 = [self getTmpFilePath:@"access_token"];
             NSError *error;
             [access_token writeToFile:path1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
             if (error) {
@@ -221,7 +232,7 @@ NSString *password = @"certpass123uzu";
                 NSLog(@"Export success");
             }
             
-            NSString *path2 = [NSString stringWithFormat:@"/tmp/refresh_token_na_sample_%@.txt",loginName];
+            NSString *path2 = [self getTmpFilePath:@"refresh_token"];
             [refresh_tokenStr writeToFile:path2 atomically:YES encoding:NSUTF8StringEncoding error:&error];
             if (error) {
                 NSLog(@"Export failed :%@",error);
@@ -243,11 +254,9 @@ NSString *password = @"certpass123uzu";
     return YES;
 }
 
-- (BOOL)getAuthorization: loginName {
+- (BOOL)getAuthorization {
     HttpClient *client = [[HttpClient alloc]init];
-    
-    NSString *redirecturi = @"https://www.na.smart-integration.ricoh.com/frcxport/login-success.html";
-    NSString *strServerName = @"na.smart-integration.ricoh.com";    //NSString *strServerPort = @"443";
+
     NSString *scopeStr = @"offline_access aut:me:read aut:tenant:read";
     NSString *scope = [scopeStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     //NSString *strServerPort = @"443";
@@ -256,9 +265,9 @@ NSString *password = @"certpass123uzu";
     NSString *strUserNameAndPassword = [NSString stringWithFormat: @"%@:%@",mailAddress, password];
 
     
-    NSString *code_challenge = [self codeChallenge: loginName];
+    NSString *code_challenge = [self codeChallenge];
     
-    NSString *path = [NSString stringWithFormat:@"/tmp/code_challenge_na_sample_%@.txt",loginName];
+    NSString *path = [self getTmpFilePath:@"code_challenge"];
     NSError *error;
     [code_challenge writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error) {
@@ -268,7 +277,7 @@ NSString *password = @"certpass123uzu";
     }
     
     //NSString *url = [NSString stringWithFormat:@"%@://api.%@/v1/aut/oauth/provider/authorize", strHttp, strServerName];
-    NSString *url = [NSString stringWithFormat:@"https://api.%@/v1/aut/oauth/provider/authorize?client_id=70wKayW6zIAzH6KIGHZq74DDosjjnAdj&redirect_uri=%@&scope=%@&response_type=code&code_challenge=%@&code_challenge_method=S256&response_mode=fragment", strServerName, redirecturi, scope, code_challenge];
+    NSString *url = [NSString stringWithFormat:@"https://api.%@/v1/aut/oauth/provider/authorize?client_id=%@&redirect_uri=%@&scope=%@&response_type=code&code_challenge=%@&code_challenge_method=S256&response_mode=fragment", strServerName, client_id, redirecturi, scope, code_challenge];
     
     NSString *response;
     int res_code = [client GetPartUseUISettings:url IsUseProxy:strUseProxy ProxyIPAndPort:strProxyIPAddressAndPort UserNameAndPasswd:strUserNameAndPassword Response:&response];
@@ -299,7 +308,7 @@ NSString *password = @"certpass123uzu";
             NSRange range = NSMakeRange(startRange.location + startRange.length, endRange.location - startRange.location - startRange.length);
             NSString *code = [response substringWithRange:range];
             
-            NSString *path = [NSString stringWithFormat:@"/tmp/code_na_sample_%@.txt",loginName];
+            NSString *path = [self getTmpFilePath:@"code"];
             NSError *error;
             [code writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
             if (error) {
@@ -308,7 +317,7 @@ NSString *password = @"certpass123uzu";
                 NSLog(@"Export success");
             }
             
-            if(NO == [self getToken: loginName]){
+            if(NO == [self getToken]){
                 return NO;
             }
         }
@@ -338,8 +347,7 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
     }
 
     if ([navigationAction.sourceFrame.webView.URL.absoluteString isEqualToString: myURL] && [navigationAction.request.URL.absoluteString isNotEqualTo:myURL]) {
-        NSString *loginName = @"g10024931";
-        BOOL ret = [self getAuthorization: loginName];
+         BOOL ret = [self getAuthorization];
         if (ret != YES){
             NSLog(@"Authentication Error");
         }
