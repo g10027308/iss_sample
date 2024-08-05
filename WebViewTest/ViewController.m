@@ -29,6 +29,7 @@ NSString *strIP = @"";
 NSString *strPort = @"";
 NSString *mailAddress = @"asuka.saito1@jp.ricoh.com";
 NSString *password = @"certpass123uzu";
+NSString *tenant_id = @"1146807009";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -254,6 +255,101 @@ NSString *password = @"certpass123uzu";
     return YES;
 }
 
+
+- (NSMutableDictionary *)getJSONParameters2
+{
+    NSMutableDictionary *dict1=[[NSMutableDictionary alloc]init];
+    [dict1 setObject:mailAddress forKey:@"mail"];
+    [dict1 setObject:password forKey:@"password"];
+    [dict1 setObject:tenant_id forKey:@"org_id"];
+    return dict1;
+}
+
+-(BOOL)loginTest {
+    HttpClient *client = [[HttpClient alloc]init];
+    
+    NSString *strProxyIPAddressAndPort = [NSString stringWithFormat: @"%@:%@", strIP, strPort];
+    NSString *strUserNameAndPassword = [NSString stringWithFormat: @"%@:%@",mailAddress, password];
+    
+    NSString *path1 = [self getTmpFilePath:@"code"];
+    NSString *code = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *path2 = [self getTmpFilePath:@"code_verifier"];
+    NSString *code_verifier = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
+    
+    NSMutableDictionary *dict1 = [self getJSONParameters2];
+    
+    NSString *url = [NSString stringWithFormat:@"https://api.%@/frcxprint/login/mail", strServerName];
+    
+ //   NSData *response;
+//    int res_code = [client PostJSONToken:url IsUseProxy:strUseProxy ProxyIPAndPort:strProxyIPAddressAndPort UserNameAndPasswd:strUserNameAndPassword PostJSON:dict1 Response:&response];
+    NSString *response;
+    int res_code = [client PostJSONPartUseUISettings:url IsUseProxy:strUseProxy ProxyIPAndPort:strProxyIPAddressAndPort UserNameAndPasswd:strUserNameAndPassword PostJSON:dict1 Response:&response];
+
+    if(res_code == 0 && nil != response)
+    {
+        /*
+        NSArray *access_tokenStr = [client GetValueFromJSONData:response sKey:@"access_token"];
+        NSArray *refresh_token = [client GetValueFromJSONData:response sKey:@"refresh_token"];
+        NSString *refresh_tokenStr = [NSString stringWithFormat:@"%@", (NSString*)refresh_token];
+        
+        NSString *errorStr = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding ];
+        NSString *str = @"error";
+        NSRange error = [errorStr rangeOfString:str];
+        NSLog(@"%@", errorStr);
+         */
+    /*
+        if (error.location != NSNotFound){
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:NSLocalizedString(@"ErrorTitle", nil)];
+            [alert setInformativeText:NSLocalizedString(@"ErrorPleaseCheckSettings", nil)];
+            [alert runModal];
+            return NO;
+        }else{
+            NSString *access_token = [NSString stringWithFormat:@"%@", (NSString*)access_tokenStr];
+            
+            NSString *path1 = [self getTmpFilePath:@"access_token"];
+            NSError *error;
+            [access_token writeToFile:path1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
+            if (error) {
+                NSLog(@"Export failed :%@",error);
+            }else{
+                NSLog(@"Export success");
+            }
+            
+            NSString *path2 = [self getTmpFilePath:@"refresh_token"];
+            [refresh_tokenStr writeToFile:path2 atomically:YES encoding:NSUTF8StringEncoding error:&error];
+            if (error) {
+                NSLog(@"Export failed :%@",error);
+            }else{
+                NSLog(@"Export success");
+            }
+        }
+     */
+        if([response rangeOfString:@"200"].location == NSNotFound)
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:NSLocalizedString(@"ErrorTitle", nil)];
+            //[alert setInformativeText:STRPLEASECHECKNETWORKSETTING];
+            [alert setInformativeText:NSLocalizedString(@"ErrorPleaseCheckSettings", nil)];
+            [alert runModal];
+            return NO;
+        }
+        
+    }
+    else
+    {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:NSLocalizedString(@"ErrorTitle", nil)];
+        //[alert setInformativeText:STRPLEASECHECKNETWORKSETTING];
+        [alert setInformativeText:NSLocalizedString(@"ErrorPleaseCheckSettings", nil)];
+        [alert runModal];
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (BOOL)getAuthorization {
     HttpClient *client = [[HttpClient alloc]init];
 
@@ -345,12 +441,18 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
     for (id hd in sHeaders) {
         NSLog(@"%@ -> %@", hd, sHeaders[hd]);
     }
+    BOOL ret2 = [self loginTest];
+    if (ret2 != YES) {
+        NSLog(@"login error");
+    }
 
     if ([navigationAction.sourceFrame.webView.URL.absoluteString isEqualToString: myURL] && [navigationAction.request.URL.absoluteString isNotEqualTo:myURL]) {
-         BOOL ret = [self getAuthorization];
+        /*
+        BOOL ret = [self getAuthorization];
         if (ret != YES){
             NSLog(@"Authentication Error");
         }
+         */
     }
     if([navigationAction.request.URL.host isEqualToString:myHost]){
         decisionHandler(WKNavigationActionPolicyAllow);
