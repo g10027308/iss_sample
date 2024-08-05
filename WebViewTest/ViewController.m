@@ -429,6 +429,12 @@ NSString *tenant_id = @"1146807009";
     return YES;
 }
 
+- (void)webView:(WKWebView *)webView
+didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation
+{
+    NSLog(@"didReceiveServerRedirectionForProvisionalNavigation");
+    NSLog(@"%@",webView.URL.absoluteString);
+}
 
 - (void)webView:(WKWebView *)webView
 decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
@@ -441,19 +447,20 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
     for (id hd in sHeaders) {
         NSLog(@"%@ -> %@", hd, sHeaders[hd]);
     }
+    /*
     BOOL ret2 = [self loginTest];
     if (ret2 != YES) {
         NSLog(@"login error");
     }
 
     if ([navigationAction.sourceFrame.webView.URL.absoluteString isEqualToString: myURL] && [navigationAction.request.URL.absoluteString isNotEqualTo:myURL]) {
-        /*
+        
         BOOL ret = [self getAuthorization];
         if (ret != YES){
             NSLog(@"Authentication Error");
         }
-         */
     }
+    */
     if([navigationAction.request.URL.host isEqualToString:myHost]){
         decisionHandler(WKNavigationActionPolicyAllow);
     }else{
