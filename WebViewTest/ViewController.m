@@ -20,6 +20,8 @@
 NSString *myHost = @"na.accounts.ricoh.com";
 NSString *myURL = @"https://na.accounts.ricoh.com/portal/login.html";
 NSString *strServerName = @"na.smart-integration.ricoh.com";    //NSString *strServerPort = @"443";
+NSString *serverName2 = @"api.na.smart-integration.ricoh.com";    //NSString *strServerPort = @"443";
+NSString *serverName3 = @"www.na.smart-integration.ricoh.com";    //NSString *strServerPort = @"443";
 NSString *redirecturi = @"https://www.na.smart-integration.ricoh.com/frcxport/login-success.html";
 NSString *client_id = @"70wKayW6zIAzH6KIGHZq74DDosjjnAdj";
 
@@ -37,8 +39,14 @@ NSString *tenant_id = @"1146807009";
     _wkWebView.UIDelegate = self;
     _wkWebView.navigationDelegate = self;
     [self.view  addSubview: _wkWebView];
+    NSString *url = [self MakeUrlStringForGetAuthCodeRequest];
+    NSLog(@"%@", url);
+    
 //    [self setupWKWebViewConstain: _wkWebView];
-    [self loadWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://%@/portal/login.html", myHost]]];
+ //   [self loadWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://%@/portal/login.html", myHost]]];
+     NSURL *u = [NSURL URLWithString:url];
+    
+    [self loadWithURL:u];
 }
 /// autoLayoutをセット
 - (void)setupWKWebViewConstain: (WKWebView *)webView {
@@ -429,6 +437,80 @@ NSString *tenant_id = @"1146807009";
     return YES;
 }
 
+- (NSString *)MakeUrlStringForGetAuthCodeRequest {
+    NSString *code_challenge = [self codeChallenge];
+    NSString *scopeStr = @"offline_access aut:me:read aut:tenant:read";
+
+    NSString *param = [[NSString stringWithFormat:@"client_id=%@&redirect_uri=%@&scope=%@&response_type=code&code_challenge=%@&code_challenge_method=S256&response_mode=fragment", client_id, redirecturi, scopeStr, code_challenge] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];;
+    NSString *url = [NSString stringWithFormat:@"https://api.%@/v1/aut/oauth/provider/authorize?%@", strServerName, param];
+//    NSString *url = [[NSString stringWithFormat:@"https://api.%@/v1/aut/oauth/provider/authorize?client_id=%@&redirect_uri=%@&scope=%@&response_type=code&code_challenge=%@&code_challenge_method=S256&response_mode=fragment", strServerName, client_id, redirecturi, scopeStr, code_challenge] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+    
+    
+    return url;
+}
+
+/*
+ /// <summary>
+ /// 認可コード取得要求のURL文字列を作成する
+ /// </summary>
+ String^ MakeUrlStringForGetAuthCodeRequest()
+ {
+ const String^ procName = "StructReqGetAuthCode";
+ infoLog(procName + " start.");
+ 
+ //code_verifier生成
+ int length = 43;
+ String^ codeVerifier = gcnew String("");
+ codeVerifier = BrowserCommon::Util::RamdomText(length);
+ debugLog("codeVerifier[{0}]", codeVerifier);
+ 
+ // codeVerifierはトークン取得時に使用するため保管しておく
+ browserFormInfo->codeVerifier = codeVerifier;
+ 
+ //SHA256 ハッシュ値生成
+ cli::array<unsigned char>^ aryHashValue = BrowserCommon::Util::GetHash256(codeVerifier);
+ 
+ //Base64 Encoding
+ String^ base64UrlStr = Convert::ToBase64String(aryHashValue);
+ 
+ debugLog("base64Str[{0}]", base64UrlStr);
+ base64UrlStr = base64UrlStr->TrimEnd('=');             // パディングを削除
+ base64UrlStr = base64UrlStr->Replace('+', '-');        //「+」⇒「-」
+ base64UrlStr = base64UrlStr->Replace('/', '_');       //「/」⇒「_」
+ debugLog("base64UrlStr[{0}]", base64UrlStr);
+ 
+ // URL Encoding
+ String^ clientId = HttpUtility::UrlEncode(browserFormInfo->clientId);
+ String^ redirectUri = HttpUtility::UrlEncode(browserFormInfo->redirectUri);
+ 
+ // RequestQueryの作成
+ String^ a_strRequestQuery;
+ a_strRequestQuery = "?client_id=";
+ a_strRequestQuery += clientId;
+ a_strRequestQuery += "&scope=offline_access%20aut:me:read%20aut:tenant:read";
+ a_strRequestQuery += "&redirect_uri=";
+ a_strRequestQuery += redirectUri;
+ a_strRequestQuery += "&response_type=code";
+ a_strRequestQuery += "&code_challenge=";
+ a_strRequestQuery += base64UrlStr;
+ a_strRequestQuery += "&code_challenge_method=S256";
+ a_strRequestQuery += "&response_mode=fragment";
+ debugLog(OLESTR("### a_strRequestQuery :{0} "), a_strRequestQuery);
+ 
+ // ###############################
+ // # request AuthCode API
+ // ###############################
+ String^ requestUri = "https://" + this->browserFormInfo->host + BrowserCommon::Define::HTTP_PATH_GET_AUTHCODE + a_strRequestQuery;
+ 
+ debugLog("URL[{0}]", requestUri);
+ 
+ infoLog(procName + " success.");
+ return requestUri;
+ }
+ 
+
+ */
+
 - (void)webView:(WKWebView *)webView
 didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation
 {
@@ -461,7 +543,7 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
         }
     }
     */
-    if([navigationAction.request.URL.host isEqualToString:myHost]){
+    if([navigationAction.request.URL.host isEqualToString:myHost] || [navigationAction.request.URL.host isEqualToString: serverName2] || [navigationAction.request.URL.host isEqualToString: serverName3]){
         decisionHandler(WKNavigationActionPolicyAllow);
     }else{
         decisionHandler(WKNavigationActionPolicyCancel);
@@ -484,7 +566,7 @@ decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:sCookie];
     }
 
-    if([navigationResponse.response.URL.host isEqualToString:myHost]){
+    if([navigationResponse.response.URL.host isEqualToString:myHost] || [navigationResponse.response.URL.host isEqualToString:serverName2] || [navigationResponse.response.URL.host isEqualToString:serverName3]){
         decisionHandler(WKNavigationResponsePolicyAllow);
     }else{
         decisionHandler(WKNavigationResponsePolicyCancel);
