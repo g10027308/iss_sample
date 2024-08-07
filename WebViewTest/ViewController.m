@@ -133,12 +133,12 @@ NSString *tenant_id = @"1146807009";
     return [NSString stringWithFormat:@"/tmp/%@_na_sample_%@.txt", prefix, [self getSuffix]];
 }
 
-- (NSMutableDictionary *)getJSONParameters
+- (NSMutableDictionary *)getJSONParameters: (NSString*)code
 {
     NSMutableDictionary *dict1=[[NSMutableDictionary alloc]init];
     
-    NSString *path1 = [self getTmpFilePath:@"code"];
-    NSString *code = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
+    //NSString *path1 = [self getTmpFilePath:@"code"];
+    //NSString *code = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
     NSString *path2 = [self getTmpFilePath:@"code_verifier"];
     NSString *code_verifier = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
     
@@ -193,19 +193,23 @@ NSString *tenant_id = @"1146807009";
     
 }
 
--(BOOL)getToken {
+-(BOOL)getToken: (NSString *)codeForToken {
     HttpClient *client = [[HttpClient alloc]init];
 
     NSString *strProxyIPAddressAndPort = [NSString stringWithFormat: @"%@:%@", strIP, strPort];
     NSString *strUserNameAndPassword = [NSString stringWithFormat: @"%@:%@",mailAddress, password];
+
+    NSString *code = codeForToken;
     
-    NSString *path1 = [self getTmpFilePath:@"code"];
-    NSString *code = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
+    if (code == nil) {
+        NSString *path1 = [self getTmpFilePath:@"code"];
+        code = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
+    }
     
     NSString *path2 = [self getTmpFilePath:@"code_verifier"];
     NSString *code_verifier = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
     
-    NSMutableDictionary *dict1 = [self getJSONParameters];
+    NSMutableDictionary *dict1 = [self getJSONParameters:code];
     
     NSString *url = [NSString stringWithFormat:@"https://api.%@/v1/aut/oauth/provider/token", strServerName];
     
@@ -420,7 +424,7 @@ NSString *tenant_id = @"1146807009";
                 NSLog(@"Export success");
             }
             
-            if(NO == [self getToken]){
+            if(NO == [self getToken:code]){
                 return NO;
             }
         }
@@ -454,6 +458,11 @@ NSString *tenant_id = @"1146807009";
     return url;
 }
 
+- (uint32_t)RequestGetAuthToken {
+    uint32_t retval = 0;
+
+    return retval;
+}
 /*
  /// <summary>
  /// 認可コード取得要求のURL文字列を作成する
@@ -513,6 +522,165 @@ NSString *tenant_id = @"1146807009";
  return requestUri;
  }
  
+ /// <summary>
+ /// トークンを取得する
+ /// </summary>
+ DWORD RequestGetAuthToken()
+ {
+ const String ^procName = "RequestGetAuthToken";
+ infoLog(procName + " start.");
+ DWORD dwRet = ERROR_SUCCESS;
+ 
+ // RequestQueryの作成
+ String^ strRequestBody;
+ strRequestBody =  "{ \"grant_type\": \"authorization_code";
+ strRequestBody += "\", \"redirect_uri\": \"";
+ strRequestBody += browserFormInfo->redirectUri;
+ strRequestBody += "\", \"code\": \"";
+ strRequestBody += browserFormInfo->authCode;
+ strRequestBody += "\", \"code_verifier\": \"";
+ strRequestBody += browserFormInfo->codeVerifier;
+ strRequestBody += "\", \"client_id\": \"";
+ strRequestBody += browserFormInfo->clientId;
+ strRequestBody += "\", \"expires_in\":";
+ strRequestBody += BrowserCommon::Define::TOKEN_LIFETIME;
+ strRequestBody += " }";
+ debugLog(OLESTR("### strRequestBody :{0} "), strRequestBody);
+ 
+ // ###############################
+ // # request token API
+ // ###############################
+ ServicePointManager::SecurityProtocol = (SecurityProtocolType)3072 | (SecurityProtocolType)12288;        //3072:TLS1.2 12288:TLS1.3
+ WebRequest ^request = nullptr;
+ Encoding^ enc_utf8 = Encoding::UTF8;
+ cli::array<unsigned char, 1> ^postData = enc_utf8->GetBytes(strRequestBody);
+ Stream ^reqStream;
+ WebResponse ^response;
+ HttpWebResponse ^httpResponse;
+ HttpStatusCode status;
+ String ^responseFromServer;
+ String ^requestUri = "https://" + this->browserFormInfo->host + BrowserCommon::Define::HTTP_PATH_GET_TOKEN;
+ Stream^ resStream;
+ StreamReader^ reader;
+ 
+ while (true) {
+ request = WebRequest::Create(requestUri);
+ infoLog("WebRequest::Create():url={0}", request->RequestUri->AbsoluteUri);
+ 
+ WebRequest::DefaultWebProxy = System::Net::WebRequest::GetSystemWebProxy();
+ if (String::IsNullOrEmpty(this->browserFormInfo->proxyUsername) == false) {
+ WebRequest::DefaultWebProxy->Credentials = gcnew NetworkCredential(
+ this->browserFormInfo->proxyUsername, this->browserFormInfo->proxyPassword);
+ }
+ 
+ HttpWebRequest^ httpWebRequest = (HttpWebRequest^)request;
+ httpWebRequest->ContentType = "application/json; charset=utf-8";
+ httpWebRequest->Method = "POST";
+ httpWebRequest->AllowAutoRedirect = false;
+ httpWebRequest->ContentLength = postData->Length;
+ // WebRequestにタイムアウトを設定
+ httpWebRequest->Timeout = WEBREQUEST_TIMEOUT_MILLISECOND;
+ // WebRequestにUserAgentを設定
+ httpWebRequest->UserAgent = "WebRequest/" + this->browserFormInfo->userAgent;
+ infoLog("WebRequest::Timeout={0}, UserAgent={1}", httpWebRequest->Timeout, httpWebRequest->UserAgent);
+ 
+ try {
+ reqStream = httpWebRequest->GetRequestStream();
+ reqStream->Write(postData, 0, postData->Length);
+ infoLog("Request was sent.");
+ response = httpWebRequest->GetResponse();
+ 
+ // レスポンス取得
+ resStream = response->GetResponseStream();
+ reader = gcnew StreamReader(resStream);
+ responseFromServer = reader->ReadToEnd();
+ Debug::WriteLine(responseFromServer);
+ httpResponse = (HttpWebResponse^)response;
+ status = httpResponse->StatusCode;
+ infoLog("Response was received. X-Request-Id:{0}", httpResponse->Headers->Get("X-Request-Id"));
+ debugLog("Headers:{0}", httpResponse->Headers);
+ debugLog("Response:{0}", responseFromServer);
+ break;
+ } catch (System::Net::WebException ^ex) {
+ dwRet = WebErrorProcWithSetProxy(ex, procName);
+ if (dwRet == ERROR_RETRY) {
+ httpResponse = nullptr;
+ status = HttpStatusCode::OK;
+ dwRet = ERROR_SUCCESS;
+ continue;
+ } else {
+ //プロキシ情報入力キャンセル時は処理はWebErrorProcWithSetProxy()内で実施
+ return static_cast<int>(ex->Status);
+ }
+ } finally {
+ if (reqStream != nullptr) {
+ reqStream->Close();
+ }
+ if (resStream != nullptr) {
+ resStream->Close();
+ }
+ if (reader != nullptr) {
+ reader->Close();
+ }
+ if (httpWebRequest != nullptr) {
+ debugLog("Call httpWebRequest->Abort().");
+ httpWebRequest->Abort();    // 連続呼び出しでエラーになる場合の対策
+ }
+ }
+ }
+ 
+ // ステータス判定
+ if ( HttpStatusCode::OK != status ) {    //200以外はエラー
+ // # get error
+ Regex^ regexErr = gcnew Regex("\"error\":\"(?<error>.+)\"");
+ Match^ matchErr = regexErr->Match( responseFromServer );
+ String ^error = matchErr->Groups["error"]->Value;
+ 
+ Regex^ regexErrDesc = gcnew Regex("\"error_description\":\"(?<error_description>.+)\"");
+ Match^ matchErrDesc = regexErrDesc->Match( responseFromServer );
+ String ^error_description = matchErrDesc->Groups["error_description"]->Value;
+ Debug::WriteLine( "error:" + error );
+ Debug::WriteLine( "error_description:" + error_description );
+ 
+ errLog("GetResponse()", nullptr, procName + "error[HTTP Status:{0}]\nHeader{1}\nData\n{2}:", status,
+ httpResponse->Headers->ToString(), httpResponse->GetResponseStream()->ToString());
+ 
+ //問い合わせコードが取得できない場合の処理
+ if (String::IsNullOrEmpty(error)) {
+ error = BrowserCommon::Define::AUTH_ERROR_SERVICE_AVAILABLE;
+ }
+ 
+ NavigateErrorSite(error, error_description);
+ return ERROR_INVALID_ACCESS;
+ }
+ 
+ // ###############################
+ // # get token
+ // ###############################
+ Regex^ regexAccesstoken = gcnew Regex("\"access_token\":\"(?<access_token>.+?)\"");
+ Match^ matchAccesstoken = regexAccesstoken->Match( responseFromServer );
+ String ^access_token = matchAccesstoken->Groups["access_token"]->Value;
+ 
+ Regex^ regexRefreshtoken = gcnew Regex("\"refresh_token\":\"(?<refresh_token>.+?)\"");
+ Match^ matchRefreshtoken = regexRefreshtoken->Match( responseFromServer );
+ String ^refresh_token = matchRefreshtoken->Groups["refresh_token"]->Value;
+ 
+ Debug::WriteLine( "access_token:" + access_token );
+ Debug::WriteLine( "refresh_token:" + refresh_token );
+ 
+ if (String::IsNullOrEmpty(access_token) || String::IsNullOrEmpty(refresh_token)) {
+ errLog("token is null.", nullptr, procName + "error");
+ NavigateErrorSite(BrowserCommon::Define::AUTH_ERROR_SERVICE_AVAILABLE);
+ return ERROR_NO_DATA;
+ }
+ infoLog("Succeeded in getting a token.");
+ browserFormInfo->accessToken = access_token;
+ browserFormInfo->refreshToken = refresh_token;
+ browserFormInfo->dwDlgResult = ERROR_SUCCESS;
+ infoLog(procName + " success.");
+ 
+ return dwRet;
+ }
 
  */
 
@@ -521,6 +689,12 @@ didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation
 {
     NSLog(@"didReceiveServerRedirectionForProvisionalNavigation");
     NSLog(@"%@",webView.URL.absoluteString);
+    if ([webView.URL.absoluteString isLike:[NSString stringWithFormat:@"%@*", redirecturi]]) {
+        NSArray *arr = [webView.URL.absoluteString componentsSeparatedByString:@"#code="];
+        NSString *code = arr[1];
+        BOOL ret = [self getToken:code];
+        NSLog(@"%d",ret);
+    }
 }
 
 - (void)webView:(WKWebView *)webView
