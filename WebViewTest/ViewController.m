@@ -41,10 +41,9 @@ NSString *tenant_id = @"1146807009";
     [self.view  addSubview: _wkWebView];
     NSString *url = [self MakeUrlStringForGetAuthCodeRequest];
     NSLog(@"%@", url);
-    
 //    [self setupWKWebViewConstain: _wkWebView];
  //   [self loadWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://%@/portal/login.html", myHost]]];
-     NSURL *u = [NSURL URLWithString:url];
+    NSURL *u = [NSURL URLWithString:url];
     
     [self loadWithURL:u];
 }
@@ -439,12 +438,18 @@ NSString *tenant_id = @"1146807009";
 
 - (NSString *)MakeUrlStringForGetAuthCodeRequest {
     NSString *code_challenge = [self codeChallenge];
-    NSString *scopeStr = @"offline_access aut:me:read aut:tenant:read";
+    NSString *scopeStr = [[NSString stringWithFormat:@"%@",@"offline_access aut:me:read aut:tenant:read"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+    NSString *redirect_uri = [[NSString stringWithFormat:@"%@", redirecturi] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+    NSString *clientid = [[NSString stringWithFormat:@"%@", client_id] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+/*
+    NSString *param = [[NSString stringWithFormat:@"?client_id=%@&redirect_uri=%@&scope=%@&response_type=code&code_challenge=%@&code_challenge_method=S256&response_mode=fragment", client_id, redirecturi, scopeStr, code_challenge] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];;
+    NSString *url = [NSString stringWithFormat:@"https://api.%@/v1/aut/oauth/provider/authorize%@", strServerName, param];
+ */
+/*
+    NSString *url = [[NSString stringWithFormat:@"https://api.%@/v1/aut/oauth/provider/authorize?client_id=%@&redirect_uri=%@&scope=%@&response_type=code&code_challenge=%@&code_challenge_method=S256&response_mode=fragment", strServerName, client_id, redirecturi, scopeStr, code_challenge] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+ */
+    NSString *url = [NSString stringWithFormat:@"https://api.%@/v1/aut/oauth/provider/authorize?client_id=%@&redirect_uri=%@&scope=%@&response_type=code&code_challenge=%@&code_challenge_method=S256&response_mode=fragment", strServerName, clientid, redirect_uri, scopeStr, code_challenge];
 
-    NSString *param = [[NSString stringWithFormat:@"client_id=%@&redirect_uri=%@&scope=%@&response_type=code&code_challenge=%@&code_challenge_method=S256&response_mode=fragment", client_id, redirecturi, scopeStr, code_challenge] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];;
-    NSString *url = [NSString stringWithFormat:@"https://api.%@/v1/aut/oauth/provider/authorize?%@", strServerName, param];
-//    NSString *url = [[NSString stringWithFormat:@"https://api.%@/v1/aut/oauth/provider/authorize?client_id=%@&redirect_uri=%@&scope=%@&response_type=code&code_challenge=%@&code_challenge_method=S256&response_mode=fragment", strServerName, client_id, redirecturi, scopeStr, code_challenge] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
-    
     
     return url;
 }
