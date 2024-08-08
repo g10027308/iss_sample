@@ -133,6 +133,18 @@ NSString *tenant_id = @"1146807009";
     return [NSString stringWithFormat:@"/tmp/%@_na_sample_%@.txt", prefix, [self getSuffix]];
 }
 
+- (BOOL)updatePlist: (NSString *)key : (NSString *)value {
+    NSString *plistpath = [NSString stringWithFormat:@"/etc/cups/com.rits.PdfDriverInstaller_%@.plist", [self getSuffix]];
+    NSMutableDictionary *plistDic = [NSMutableDictionary dictionaryWithContentsOfFile:plistpath];
+    
+    [plistDic setObject:value forKey:key];
+    if ([plistDic writeToFile: plistpath atomically: YES] == NO) {
+        NSLog(@"!!!Save plist file failed");
+        return NO;
+    }
+    return YES;
+}
+
 - (NSMutableDictionary *)getJSONParameters: (NSString*)code
 {
     NSMutableDictionary *dict1=[[NSMutableDictionary alloc]init];
@@ -174,6 +186,9 @@ NSString *tenant_id = @"1146807009";
     if (error) {
         NSLog(@"Export failed :%@",error);
     }else{
+        if ([self updatePlist:@"CodeVerifier" : code_verifier] == YES) {
+            NSLog(@"Update code_verifier");
+        }
         NSLog(@"Export success");
     }
     
@@ -241,6 +256,9 @@ NSString *tenant_id = @"1146807009";
             if (error) {
                 NSLog(@"Export failed :%@",error);
             }else{
+                if ([self updatePlist:@"AccessToken" : access_token] == YES) {
+                    NSLog(@"Update access_token");
+                }
                 NSLog(@"Export success");
             }
             
@@ -249,8 +267,21 @@ NSString *tenant_id = @"1146807009";
             if (error) {
                 NSLog(@"Export failed :%@",error);
             }else{
+                if ([self updatePlist:@"RefreshToken" : refresh_tokenStr] == YES) {
+                    NSLog(@"Update refresh_token");
+                }
                 NSLog(@"Export success");
             }
+/*
+            NSDateFormatter *df =[[NSDateFormatter alloc] init];
+            [df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"]]; // Localeの指定
+            [df setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+            
+
+            if ([self updatePlist:@"token" : [df stringFromDate:[NSDate date]]]) {
+                NSLog(@"cannot update plist");
+            }
+ */
         }
     }
     else
@@ -380,6 +411,9 @@ NSString *tenant_id = @"1146807009";
     if (error) {
         NSLog(@"Export failed :%@",error);
     }else{
+        if ([self updatePlist:@"CodeChallenge" : code_challenge] == YES) {
+            NSLog(@"Update code_challenge");
+        }
         NSLog(@"Export success");
     }
     
