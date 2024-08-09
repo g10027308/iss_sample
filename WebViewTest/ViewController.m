@@ -22,6 +22,8 @@ NSString *myURL = @"https://na.accounts.ricoh.com/portal/login.html";
 NSString *strServerName = @"na.smart-integration.ricoh.com";    //NSString *strServerPort = @"443";
 NSString *serverName2 = @"api.na.smart-integration.ricoh.com";    //NSString *strServerPort = @"443";
 NSString *serverName3 = @"www.na.smart-integration.ricoh.com";    //NSString *strServerPort = @"443";
+NSString *office365ServerName = @"login.microsoftonline.com";
+NSString *orgServerName = @"adfs.jp.ricoh.com";
 NSString *redirecturi = @"https://www.na.smart-integration.ricoh.com/frcxport/login-success.html";
 NSString *client_id = @"70wKayW6zIAzH6KIGHZq74DDosjjnAdj";
 
@@ -220,8 +222,8 @@ NSString *tenant_id = @"1146807009";
         code = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
     }
     
-    NSString *path2 = [self getTmpFilePath:@"code_verifier"];
-    NSString *code_verifier = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
+//    NSString *path2 = [self getTmpFilePath:@"code_verifier"];
+//    NSString *code_verifier = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
     
     NSMutableDictionary *dict1 = [self getJSONParameters:code];
     
@@ -325,7 +327,10 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 
     if([navigationAction.request.URL.host isEqualToString:myHost] || [navigationAction.request.URL.host isEqualToString: serverName2] || [navigationAction.request.URL.host isEqualToString: serverName3]){
         decisionHandler(WKNavigationActionPolicyAllow);
-    }else{
+    } else if ([navigationAction.request.URL.host isEqualToString: office365ServerName] || [navigationAction.request.URL.host isEqualToString:orgServerName]) {
+        NSLog(@"Office365");
+        decisionHandler(WKNavigationActionPolicyAllow);
+   } else {
         decisionHandler(WKNavigationActionPolicyCancel);
     }
 }
@@ -348,7 +353,10 @@ decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
 
     if([navigationResponse.response.URL.host isEqualToString:myHost] || [navigationResponse.response.URL.host isEqualToString:serverName2] || [navigationResponse.response.URL.host isEqualToString:serverName3]){
         decisionHandler(WKNavigationResponsePolicyAllow);
-    }else{
+    } else if ([navigationResponse.response.URL.host isEqualToString: office365ServerName] || [navigationResponse.response.URL.host isEqualToString:orgServerName]) {
+        NSLog(@"Office365");
+        decisionHandler(WKNavigationResponsePolicyAllow);
+   }else{
         decisionHandler(WKNavigationResponsePolicyCancel);
     }
 
