@@ -1206,6 +1206,18 @@
     
 }
 
+- (NSString *)MakeUrlStringForGetAuthCodeRequest {
+    NSString *strServerName = [self getInitConfigValue:@"ServerName"];
+    NSString *redirecturi = [self getInitConfigValue:@"Redirecturi"];
+    NSString *clientid = [self getInitConfigValue:@"ClientID"];
+
+    NSString *code_challenge = [self codeChallenge];
+    NSString *scopeStr = [[NSString stringWithFormat:@"%@",@"offline_access aut:me:read aut:tenant:read"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+    
+    NSString *url = [NSString stringWithFormat:@"https://api.%@/v1/aut/oauth/provider/authorize?client_id=%@&redirect_uri=%@&scope=%@&response_type=code&code_challenge=%@&code_challenge_method=S256&response_mode=fragment", strServerName, clientid, redirecturi, scopeStr, code_challenge];
+    
+    return url;
+}
 
 -(BOOL)isServerIPAddressAccesible
 {
@@ -1230,7 +1242,7 @@
     [dict1 setObject:@"office365v2" forKey:@"opId"];
     [dict1 setObject:successUrl forKey:@"successUrl"];
     [dict1 setObject:failureUrl forKey:@"failureUrl"];
-    
+/*
     NSString *url = [NSString stringWithFormat:@"%@://api.%@/v1/aut/oidc/rp/request", strHttp, strServerName];
     
     NSData *response;
@@ -1273,7 +1285,9 @@
 //    if(NO == [self getCookie]){
 //        return NO;
 //    }
-    
+  */
+    self.sLoginURL = [self MakeUrlStringForGetAuthCodeRequest];
+
     return YES;
 }
 

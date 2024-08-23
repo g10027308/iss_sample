@@ -10,6 +10,8 @@
 	<string></string>
 	<key>MailPassword</key>
 	<string></string>
+	<key>TenantID</key>
+	<string></string>
 	<key>successUrl</key>
 	<string>https://www.na.smart-integration.ricoh.com/frcxport/login-success.html</string>
 	<key>failureUrl</key>
