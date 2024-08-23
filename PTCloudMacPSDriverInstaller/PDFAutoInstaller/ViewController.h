@@ -56,6 +56,9 @@
 @property (weak) IBOutlet NSTextField *lblUserName;
 @property (weak) IBOutlet NSTextField *lblPasswd;
 
+@property (weak) IBOutlet NSBox *lblAuthenticationGroup;
+@property (weak) IBOutlet NSTextField *lblTenantID;
+
 @property (weak) IBOutlet NSButton *buttonOkay;
 @property (weak) IBOutlet NSButton *buttonCancel;
 
@@ -74,6 +77,9 @@
 @property (weak) IBOutlet NSTextField *txtFldUserName;
 //Password
 @property (weak) IBOutlet NSSecureTextField *txtFldPassword;
+
+//Authentication
+@property (weak) IBOutlet NSTextField *txtFldTenantID;
 
 //
 //@property (strong) SettingWindow *settingWindow;

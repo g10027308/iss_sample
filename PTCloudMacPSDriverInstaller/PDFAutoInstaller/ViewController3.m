@@ -139,11 +139,11 @@ BOOL bRunThread = TRUE;
         // 找到后保存Cookiet并回调主界面继续处理
         if(bFinded == true){
             NSString *loginName = [self getloginUser];
-            NSString *cookiesName = [NSString stringWithFormat:@"/private/tmp/cookies_na_o365_%@.txt",loginName];
+            NSString *cookiesName = [NSString stringWithFormat:@"/private/tmp/cookies_na_portal_%@.txt",loginName];
             const char *cookies = [cookiesName UTF8String];
             // 保存Cookie
             FILE *fp = fopen(cookies, "wb");
-            //FILE *fp = fopen("/private/tmp/cookies_na_o365.txt", "wb");
+            //FILE *fp = fopen("/private/tmp/cookies_na_portal.txt", "wb");
             
             fwrite([CookiesString UTF8String],strlen([CookiesString UTF8String]), sizeof(char),fp);
 
@@ -155,7 +155,7 @@ BOOL bRunThread = TRUE;
             }
             // 回调继续安装处理
             [self.Delegate passValue:cookiesName];
-            //[self.Delegate passValue:@"/private/tmp/cookies_na_o365.txt"];
+            //[self.Delegate passValue:@"/private/tmp/cookies_na_portal.txt"];
             
         }
     }];

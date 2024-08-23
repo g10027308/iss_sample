@@ -282,14 +282,14 @@ long client_post_multipart(const char* url, const struct POST_PART_DATA* post_da
     user=calloc(size, sizeof(char));
     snprintf(user, size, "%s", argv[2]);
     //char loginUser = getlogin();
-    strcpy(access_token_path, "/var/log/cups/access_token_na_o365_");
+    strcpy(access_token_path, "/var/log/cups/access_token_na_portal_");
     strcat(access_token_path, user);
     strcat(access_token_path, ".txt");
     
     char access_token[1000] = {0};
     FILE *fp = fopen(access_token_path, "r");
     if (NULL == fp){
-        printf("fail to open access_token_na_o365.txt\n");
+        printf("fail to open access_token_na_portal.txt\n");
         exit(1);
     }
     

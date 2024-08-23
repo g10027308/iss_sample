@@ -30,6 +30,8 @@
 "TitleMail"="Mail Address:";
 "TitleMailPassword"="Password:";
 
+"TitleTenantID"="TenantID:";
+
 "TitleCheckButton"="Test Connection";
 "TitleCancleButton"="Close";
 "TitleInstallButton"="Install";

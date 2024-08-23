@@ -30,6 +30,8 @@
 "TitleMail"="メールアドレス:";
 "TitleMailPassword"="パスワード:";
 
+"TitleTenantID"="テナントID:";
+
 "TitleCheckButton"="Test Connection";
 "TitleCancleButton"="閉じる";
 "TitleInstallButton"="インストール";

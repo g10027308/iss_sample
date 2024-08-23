@@ -123,6 +123,24 @@
             txtFld.stringValue = [txtFld.stringValue substringToIndex:126];
         }
     }
+    
+    if ([txtFld.identifier isEqualToString:@"txtFldTenantID"]) {
+        int maxLen = (int)txtFld.stringValue.length;
+        for (int index=maxLen-1; index>=0; index--) {
+            unichar aChar = [txtFld.stringValue characterAtIndex:index];
+            
+            NSString *strValue = txtFld.stringValue;
+            NSString *strRemove = [NSString stringWithFormat:@"%C", aChar];
+            strValue = [strValue stringByReplacingOccurrencesOfString:strRemove withString:@""];
+            txtFld.stringValue = strValue;
+            maxLen = (int)txtFld.stringValue.length;
+            index = maxLen;
+        }
+        NSUInteger txtLen = txtFld.stringValue.length;
+        if(txtLen > 128){
+            txtFld.stringValue = [txtFld.stringValue substringToIndex:128];
+        }
+    }
 
     if ([txtFld.identifier isEqualToString:@"txtFldMail"]) {
         int maxLen = (int)txtFld.stringValue.length;
@@ -233,12 +251,15 @@
     NSString * strProxyPort = self.txtFldProxyPort.stringValue;
     NSString * strUserName = self.txtFldUserName.stringValue;
     NSString * strPassword = self.txtFldPassword.stringValue;
+
+    // User
+    NSString * strTenantID = self.txtFldTenantID.stringValue;
+
     
-    
-    NSString *path1 = [NSString stringWithFormat:@"/tmp/refresh_token_na_o365_%@.txt",loginName];
+    NSString *path1 = [NSString stringWithFormat:@"/tmp/refresh_token_na_portal_%@.txt",loginName];
     NSString *refreshToken = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
     
-    NSString *path2 = [NSString stringWithFormat:@"/tmp/access_token_na_o365_%@.txt",loginName];
+    NSString *path2 = [NSString stringWithFormat:@"/tmp/access_token_na_portal_%@.txt",loginName];
     NSString *accessToken = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
     
     NSString * redirecturi = [self getInitConfigValue:@"Redirecturi"];
@@ -261,6 +282,9 @@
     [dicSetting setObject:strUserName forKey:@"UserName"];
     [dicSetting setObject:strPassword forKey:@"Password"];
     [dicSetting setObject:[encryptPassword getEncryptPassword:strPassword userid:userid] forKey:@"Password"];     //encoded password
+
+    // Print User
+    [dicSetting setObject:strTenantID forKey:@"TenantID"];
 
     //Token
     [dicSetting setObject:refreshToken forKey:@"RefreshToken"];
@@ -312,7 +336,7 @@
     if([self isServerIPAddressAccesible])
     {
         NSString *loginName = [self getloginUser];
-        NSString *cookiesName = [NSString stringWithFormat:@"/private/tmp/cookies_na_o365_%@.txt",loginName];
+        NSString *cookiesName = [NSString stringWithFormat:@"/private/tmp/cookies_na_portal_%@.txt",loginName];
         const char *cookies = [cookiesName UTF8String];
         // 清楚保存Cookie
         FILE *fp = fopen(cookies, "wb");
@@ -375,6 +399,11 @@
         return true;
     }
 
+    NSString *strTenantID = self.txtFldTenantID.stringValue;
+    if(![strTenantID isEqualToString:[self getTenantID]])
+    {
+        return true;
+    }
     /*
     // Print User Mail
     NSString *strMail = self.txtFldMail.stringValue;
@@ -461,7 +490,12 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     if ([fileManager fileExistsAtPath:plistPath]) {
-        result = YES;
+        NSString *strValue = [self getConfigValue:@"TenantID"];
+        if (strValue != nil){
+            result = YES;
+        } else{
+            result = NO;
+        }
     } else{
         result = NO;
     }
@@ -484,6 +518,9 @@
     _lblUserName.stringValue = NSLocalizedString(@"TitleProxyUser", nil);
     _lblPasswd.stringValue = NSLocalizedString(@"TitleProxyPasswd", nil);
     
+    [_lblAuthenticationGroup setTitle:NSLocalizedString(@"TitleAuthenGroup", nil)];
+    _lblTenantID.stringValue = NSLocalizedString(@"TitleTenantID", nil);
+    
     [_buttonCancel setTitle: NSLocalizedString(@"TitleCancleButton", nil)];
     [_btnInstall setTitle: NSLocalizedString(@"TitleInstallButton", nil)];
     [_buttonOkay setTitle: NSLocalizedString(@"TitleSaveButton", nil)];
@@ -505,6 +542,8 @@
     self.txtFldUserName.stringValue = [self getUserName];
     self.txtFldPassword.stringValue = [self getPassword];
     
+    self.txtFldTenantID.stringValue = [self getTenantID];
+
     //printerInstaller = [[RIPrinterInstaller alloc] init];
 }
 
@@ -522,6 +561,22 @@
         }
     }
     return strPortName;
+}
+
+- (NSString *)getTenantID {
+#if SHOW_INSTALL_BTN
+    NSString *strTenantID = nil;
+#else
+    NSString *strTenantID = [self getConfigValue:@"TenantID"];
+#endif
+    if(nil == strTenantID){
+        if (YES == [self judgePlistExist]){
+            strTenantID = [self getConfigValue:@"TenantID"];
+        } else{
+            strTenantID = [self getInitConfigValue:@"TenantID"];
+        }
+    }
+    return strTenantID;
 }
 
 - (NSString *)getMail {
@@ -1157,6 +1212,8 @@
     HttpClient *client = [[HttpClient alloc]init];
     
     // Get
+    NSString *strTenantID = self.txtFldTenantID.stringValue;
+    
     NSString *successUrl = [self getInitConfigValue:@"successUrl"];
     NSString *failureUrl = [self getInitConfigValue:@"failureUrl"];
     NSString *strServerName = [self getInitConfigValue:@"ServerName"];
@@ -1169,6 +1226,7 @@
     
     // JSON header data
     NSMutableDictionary *dict1=[[NSMutableDictionary alloc]init];
+    [dict1 setObject:strTenantID forKey:@"tenantId"];
     [dict1 setObject:@"office365v2" forKey:@"opId"];
     [dict1 setObject:successUrl forKey:@"successUrl"];
     [dict1 setObject:failureUrl forKey:@"failureUrl"];
@@ -1299,7 +1357,7 @@
             NSString *code = [response substringWithRange:range];
             
             NSString *loginName = [self getloginUser];
-            NSString *path = [NSString stringWithFormat:@"/tmp/code_na_o365_%@.txt",loginName];
+            NSString *path = [NSString stringWithFormat:@"/tmp/code_na_portal_%@.txt",loginName];
             NSError *error;
             [code writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
             if (error) {
@@ -1353,7 +1411,7 @@
     //NSString *resultStr = @"dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk";
     NSString *code_verifier = resultStr;
     NSString *loginName = [self getloginUser];
-    NSString *path = [NSString stringWithFormat:@"/tmp/code_verifier_na_o365_%@.txt",loginName];
+    NSString *path = [NSString stringWithFormat:@"/tmp/code_verifier_na_portal_%@.txt",loginName];
     NSError *error;
     [code_verifier writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error) {
@@ -1391,10 +1449,10 @@
     NSString *redirecturi = [self getInitConfigValue:@"Redirecturi"];
     
     NSString *loginName = [self getloginUser];
-    NSString *path1 = [NSString stringWithFormat:@"/tmp/code_na_o365_%@.txt",loginName];
+    NSString *path1 = [NSString stringWithFormat:@"/tmp/code_na_portal_%@.txt",loginName];
     NSString *code = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
     
-    NSString *path2 = [NSString stringWithFormat:@"/tmp/code_verifier_na_o365_%@.txt",loginName];
+    NSString *path2 = [NSString stringWithFormat:@"/tmp/code_verifier_na_portal_%@.txt",loginName];
     NSString *code_verifier = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
     
     NSMutableDictionary *dict1=[[NSMutableDictionary alloc]init];
@@ -1429,7 +1487,7 @@
             return NO;
         }else{
             NSString *access_token = [NSString stringWithFormat:@"%@", (NSString*)access_tokenStr];
-            NSString *path1 = [NSString stringWithFormat:@"/tmp/access_token_na_o365_%@.txt",loginName];
+            NSString *path1 = [NSString stringWithFormat:@"/tmp/access_token_na_portal_%@.txt",loginName];
             NSError *error;
             [access_token writeToFile:path1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
             if (error) {
@@ -1438,7 +1496,7 @@
                 NSLog(@"Export success");
             }
             
-            NSString *path2 = [NSString stringWithFormat:@"/tmp/refresh_token_na_o365_%@.txt",loginName];
+            NSString *path2 = [NSString stringWithFormat:@"/tmp/refresh_token_na_portal_%@.txt",loginName];
             [refresh_tokenStr writeToFile:path2 atomically:YES encoding:NSUTF8StringEncoding error:&error];
             if (error) {
                 NSLog(@"Export failed :%@",error);
@@ -1542,6 +1600,17 @@
         return NO;
     }
     
+    if (YES == [self.txtFldTenantID.stringValue isEqualToString:@""]) {
+        NSLog(@"[ERROR] TenantID should not be blank.");
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setAlertStyle:NSAlertStyleInformational];
+        [alert setMessageText:NSLocalizedString(@"WarnningTitleTenantID", nil)];
+        [alert setInformativeText:NSLocalizedString(@"WarnningInforTenantID", nil)];
+        [alert runModal];
+        [self.txtFldTenantID becomeFirstResponder];
+        return NO;
+    }
+
     return YES;
 
 }
@@ -1573,7 +1642,7 @@
 //    }
     
     NSString *loginName = [self getloginUser];
-    NSString *cookiesName = [NSString stringWithFormat:@"/private/tmp/cookies_na_o365_%@.txt",loginName];
+    NSString *cookiesName = [NSString stringWithFormat:@"/private/tmp/cookies_na_portal_%@.txt",loginName];
     const char *cookies = [cookiesName UTF8String];
     // 清楚保存Cookie
     FILE *fp = fopen(cookies, "wb");
