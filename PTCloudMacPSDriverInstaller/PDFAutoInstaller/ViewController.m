@@ -75,8 +75,9 @@
     // 设定编辑框内容为协议传过来的值
 
     // 取得Token
-    if(YES == [self getAuthorization:value]){
-        
+//    if(YES == [self getAuthorization:value]){
+    if(YES == [self getToken2:value]){
+
         [self saveDingUIDToConfigPlist:false];
     
         //Show installing statues control, and hide userID relate controls
@@ -265,6 +266,9 @@
     NSString * redirecturi = [self getInitConfigValue:@"Redirecturi"];
     NSString * clientid = [self getInitConfigValue:@"ClientID"];
 
+    //use portal site
+    NSString * authMethod = [self getInitConfigValue:@"AuthMethod"];
+
     // Printer/Port Name
     [dicSetting setObject:strPortName forKey:@"PrinterDescription"];
     
@@ -296,6 +300,9 @@
     //Print Server
     [dicSetting setObject:strPrintServerName forKey:@"PrintServerName"];
     
+    //use portal site
+    [dicSetting setObject:authMethod forKey:@"AuthMetod"];
+
     //save the setting to /tmp/Preferences/com.rits.PdfDriverInstaller.plist
     [dicSetting writeToFile:plistPath atomically:YES];
     
@@ -1058,6 +1065,20 @@
 }
 
 
+- (NSString *)getAuthMethod {
+#if SHOW_INSTALL_BTN
+    NSString *strAuthMethod = nil;
+#else
+    NSString *strAuthMethod = [self getConfigValue:@"AuthMethod"];
+#endif
+    if(nil == strAuthMethod){
+        strAuthMethod = [self getInitConfigValue:@"AuthMethod"];
+    }
+    
+    return strAuthMethod;
+}
+
+
 
 - (NSString *)getReadPreferenceDirectory {
     //PreferenceDirectory:    ~/Library/Preferences/
@@ -1529,6 +1550,100 @@
         [alert runModal];
         return NO;
     }else{
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:NSLocalizedString(@"ErrorTitle", nil)];
+        //[alert setInformativeText:STRPLEASECHECKNETWORKSETTING];
+        [alert setInformativeText:NSLocalizedString(@"ErrorPleaseCheckSettings", nil)];
+        [alert runModal];
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(BOOL)getToken2: (NSString *)codeForToken {
+    HttpClient *client = [[HttpClient alloc]init];
+
+    NSString *strServerName = [self getInitConfigValue:@"ServerName"];
+    //NSString *strServerPort = @"443";
+    NSString *strHttp = @"https";
+    // Get Proxy setting from UI
+    NSString *strUseProxy = [NSString stringWithFormat:@"%@", self.btnChkProxy.stringValue];
+    NSString *strProxyIPAddressAndPort = [NSString stringWithFormat:@"%@:%@", self.txtFldProxyIP.stringValue, self.txtFldProxyPort.stringValue];
+    NSString *strUserNameAndPassword = [NSString stringWithFormat:@"%@:%@", self.txtFldUserName.stringValue, self.txtFldPassword.stringValue];
+
+    NSString *loginName = [self getloginUser];
+    NSString *redirecturi = [self getInitConfigValue:@"Redirecturi"];
+    
+    NSString *path1 = [NSString stringWithFormat:@"/tmp/code_na_portal_%@.txt",loginName];
+    NSString *code = [NSString stringWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *path2 = [NSString stringWithFormat:@"/tmp/code_verifier_na_portal_%@.txt",loginName];
+    NSString *code_verifier = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
+
+    if (codeForToken != nil && codeForToken.length > 0) {
+        code = codeForToken;
+    }
+
+    
+    NSMutableDictionary *dict1=[[NSMutableDictionary alloc]init];
+    [dict1 setObject:@"authorization_code" forKey:@"grant_type"];
+    [dict1 setObject:redirecturi forKey:@"redirect_uri"];
+    [dict1 setObject:code forKey:@"code"];
+    [dict1 setObject:code_verifier forKey:@"code_verifier"];
+    [dict1 setObject:@"70wKayW6zIAzH6KIGHZq74DDosjjnAdj" forKey:@"client_id"];
+    [dict1 setObject:@"43200" forKey:@"expires_in"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@://api.%@/v1/aut/oauth/provider/token", strHttp, strServerName];
+    
+    NSData *response;
+    int res_code = [client PostJSONToken:url IsUseProxy:strUseProxy ProxyIPAndPort:strProxyIPAddressAndPort UserNameAndPasswd:strUserNameAndPassword PostJSON:dict1 Response:&response];
+    
+    
+    if(res_code == 0 && nil != response)
+    {
+        NSArray *access_tokenStr = [client GetValueFromJSONData:response sKey:@"access_token"];
+        NSArray *refresh_token = [client GetValueFromJSONData:response sKey:@"refresh_token"];
+        NSString *refresh_tokenStr = [NSString stringWithFormat:@"%@", (NSString*)refresh_token];
+        
+        NSString *errorStr = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding ];
+        NSString *str = @"error";
+        NSRange error = [errorStr rangeOfString:str];
+        
+        if (error.location != NSNotFound){
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:NSLocalizedString(@"ErrorTitle", nil)];
+            [alert setInformativeText:NSLocalizedString(@"ErrorPleaseCheckSettings", nil)];
+            [alert runModal];
+            return NO;
+        }else{
+            NSString *access_token = [NSString stringWithFormat:@"%@", (NSString*)access_tokenStr];
+            NSString *path1 = [NSString stringWithFormat:@"/tmp/access_token_na_portal_%@.txt",loginName];
+
+            NSError *error;
+            [access_token writeToFile:path1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
+            [access_token writeToFile:path1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
+            if (error) {
+                NSLog(@"Export failed :%@",error);
+            }else{
+                NSLog(@"Export success");
+            }
+
+            NSString *path2 = [NSString stringWithFormat:@"/tmp/refresh_token_na_portal_%@.txt",loginName];
+            [refresh_tokenStr writeToFile:path2 atomically:YES encoding:NSUTF8StringEncoding error:&error];
+            if (error) {
+                NSLog(@"Export failed :%@",error);
+            }else{
+                if (error) {
+                    NSLog(@"Export failed :%@",error);
+                }else{
+                    NSLog(@"Export success");
+                }
+            }
+        }
+    }
+    else
+    {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"ErrorTitle", nil)];
         //[alert setInformativeText:STRPLEASECHECKNETWORKSETTING];

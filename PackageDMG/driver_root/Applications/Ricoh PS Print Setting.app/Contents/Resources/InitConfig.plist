@@ -40,5 +40,7 @@
 	<string></string>
 	<key>UseProxy</key>
 	<string>0</string>
+	<key>AuthMethod</key>
+	<string>3</string>
 </dict>
 </plist>
