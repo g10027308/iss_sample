@@ -110,6 +110,8 @@
 - (NSString *)getLocalServerPort;
 - (NSString *)getloginUser;
 - (NSString *)getWritePreferenceDirectory;
+- (NSString *)getTenantID;
+
 
 @end
 

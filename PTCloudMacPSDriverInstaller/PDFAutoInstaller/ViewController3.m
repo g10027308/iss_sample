@@ -81,6 +81,27 @@ BOOL bRunThread = TRUE;
     return loginName;
 }
 
+- (void)webView:(WKWebView *)webView
+didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation
+{
+    NSLog(@"didReceiveServerRedirectionForProvisionalNavigation");
+    NSLog(@"%@",webView.URL.absoluteString);
+    if ([webView.URL.absoluteString isLike:[NSString stringWithFormat:@"%@*", [self getInitConfigValue:@"redirecturi"]]]) {
+        NSArray *arr = [webView.URL.absoluteString componentsSeparatedByString:@"#code="];
+        NSString *code = arr[1];
+        NSLog(@"%@",code);
+        if ([self.view.identifier isEqualToString:@"secondView"]) {
+            [self.view.window close];
+        }
+        [self.Delegate passValue:code];
+    }
+}
+
+/// ページの読み込み完了時に呼ばれる
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    NSLog(@"Did Finish");
+}
+/*
 // 页面加载完成之后调用 4
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     
@@ -186,7 +207,7 @@ BOOL bRunThread = TRUE;
 //        }
 //    }
 }
-
+*/
 -(NSString*)getPreferredLanguage {
     NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
     NSArray* languages = [defs objectForKey:@"AppleLanguages"];
