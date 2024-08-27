@@ -1242,6 +1242,7 @@
 
 -(BOOL)isServerIPAddressAccesible
 {
+    /*
     HttpClient *client = [[HttpClient alloc]init];
     
     // Get
@@ -1263,7 +1264,7 @@
     [dict1 setObject:@"office365v2" forKey:@"opId"];
     [dict1 setObject:successUrl forKey:@"successUrl"];
     [dict1 setObject:failureUrl forKey:@"failureUrl"];
-/*
+
     NSString *url = [NSString stringWithFormat:@"%@://api.%@/v1/aut/oidc/rp/request", strHttp, strServerName];
     
     NSData *response;

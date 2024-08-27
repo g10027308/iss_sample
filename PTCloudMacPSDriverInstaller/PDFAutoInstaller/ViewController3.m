@@ -97,6 +97,34 @@ didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation
     }
 }
 
+/*
+- (void)webView:(WKWebView *)webView
+decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse
+decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
+    NSLog(@"navigationResponse");
+    NSDictionary *sHeaders = ((NSHTTPURLResponse *)navigationResponse.response).allHeaderFields;
+    NSArray      *sCookies = [NSHTTPCookie cookiesWithResponseHeaderFields:sHeaders forURL:navigationResponse.response.URL];
+    
+    for (id hd in sHeaders) {
+        NSLog(@"%@ -> %@", hd, sHeaders[hd]);
+    }
+    
+    for (NSHTTPCookie *sCookie in sCookies) {
+        NSLog(@"%@ -> %@", sCookie.name, sCookie.value);
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:sCookie];
+    }
+
+    NSString *myHost = @"na.accounts.ricoh.com";
+    NSString *serverName3 = @"www.na.smart-integration.ricoh.com";
+    
+    if([navigationResponse.response.URL.host isEqualToString:myHost] || [navigationResponse.response.URL.host isEqualToString:[self getInitConfigValue:@"ServerName"]] || [navigationResponse.response.URL.host isEqualToString:serverName3]){
+        decisionHandler(WKNavigationResponsePolicyAllow);
+    }else{
+        decisionHandler(WKNavigationResponsePolicyCancel);
+    }
+    
+}
+*/
 /// ページの読み込み完了時に呼ばれる
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     NSLog(@"Did Finish");
