@@ -97,7 +97,7 @@ didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation
     }
 }
 
-/*
+
 - (void)webView:(WKWebView *)webView
 decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse
 decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
@@ -116,15 +116,20 @@ decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
 
     NSString *myHost = @"na.accounts.ricoh.com";
     NSString *serverName3 = @"www.na.smart-integration.ricoh.com";
-    
+    NSString *office365ServerName = @"login.microsoftonline.com";
+    NSString *orgServerName = @"adfs.jp.ricoh.com";
+
     if([navigationResponse.response.URL.host isEqualToString:myHost] || [navigationResponse.response.URL.host isEqualToString:[self getInitConfigValue:@"ServerName"]] || [navigationResponse.response.URL.host isEqualToString:serverName3]){
+        decisionHandler(WKNavigationResponsePolicyAllow);
+    } else if ([navigationResponse.response.URL.host isEqualToString: office365ServerName] || [navigationResponse.response.URL.host isEqualToString:orgServerName]) {
+        NSLog(@"Office365");
         decisionHandler(WKNavigationResponsePolicyAllow);
     }else{
         decisionHandler(WKNavigationResponsePolicyCancel);
     }
     
 }
-*/
+
 /// ページの読み込み完了時に呼ばれる
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     NSLog(@"Did Finish");
