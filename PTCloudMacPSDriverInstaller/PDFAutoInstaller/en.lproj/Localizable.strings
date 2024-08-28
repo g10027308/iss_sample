@@ -65,6 +65,9 @@
 "WarnningTitleMailPassword"="Mail Password Error";
 "WarnningInforMailPassword"="Please enter a Password.";
 
+"WarnningTitleTenantID"="TenantID Error";
+"WarnningInforTenantID"="Please enter a TenantID.";
+
 "ErrorTitle"="Error";
 
 "ErrorTitleConnectSuccess"="Connection success";

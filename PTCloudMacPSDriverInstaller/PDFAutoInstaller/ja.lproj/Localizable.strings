@@ -65,6 +65,9 @@
 "WarnningTitleMailPassword"="パスワードエラー";
 "WarnningInforMailPassword"="パスワードが未入力です。ご確認ください。";
 
+"WarnningTitleTenantID"="テナントIDエラー";
+"WarnningInforTenantID"="テナントIDが未入力です。ご確認ください。";
+
 "ErrorTitle"="Error";
 
 "ErrorTitleConnectSuccess"="Connection success";
