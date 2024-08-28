@@ -133,6 +133,21 @@ decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
 /// ページの読み込み完了時に呼ばれる
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     NSLog(@"Did Finish");
+    NSString *currentURL = [self.myWebView.URL absoluteString];
+    NSString *failureUrl = [self getInitConfigValue:@"failureUrl"];
+
+    if([currentURL containsString:failureUrl]){
+        if ([self.getPreferredLanguage containsString:@"ja"]){
+            NSLog(@"[ERROR] invalid URL");
+            [self showHtml:@"LoginFailed_2nd"];
+            return;
+        }
+        else {
+            NSLog(@"[ERROR] invalid URL");
+            [self showHtml:@"LoginFailed_1st"];
+            return;
+        }
+    }
 }
 /*
 // 页面加载完成之后调用 4
