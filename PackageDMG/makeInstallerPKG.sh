@@ -22,7 +22,7 @@ fi
 echo "Start."
 echo "=================================================="
 echo ""
-DMGName=Ricoh\ PS\ Driver\ for\ mac_eu_user_V1.8.0.0
+DMGName=Ricoh\ PS\ Driver\ for\ mac_eu_user_V1.8.0.1
 SignServer=${CodeSignServer}
 OSSLicenseTextFile=OSS\ License.txt
 

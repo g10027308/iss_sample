@@ -210,7 +210,7 @@ static int _assign_plistdata2(char *key, unsigned char *value, int size) {
     
     memset(plistData[option].value.pval, 0x00, BUFSIZE);
     memcpy(plistData[option].value.pval, value, size);
-    log_event(CPSTATUS, "Password[%s]: %s ,size: %d\n", key, plistData[option].value.pval, size);
+    log_event(CPSTATUS, "Password[%s]%d: %s ,size: %d\n", key, option, plistData[option].value.pval, size);
     
     return 1;
 }
@@ -250,7 +250,14 @@ static int _assign_plistdata(char *key, char *value, int isBE) {
         case PASSWORD:
         case MAILPASSWORD:
         case USERPASSWORD:
-            memset(plistData[option].value.pval, 0x00, BUFSIZE);
+        case USERNAME:
+        case ACCESSTOKEN:
+        case REFRESHTOKEN:
+        case CLIENTID:
+        case CODECHALLENGE:
+        case TENANTID:
+        case TUSERID:
+         memset(plistData[option].value.pval, 0x00, BUFSIZE);
             unsigned char *p;
             int i = 0;
             for (i = 0, p = (unsigned char *)value; i < BUFSIZE; i++, p++) {
@@ -290,36 +297,36 @@ static int _assign_plistdata(char *key, char *value, int isBE) {
             tmp=atoi(value);
             plistData[USEPROXY].value.ival = ((tmp!=0)?1:0);
             break;
-        case USERNAME:
-            strncpy(plistData[USERNAME].value.sval, value, BUFSIZE);
-            break;
-        case ACCESSTOKEN:
-            strncpy(plistData[ACCESSTOKEN].value.sval, value, BUFSIZE);
-            break;
-        case REFRESHTOKEN:
-            strncpy(plistData[REFRESHTOKEN].value.sval, value, BUFSIZE);
-            break;
+//        case USERNAME:
+//            strncpy(plistData[USERNAME].value.sval, value, BUFSIZE);
+//            break;
+//        case ACCESSTOKEN:
+//            strncpy(plistData[ACCESSTOKEN].value.sval, value, BUFSIZE);
+//            break;
+//        case REFRESHTOKEN:
+//            strncpy(plistData[REFRESHTOKEN].value.sval, value, BUFSIZE);
+//            break;
         case REDIRECTURI:
             strncpy(plistData[REDIRECTURI].value.sval, value, BUFSIZE);
             break;
         case MAIL:
             strncpy(plistData[MAIL].value.sval, value, BUFSIZE);
             break;
-        case CLIENTID:
-            strncpy(plistData[CLIENTID].value.sval, value, BUFSIZE);
-            break;
-        case CODECHALLENGE:
-            strncpy(plistData[CODECHALLENGE].value.sval, value, BUFSIZE);
-            break;
+//        case CLIENTID:
+//            strncpy(plistData[CLIENTID].value.sval, value, BUFSIZE);
+//            break;
+//        case CODECHALLENGE:
+//            strncpy(plistData[CODECHALLENGE].value.sval, value, BUFSIZE);
+//            break;
         case CODEVERIFIER:
             strncpy(plistData[CODEVERIFIER].value.sval, value, BUFSIZE);
             break;
-        case TENANTID:
-            strncpy(plistData[TENANTID].value.sval, value, BUFSIZE);
-            break;
-        case TUSERID:
-            strncpy(plistData[TUSERID].value.sval, value, BUFSIZE);
-            break;
+//        case TENANTID:
+//            strncpy(plistData[TENANTID].value.sval, value, BUFSIZE);
+//            break;
+//        case TUSERID:
+//            strncpy(plistData[TUSERID].value.sval, value, BUFSIZE);
+//            break;
         default:
             //log_event(CPERROR, "Program error: option not treated: %s = %s\n", key, value);
             return 0;
@@ -365,18 +372,21 @@ static void read_plist_file(char *filename, int isBE) {
                     bFindKey = false; // clear flag
                 }
             } else if (bFindKey == true) {  //test string以外（NSData型）
-                if (!strcmp(key, plistData[PASSWORD].keyname) || !strcmp(key, plistData[MAILPASSWORD].keyname) || !strcmp(key, plistData[USERPASSWORD].keyname)) {  //encoded password
+                if (!strcmp(key, plistData[PASSWORD].keyname) || !strcmp(key, plistData[MAILPASSWORD].keyname) || !strcmp(key, plistData[USERPASSWORD].keyname)
+                     || !strcmp(key, plistData[USERNAME].keyname) || !strcmp(key, plistData[TENANTID].keyname) || !strcmp(key, plistData[TUSERID].keyname) || !strcmp(key, plistData[CLIENTID].keyname) || !strcmp(key, plistData[CODECHALLENGE].keyname) || !strcmp(key, plistData[ACCESSTOKEN].keyname) || !strcmp(key, plistData[REFRESHTOKEN].keyname)
+                    ) {  //encoded password
                     int size = 0;
                     log_event(CPSTATUS, "PASSDWORDATA:%s, %s¥n", filename, key);
                     
                     unsigned char *p = getmypass(filename, key, &size);
-                    _assign_plistdata2(key, p, size);
+                    //_assign_plistdata2(key, p, size);
                     char *sid = GetSerialNumber();
                     char *uid = GetUserID();
                     
                     char *pw = decrypt(p, sid, uid, size);
                     log_event(CPSTATUS, "keystr:%s, ivstr:%s, size:%d", sid, uid, size);
-                    log_event(CPSTATUS, "PASSWORDDATA:decode:%s", pw);
+                    log_event(CPSTATUS, "PASSWORDDATA[%s]:decode:%s", key, pw);
+                    _assign_plistdata(key, pw, isBE);
                     free(p);
                     bFindKey = false; // clear flag
                 }
@@ -540,6 +550,9 @@ static int init(char *argv[]) {
     size=strlen(argv[2])+1;
     user=calloc(size, sizeof(char));
     snprintf(user, size, "%s", argv[2]);
+    
+    SetUserID(user);        //test
+    
     //char *loginUser = getlogin();
     strcpy(PATH_USER_PLIST, "/etc/cups/com.rits.PdfDriverInstaller_");
     strcat(PATH_USER_PLIST, user);
@@ -1578,7 +1591,8 @@ static bool checkServerConnnect(char *ip, char *port, char *usercode, char *argv
     */
     snprintf(testurl, BUFSIZE, "%s://%s/frcxprint/service_info",
              addrMode, ip);  // url
-    
+
+    log_event(CPSTATUS, "AccessToken: %s.", Plist_AccessToken);
     bool bCheckConnect = check_connect(testurl, Conf_ProxyAddr, Conf_ProxyUserPWD, Plist_AccessToken);
     if(!bCheckConnect){
         // Server addr is not connected!
@@ -1586,7 +1600,7 @@ static bool checkServerConnnect(char *ip, char *port, char *usercode, char *argv
     }else{
         char *access_token;
         access_token = Plist_AccessToken;
-        
+
         cp_string access_token_path;
         char *user;
         size_t size;
@@ -2505,6 +2519,7 @@ int main(int argc, char *argv[]) {
     //Check Server Connect
     if (!checkServerConnnect(Plist_PrintServerName, Plist_ServerPort, cUserCode, argv, stderr))
     {
+        log_event(CPSTATUS, "ClientID: %s, RefreshToken: %s.", Plist_ClientId, Plist_RefreshToken);
         if (!getToken(Plist_ServerName, Plist_ClientId, Plist_RefreshToken, argv, stderr))
         {
             fputs(MSGIN_CONTECT_TO_DEVICE, stderr);

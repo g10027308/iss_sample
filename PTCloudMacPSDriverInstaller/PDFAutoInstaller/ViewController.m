@@ -268,26 +268,33 @@
     [dicSetting setObject:strProxyIPAddress forKey:@"ProxyIP"];
     [dicSetting setObject:strProxyPort forKey:@"ProxyPort"];
     [dicSetting setObject:strUserName forKey:@"UserName"];
+    [dicSetting setObject:[encryptPassword getEncryptPassword:strUserName userid:userid] forKey:@"UserName"];     //encoded password
     [dicSetting setObject:strPassword forKey:@"Password"];
     [dicSetting setObject:[encryptPassword getEncryptPassword:strPassword userid:userid] forKey:@"Password"];     //encoded password
 
     // Print User
     [dicSetting setObject:strTenantID forKey:@"TenantID"];
+    [dicSetting setObject:[encryptPassword getEncryptPassword:strTenantID userid:userid] forKey:@"TenantID"];     //encoded password
     [dicSetting setObject:strUserID forKey:@"UserID"];
+    [dicSetting setObject:[encryptPassword getEncryptPassword:strUserID userid:userid] forKey:@"UserID"];     //encoded password
     [dicSetting setObject:strUserPassword forKey:@"UserPassword"];
     [dicSetting setObject:[encryptPassword getEncryptPassword:strUserPassword userid:userid] forKey:@"UserPassword"];     //encoded password
 
     
     //Token
     [dicSetting setObject:refreshToken forKey:@"RefreshToken"];
+    [dicSetting setObject:[encryptPassword getEncryptPassword:refreshToken userid:userid] forKey:@"RefreshToken"];     //encoded password
     [dicSetting setObject:accessToken forKey:@"AccessToken"];
-    
+    [dicSetting setObject:[encryptPassword getEncryptPassword:accessToken userid:userid] forKey:@"AccessToken"];     //encoded password
+
     [dicSetting setObject:redirecturi forKey:@"Redirecturi"];
     [dicSetting setObject:clientid forKey:@"ClientID"];
-    
+    [dicSetting setObject:[encryptPassword getEncryptPassword:clientid userid:userid] forKey:@"ClientID"];     //encoded password
+
     [dicSetting setObject:code_verifier forKey:@"CodeVerifier"];
     [dicSetting setObject:code_challenge forKey:@"CodeChallenge"];
-    
+    [dicSetting setObject:[encryptPassword getEncryptPassword:code_challenge userid:userid] forKey:@"CodeChallenge"];     //encoded password
+
     //Print Server
     [dicSetting setObject:strPrintServerName forKey:@"PrintServerName"];
     
@@ -555,11 +562,13 @@
 
 
 - (NSString *)getTenantID {
+/*
 #if SHOW_INSTALL_BTN
     NSString *strTenantID = nil;
 #else
     NSString *strTenantID = [self getConfigValue:@"TenantID"];
 #endif
+
     if(nil == strTenantID){
         if (YES == [self judgePlistExist]){
             strTenantID = [self getConfigValue:@"TenantID"];
@@ -568,9 +577,38 @@
         }
     }
     return strTenantID;
+*/
+    NSString *strTenantID = nil;
+#if SHOW_INSTALL_BTN
+    NSData *tenantID = nil;
+#else
+    NSData *tenantID = [self getConfigData:@"TenantID"];
+#endif
+    
+    NSString *userid = [self getloginUser];
+    
+    if(nil == tenantID){
+        if (YES == [self judgePlistExist]){
+            tenantID = [self getConfigData:@"TenantID"];
+        } else{
+            tenantID = nil;
+        }
+    }
+    if (tenantID != nil) {
+        if ([tenantID isKindOfClass:[NSString class]]) {
+            strTenantID = [self getConfigValue:@"TenantID"];    //clear text (older version)
+        } else {
+            strTenantID = [encryptPassword getDecryptPassword:tenantID userid:userid];
+        }
+    } else {
+        strTenantID = [self getInitConfigValue:@"TenantID"];
+    }
+    
+    return strTenantID;
 }
 
 - (NSString *)getUserID {
+/*
 #if SHOW_INSTALL_BTN
     NSString *getUserID = nil;
 #else
@@ -584,6 +622,35 @@
         }
     }
     return getUserID;
+ */
+    NSString *strUserID = nil;
+#if SHOW_INSTALL_BTN
+    NSData *userID = nil;
+#else
+    NSData *userID = [self getConfigData:@"UserID"];
+#endif
+    
+    NSString *userid = [self getloginUser];
+    
+    if(nil == userID){
+        if (YES == [self judgePlistExist]){
+            userID = [self getConfigData:@"UserID"];
+        } else{
+            userID = nil;
+        }
+    }
+    if (userID != nil) {
+        if ([userID isKindOfClass:[NSString class]]) {
+            strUserID = [self getConfigValue:@"UserID"];    //clear text (older version)
+        } else {
+            strUserID = [encryptPassword getDecryptPassword:userID userid:userid];
+        }
+    } else {
+        strUserID = [self getInitConfigValue:@"UserID"];
+    }
+    
+    return strUserID;
+
 }
 
 - (NSString *)getUserPassword {
@@ -820,6 +887,7 @@
 
 
 - (NSString *)getUserName {
+/*
 #if SHOW_INSTALL_BTN
     NSString *strUserName = nil;
 #else
@@ -833,6 +901,35 @@
         }
     }
     return strUserName;
+*/
+    NSString *strUserName = nil;
+#if SHOW_INSTALL_BTN
+    NSData *userName = nil;
+#else
+    NSData *userName = [self getConfigData:@"UserName"];
+#endif
+    
+    NSString *userid = [self getloginUser];
+    
+    if(nil == userName){
+        if (YES == [self judgePlistExist]){
+            userName = [self getConfigData:@"UserName"];
+        } else{
+            userName = nil;
+        }
+    }
+    if (userName != nil) {
+        if ([userName isKindOfClass:[NSString class]]) {
+            strUserName = [self getConfigValue:@"UserName"];    //clear text (older version)
+        } else {
+            strUserName = [encryptPassword getDecryptPassword:userName userid:userid];
+        }
+    } else {
+        strUserName = [self getInitConfigValue:@"UserName"];
+    }
+    
+    return strUserName;
+
 }
 
 
