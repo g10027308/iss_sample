@@ -1126,6 +1126,22 @@
     NSString *loginName = [self getloginUser];
     NSString *plistName = [NSString stringWithFormat:@"com.rits.PdfDriverInstaller_%@.plist",loginName];
     NSString *plistPath = [prePath stringByAppendingString:plistName];
+    //test /tmpに*.binがあれば復号化して使用する
+    NSString *encfile = [NSString stringWithFormat:@"/tmp/%@.bin", plistName];
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    if ([fileManager fileExistsAtPath:encfile]) {
+        NSError *error = nil;
+        NSString *userid = [self getloginUser];
+        NSData *fdata = [NSData dataWithContentsOfFile: encfile];
+        NSString *decfile = [encfile stringByAppendingString:@".txt"];    // 復号化ファイル/tmp/*.plist.txt
+        NSString *decstr = [encryptPassword getDecryptPassword:fdata userid:userid];
+        [decstr writeToFile:decfile atomically:YES encoding: NSUTF8StringEncoding error:&error];
+        ConfigList = [NSMutableDictionary dictionaryWithContentsOfFile:decfile];
+        NSLog(@"Decrypt:%@->%@", encfile, decfile);
+        return;
+    }
+     //test ここまで
+    
     ConfigList = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
 }
 
