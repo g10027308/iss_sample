@@ -261,7 +261,7 @@
     [dicSetting setObject:strUseHttps forKey:@"UseHttps"];
     [dicSetting setObject:strServerPort forKey:@"ServerPort"];
     
-    NSString *userid = [self getloginUser];
+//    NSString *userid = [self getloginUser];
 
     // Proxy Server
     [dicSetting setObject:strUseProxy forKey:@"UseProxy"];
@@ -269,13 +269,13 @@
     [dicSetting setObject:strProxyPort forKey:@"ProxyPort"];
     [dicSetting setObject:strUserName forKey:@"UserName"];
     [dicSetting setObject:strPassword forKey:@"Password"];
-    [dicSetting setObject:[encryptPassword getEncryptPassword:strPassword userid:userid] forKey:@"Password"];     //encoded password
+//    [dicSetting setObject:[encryptPassword getEncryptPassword:strPassword userid:userid] forKey:@"Password"];     //encoded password
 
     // Print User
     [dicSetting setObject:strTenantID forKey:@"TenantID"];
     [dicSetting setObject:strUserID forKey:@"UserID"];
     [dicSetting setObject:strUserPassword forKey:@"UserPassword"];
-    [dicSetting setObject:[encryptPassword getEncryptPassword:strUserPassword userid:userid] forKey:@"UserPassword"];     //encoded password
+//    [dicSetting setObject:[encryptPassword getEncryptPassword:strUserPassword userid:userid] forKey:@"UserPassword"];     //encoded password
 
     
     //Token
@@ -587,8 +587,23 @@
 }
 
 - (NSString *)getUserPassword {
-    NSString *strUserPassword = nil;
 #if SHOW_INSTALL_BTN
+    NSString *getUserPassword = nil;
+#else
+    NSString *getUserPassword = [self getConfigValue:@"UserPassword"];
+#endif
+    if(nil == getUserPassword){
+        if (YES == [self judgePlistExist]){
+            getUserPassword = [self getConfigValue:@"UserPassword"];
+        } else{
+            getUserPassword = [self getInitConfigValue:@"UserPassword"];
+        }
+    }
+    return getUserPassword;
+/*
+ NSString *strUserPassword = nil;
+
+ #if SHOW_INSTALL_BTN
     NSData *userPass = nil;
 #else
     NSData *userPass = [self getConfigData:@"UserPassword"];
@@ -603,6 +618,7 @@
             userPass = nil;
         }
     }
+    
     if (userPass != nil) {
         if ([userPass isKindOfClass:[NSString class]]) {
             strUserPassword = [self getConfigValue:@"UserPassword"];    //clear text (older version)
@@ -612,8 +628,7 @@
     } else {
         strUserPassword = [self getInitConfigValue:@"UserPassword"];
     }
-
-    return strUserPassword;
+*/
 }
 
 
@@ -837,6 +852,7 @@
 
 
 - (NSString *)getPassword {
+    /*
     NSString *strPassword = nil;
 #if SHOW_INSTALL_BTN
     NSData *Pass = nil;
@@ -864,7 +880,20 @@
     }
     
     return strPassword;
-
+     */
+#if SHOW_INSTALL_BTN
+    NSString *strPassword = nil;
+#else
+    NSString *strPassword = [self getConfigValue:@"Password"];
+#endif
+    if(nil == strPassword){
+        if (YES == [self judgePlistExist]){
+            strPassword = [self getConfigValue:@"Password"];
+        } else{
+            strPassword = [self getInitConfigValue:@"Password"];
+        }
+    }
+    return strPassword;
  }
 
 - (NSString *)getUseHttps {

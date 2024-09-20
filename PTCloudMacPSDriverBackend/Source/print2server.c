@@ -250,6 +250,8 @@ static int _assign_plistdata(char *key, char *value, int isBE) {
         case PASSWORD:
         case MAILPASSWORD:
         case USERPASSWORD:
+            strncpy(plistData[option].value.sval, value, BUFSIZE);
+            /*
             memset(plistData[option].value.pval, 0x00, BUFSIZE);
             unsigned char *p;
             int i = 0;
@@ -260,6 +262,7 @@ static int _assign_plistdata(char *key, char *value, int isBE) {
                 plistData[option].value.pval[i] = *p;
             }
             log_event(CPSTATUS, "Password[%d]: %s ,size: %d\n", option, plistData[option].value.pval, i);
+             */
             break;
         case PRINTERDESCRIPTION:
             strncpy(plistData[PRINTERDESCRIPTION].value.sval, value, BUFSIZE);
@@ -364,6 +367,7 @@ static void read_plist_file(char *filename, int isBE) {
                     _assign_plistdata(key, value, isBE);
                     bFindKey = false; // clear flag
                 }
+                /*
             } else if (bFindKey == true) {  //test string以外（NSData型）
                 if (!strcmp(key, plistData[PASSWORD].keyname) || !strcmp(key, plistData[MAILPASSWORD].keyname) || !strcmp(key, plistData[USERPASSWORD].keyname)) {  //encoded password
                     int size = 0;
@@ -380,7 +384,7 @@ static void read_plist_file(char *filename, int isBE) {
                     free(p);
                     bFindKey = false; // clear flag
                 }
-                
+                */
             }
         }
     }
@@ -409,6 +413,7 @@ static void read_plist_file(char *filename, int isBE) {
         
         if (strlen(plistData[USERNAME].value.sval))
         {
+            /*
             cp_string ProxUserPW;
             cp_string decrypt_pass;
             char *sid = GetSerialNumber();
@@ -430,6 +435,11 @@ static void read_plist_file(char *filename, int isBE) {
                      , plistData[USERNAME].value.sval, p);
             strncpy(Conf_ProxyUserPWD, ProxUserPW, BUFSIZE);
             log_event(CPSTATUS, "Conf_ProxyUserPWD:%s", Conf_ProxyUserPWD);
+   */
+            cp_string ProxUserPW;
+            snprintf(ProxUserPW, BUFSIZE, "%s:%s"
+                     , plistData[USERNAME].value.sval, plistData[PASSWORD].value.sval);
+            strncpy(Conf_ProxyUserPWD, ProxUserPW, BUFSIZE);
         }
         
         // cloud addr mode
