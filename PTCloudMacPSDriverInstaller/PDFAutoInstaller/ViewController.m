@@ -27,6 +27,7 @@
     NSString *UserAccount;
     NSString *DistributedIP;
     NSString *DistributedIPPort;
+    NSDictionary *ConfigList;
 }
 
 @synthesize PrinterName = _PrinterName;
@@ -37,6 +38,7 @@
 
     encryptPassword = [EncryptPassword new];        //encoded password
 
+    [self readConfig];
     [self initWindow];
     printerInstaller = [[RIPrinterInstaller alloc] init];
 }
@@ -261,7 +263,7 @@
     [dicSetting setObject:strUseHttps forKey:@"UseHttps"];
     [dicSetting setObject:strServerPort forKey:@"ServerPort"];
     
-//    NSString *userid = [self getloginUser];
+    NSString *userid = [self getloginUser];
 
     // Proxy Server
     [dicSetting setObject:strUseProxy forKey:@"UseProxy"];
@@ -295,7 +297,14 @@
     [dicSetting writeToFile:plistPath atomically:YES];
     
     NSLog(@"dicSetting = %@", dicSetting);
-    
+
+    //test
+    NSError *error = nil;
+    NSString *slist = [NSString stringWithContentsOfFile: plistPath encoding: NSUTF8StringEncoding error:&error];
+    NSData *encd = [encryptPassword getEncryptPassword:slist userid: userid];
+    NSString *pth = [plistPath stringByAppendingString:@".bin"];    // 暗号化ファイル/tmp/*.plist.bin
+    [encd writeToFile:pth options:NSDataWritingAtomic error:&error];
+
     if(blCopy2Prefrence)
     {
         //RIPrinterInstaller * printerInstaller = [[RIPrinterInstaller alloc] init];
@@ -1110,18 +1119,32 @@
 }
 
 
-- (NSString *)getConfigValue: (NSString *) strConfigName {
+- (void)readConfig {
     
     NSString *prePath = [self getReadPreferenceDirectory];
     
     NSString *loginName = [self getloginUser];
     NSString *plistName = [NSString stringWithFormat:@"com.rits.PdfDriverInstaller_%@.plist",loginName];
     NSString *plistPath = [prePath stringByAppendingString:plistName];
-    NSMutableDictionary *dicSetting = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+    ConfigList = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+}
+
+- (NSString *)getConfigValue: (NSString *) strConfigName {
+/*
+    NSString *prePath = [self getReadPreferenceDirectory];
     
+    NSString *loginName = [self getloginUser];
+    NSString *plistName = [NSString stringWithFormat:@"com.rits.PdfDriverInstaller_%@.plist",loginName];
+    NSString *plistPath = [prePath stringByAppendingString:plistName];
+    NSMutableDictionary *dicSetting = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+*/
     NSString *strValue = nil;
-    if(nil != dicSetting){
+/*    if(nil != dicSetting){
         strValue = [dicSetting objectForKey:strConfigName];
+    }
+*/
+    if (ConfigList != nil){
+        strValue = [ConfigList objectForKey:strConfigName];
     }
     
     return strValue;
