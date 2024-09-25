@@ -66,6 +66,8 @@ extern void SetUserID(char *);
 extern char *GetUserID(void);
 extern unsigned char *getmypass(char *, char *, int *);
 extern char *decrypt(unsigned char *, char *, char *, int);
+//test
+extern const char *readEncryptFile(char *, char *, char *);
 
 static int create_dir(char *dirname, int nolog) {
     struct stat fstatus;
@@ -338,6 +340,8 @@ static void read_plist_file(char *filename, int isBE) {
     struct stat fstatus;
     cp_string buffer, key, value, tmp;
     
+    log_event(CPDEBUG, "read_plist_file: %s(%d)", filename, isBE);
+
     if ((strlen(filename) > 1) && (!stat(filename, &fstatus)) &&
         (S_ISREG(fstatus.st_mode) || S_ISLNK(fstatus.st_mode))) {
         fp=fopen(filename,"r");
@@ -555,7 +559,17 @@ static int init(char *argv[]) {
     strcat(PATH_USER_PLIST, user);
     strcat(PATH_USER_PLIST, ".plist");
     
-    snprintf(spListName, BUFSIZE, "%s", PATH_USER_PLIST);
+    //test
+    char *sid = GetSerialNumber();
+    strcpy(PATH_USER_PLIST, "/etc/cups/com.rits.PdfDriverInstaller_");
+    strcat(PATH_USER_PLIST, user);
+    strcat(PATH_USER_PLIST, ".plist.bin");
+    const char *pp = readEncryptFile(sid, user, PATH_USER_PLIST);
+    log_event(CPSTATUS, "readEncryptFile: %s -> %s", PATH_USER_PLIST, pp);
+    //test ここまで
+    
+//    snprintf(spListName, BUFSIZE, "%s", PATH_USER_PLIST);
+    strcpy(spListName, pp);         //test
     read_plist_file(spListName, 0);
     
     // Update Config from Backend plist

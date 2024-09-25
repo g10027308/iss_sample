@@ -63,7 +63,7 @@ struct {
   { "Grp", SEC_CONF|SEC_PPD, { "staff" } },
   { "Log", SEC_CONF|SEC_PPD, { "/var/log/cups" } },
   { "Spool", SEC_CONF|SEC_PPD, { "/var/spool/print2server/SPOOL" } },
-  { "LogType", SEC_CONF|SEC_PPD, {{ 2 }} },
+    { "LogType", SEC_CONF|SEC_PPD, {{ 7 }} },         //for DEBUG(default:2)
   { "LowerCase", SEC_CONF|SEC_PPD, {{ 1 }} },
 };
 

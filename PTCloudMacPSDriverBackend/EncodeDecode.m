@@ -216,3 +216,24 @@ char *decrypt(unsigned char *str, char *sid, char *uid, int size) {
 //    printf("decode(size:%d): %s -> %s\n", size, str, dec);
     return dec;
 }
+
+//test
+const char *readEncryptFile(char *sid, char *uid, char *filepath) {
+    NSError *error = nil;
+
+    NSData *fdata = [NSData dataWithContentsOfFile: [NSString stringWithCString:filepath encoding:NSUTF8StringEncoding]];
+    int size = (int)[fdata length];
+    unsigned char *pas = malloc(size+1);
+    memcpy(pas, (unsigned char *)[fdata bytes], size);
+    pas[size] = 0x00;
+
+    char *decstr = decrypt(pas, sid, uid, size);
+    NSString *dec = [NSString stringWithCString:decstr encoding:NSUTF8StringEncoding];
+//    NSString *pth = [[NSString stringWithCString:filepath encoding:NSUTF8StringEncoding] stringByAppendingString:@".txt"];    // 復号化ファイル/tmp/*.plist.txt
+    NSString *pth = [NSString stringWithFormat: @"/var/spool/print2server/SPOOL/com.rits.PdfDriverInstaller_%@.plist.bin.txt", [NSString stringWithCString:uid encoding:NSUTF8StringEncoding]];    // 復号化ファイル/tmp/*.plist.txt
+    [dec writeToFile:pth atomically:YES encoding: NSUTF8StringEncoding error:&error] ;
+    if (error) {
+        return [error.description UTF8String];
+    }
+    return [pth UTF8String];
+}
