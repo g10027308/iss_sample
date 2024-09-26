@@ -201,7 +201,7 @@ char *decode(unsigned char *str, char *key, char *iv, int size) {
  * 暗号化されたデータを復号化して返す
  * @param[in]    str    暗号化されたデータ
  * @param[in]    sid    デバイスのシリアル番号
- * @param[in]    uid    ログインしてユーザID
+ * @param[in]    uid    ログインユーザID
  * @param[in]   size    暗号化データのサイズ
  * @retval  復号化したデータ（取得に失敗した場合はNULL）
  */

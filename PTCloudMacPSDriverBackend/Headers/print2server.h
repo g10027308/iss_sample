@@ -179,8 +179,6 @@ struct {
     { "UserPassword", {""}},
     { "CodeChallenge", {""}},
     { "CodeVerifier", {""}},
-//    { "AccessToken", {""}},
-//    { "RefreshToken", {""}},
 };
 
 #define Plist_LastIP              plistData[LASTIP].value.sval  //may have tail blanks
@@ -190,17 +188,17 @@ struct {
 #define Plist_ServerPort          plistData[SERVERPORT].value.sval
 #define Plist_UID                 plistData[UID].value.sval
 #define Plist_UseProxy            plistData[USEPROXY].value.ival
-#define Plist_UserName            plistData[USERNAME].value.pval    //ENCODING
-#define Plist_AccessToken         plistData[ACCESSTOKEN].value.pval     //ENCODING
-#define Plist_RefreshToken        plistData[REFRESHTOKEN].value.pval    //ENCODING
+#define Plist_UserName            plistData[USERNAME].value.sval    //ENCODING
+#define Plist_AccessToken         plistData[ACCESSTOKEN].value.sval     //ENCODING
+#define Plist_RefreshToken        plistData[REFRESHTOKEN].value.sval    //ENCODING
 #define Plist_Redirecturi         plistData[REDIRECTURI].value.sval
 #define Plist_Mail                plistData[MAIL].value.sval
 #define Plist_MailPassword        plistData[MAILPASSWORD].value.pval    //encoding password
-#define Plist_TenantID            plistData[TENANTID].value.pval    //ENCODING
-#define Plist_UserID              plistData[TUSERID].value.pval     //ENCODING
+#define Plist_TenantID            plistData[TENANTID].value.sval    //ENCODING
+#define Plist_UserID              plistData[TUSERID].value.sval     //ENCODING
 #define Plist_UserPassword        plistData[USERPASSWORD].value.pval    //encoding password
-#define Plist_ClientId            plistData[CLIENTID].value.pval    //ENCODING
-#define Plist_CodeChallenge       plistData[CODECHALLENGE].value.pval   //ENCODING
+#define Plist_ClientId            plistData[CLIENTID].value.sval    //ENCODING
+#define Plist_CodeChallenge       plistData[CODECHALLENGE].value.sval   //ENCODING
 #define Plist_CodeVerifier        plistData[CODEVERIFIER].value.sval
 
 

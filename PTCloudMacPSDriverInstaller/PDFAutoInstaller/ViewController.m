@@ -200,6 +200,39 @@
     NSString *loginName = [[NSString alloc] initWithUTF8String:loginUser];
     return loginName;
 }
+/*
+//test
+- (BOOL)testFileEncryption: (NSString *)plistPath {
+    NSString *userid = [self getloginUser];
+    
+    NSError *error = nil;
+    NSString *initpath = [[NSBundle mainBundle] pathForResource:INITCONFIG ofType:@"plist"];
+    
+    [[self testReadEncryptPlist: plistPath] writeToFile:plistPath atomically:YES];
+
+    NSString *slist = [NSString stringWithContentsOfFile: initpath encoding: NSUTF8StringEncoding error:&error];
+    NSData *encd = [encryptPassword getEncryptPassword:slist userid: userid];
+    NSString *pth = [plistPath stringByAppendingString:@".bin"];    // 暗号化ファイル/tmp/*.plist.bin
+    [encd writeToFile:pth options:NSDataWritingAtomic error:&error];
+    NSData *fdata = [NSData dataWithContentsOfFile: pth];
+    NSString *n = [encryptPassword getDecryptPassword:fdata userid:userid];
+    [n writeToFile:[pth stringByAppendingString:@".txt"] atomically:YES encoding: NSUTF8StringEncoding error:&error];    // 復号化ファイル/tmp/*.plist.bin.txt
+    return (error == nil ? YES : NO);
+}
+
+- (NSDictionary *)testReadEncryptPlist: (NSString *)filePath {
+    NSString *userid = [self getloginUser];
+    NSString *pth = [filePath stringByAppendingString:@".txt"];    // 復号化ファイル/tmp/*.plist.txt
+
+    NSError *error = nil;
+    NSData *fdata = [NSData dataWithContentsOfFile: filePath];
+    NSString *decstr = [encryptPassword getDecryptPassword:fdata userid:userid];
+    [decstr writeToFile:pth atomically:YES encoding: NSUTF8StringEncoding error:&error];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:pth];
+
+    return dict;
+}
+*/
 
 //save DingUID to config file in folder "/tmp/"
 //should copy the config in folder "/tmp/" to User folder "~/Library/Preferences/" and root folder "/Library/Preferences/"

@@ -194,7 +194,7 @@ static void read_config_file(char *filename) {
     (void) fclose(fp);
     return;
 }
-
+/*
 static int _assign_plistdata2(char *key, unsigned char *value, int size) {
     unsigned char *p;
     int i, option;
@@ -214,6 +214,7 @@ static int _assign_plistdata2(char *key, unsigned char *value, int size) {
     
     return 1;
 }
+*/
 
 static int _assign_plistdata(char *key, char *value, int isBE) {
     int tmp;
@@ -372,9 +373,14 @@ static void read_plist_file(char *filename, int isBE) {
                     bFindKey = false; // clear flag
                 }
             } else if (bFindKey == true) {  //test string以外（NSData型）
-                if (!strcmp(key, plistData[PASSWORD].keyname) || !strcmp(key, plistData[MAILPASSWORD].keyname) || !strcmp(key, plistData[USERPASSWORD].keyname)
+                if (
+                    strlen(tmp) && !strncmp(tmp,"data",strlen("data"))
+                    /*
+                    !strcmp(key, plistData[PASSWORD].keyname) || !strcmp(key, plistData[MAILPASSWORD].keyname) || !strcmp(key, plistData[USERPASSWORD].keyname)
                      || !strcmp(key, plistData[USERNAME].keyname) || !strcmp(key, plistData[TENANTID].keyname) || !strcmp(key, plistData[TUSERID].keyname) || !strcmp(key, plistData[CLIENTID].keyname) || !strcmp(key, plistData[CODECHALLENGE].keyname) || !strcmp(key, plistData[ACCESSTOKEN].keyname) || !strcmp(key, plistData[REFRESHTOKEN].keyname)
-                    ) {  //encoded password
+                    */
+                    )
+                {  //encoded password
                     int size = 0;
                     log_event(CPSTATUS, "PASSDWORDATA:%s, %s¥n", filename, key);
                     
@@ -395,7 +401,7 @@ static void read_plist_file(char *filename, int isBE) {
         }
     }
     
-    
+    if (!isBE) {    //以下、/var/spool/print2server/SPOOL配下のプロパティリストは参照しないので処理をスキップ
     //Update Config (ServerIP)
     if (strlen(plistData[PRINTSERVERNAME].value.sval))
     {
@@ -420,6 +426,7 @@ static void read_plist_file(char *filename, int isBE) {
         if (strlen(plistData[USERNAME].value.sval))
         {
             cp_string ProxUserPW;
+  /*
             cp_string decrypt_pass;
             char *sid = GetSerialNumber();
             char *uid = GetUserID();
@@ -438,6 +445,9 @@ static void read_plist_file(char *filename, int isBE) {
             //                    , plistData[USERNAME].value.sval, plistData[PASSWORD].value.pval);
             snprintf(ProxUserPW, BUFSIZE, "%s:%s"
                      , plistData[USERNAME].value.sval, p);
+  */
+            snprintf(ProxUserPW, BUFSIZE, "%s:%s"
+                                , plistData[USERNAME].value.sval, plistData[PASSWORD].value.sval);
             strncpy(Conf_ProxyUserPWD, ProxUserPW, BUFSIZE);
             log_event(CPSTATUS, "Conf_ProxyUserPWD:%s", Conf_ProxyUserPWD);
         }
@@ -451,7 +461,7 @@ static void read_plist_file(char *filename, int isBE) {
         }
         
     }
-    
+    }
     
     
     (void) fclose(fp);
