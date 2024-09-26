@@ -258,7 +258,9 @@ static int _assign_plistdata(char *key, char *value, int isBE) {
         case CODECHALLENGE:
         case TENANTID:
         case TUSERID:
-         memset(plistData[option].value.pval, 0x00, BUFSIZE);
+            strncpy(plistData[option].value.sval, value, BUFSIZE);
+            /*
+            memset(plistData[option].value.pval, 0x00, BUFSIZE);
             unsigned char *p;
             int i = 0;
             for (i = 0, p = (unsigned char *)value; i < BUFSIZE; i++, p++) {
@@ -267,7 +269,8 @@ static int _assign_plistdata(char *key, char *value, int isBE) {
                 }
                 plistData[option].value.pval[i] = *p;
             }
-            log_event(CPSTATUS, "Password[%d]: %s ,size: %d\n", option, plistData[option].value.pval, i);
+             */
+            log_event(CPSTATUS, "EncryptedPassword[%d]: %s ,size: %d\n", option, plistData[option].value.sval, strlen(plistData[option].value.sval));
             break;
         case PRINTERDESCRIPTION:
             strncpy(plistData[PRINTERDESCRIPTION].value.sval, value, BUFSIZE);
