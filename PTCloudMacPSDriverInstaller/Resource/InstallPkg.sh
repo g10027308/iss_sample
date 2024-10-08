@@ -20,3 +20,6 @@ dstConfigFileHome="$5"
 
 cp "${srcConfigFile}" "${dstConfigFile}"
 cp "${srcConfigFile}" "${dstConfigFileHome}"
+
+chgrp wheel "${dstConfigFile}"
+chmod 640 "${dstConfigFile}"
